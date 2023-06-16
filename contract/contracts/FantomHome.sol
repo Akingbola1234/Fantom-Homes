@@ -1,22 +1,26 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity ^0.8.18;
 
-/**
- * @title Fantom House
- * @author Olusanya Ayodeji
- * @notice This is a contract for a Real Estate Sales
- */
-contract FantomHouse {
+error FantomHome_PropertyListed();
+
+contract FantomHome {
     struct Property {
         uint propertyId;
         address agent;
         string propertyAddress;
+        string documents;
         uint price;
         bool isForSale;
     }
 
     mapping(uint => Property) public properties;
 
+    event PropertyListed(
+        uint indexed _propertyId,
+        uint indexed price,
+        string indexed propertyAddress,
+        string documents
+    );
     event PropertyPurchased(
         uint indexed _propertyId,
         uint indexed price,
@@ -28,19 +32,25 @@ contract FantomHouse {
     function listProperty(
         uint _propertyId,
         string memory _propertyAddress,
-        uint _price
+        uint _price,
+        string memory _documents
     ) public {
-        require(!properties[_propertyId].isForSale, "Property Already listed");
+        if (properties[_propertyId].isForSale) {
+            revert FantomHome_PropertyListed();
+        }
 
         Property memory newproperty = Property({
             propertyId: _propertyId,
             agent: msg.sender,
             propertyAddress: _propertyAddress,
+            documents: _documents,
             price: _price,
             isForSale: true
         });
 
         properties[_propertyId] = newproperty;
+
+        emit PropertyListed(_propertyId, _price, _propertyAddress, _documents);
     }
 
     function purchaseProperty(uint _propertyId) public payable {
