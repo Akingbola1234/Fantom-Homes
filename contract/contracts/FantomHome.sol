@@ -2,6 +2,9 @@
 pragma solidity ^0.8.18;
 
 error FantomHome_PropertyListed();
+error FantomHome_PropertyNotAvailable();
+error FantomHome_InsufficientPayment();
+error FantomHome_FailedToSendPrice();
 
 contract FantomHome {
     struct Property {
@@ -56,14 +59,20 @@ contract FantomHome {
     function purchaseProperty(uint _propertyId) public payable {
         Property storage property = properties[_propertyId];
 
-        require(property.isForSale, "Property not available for sale");
-        require(msg.value >= property.price, "Insufficient payment");
+        if (!property.isForSale) {
+            revert FantomHome_PropertyNotAvailable();
+        }
+        if (msg.value < property.price) {
+            revert FantomHome_InsufficientPayment();
+        }
 
         // Transfer Ownership
         address payable buyer = payable(msg.sender);
         address payable agent = payable(property.agent);
         (bool sent, ) = agent.call{value: msg.value}("");
-        require(sent, "Failed to sent price");
+        if (!sent) {
+            revert FantomHome_FailedToSendPrice();
+        }
 
         // Update property details
         property.agent = buyer;
