@@ -1,0 +1,190 @@
+.nftcard-container {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.nftcard {
+    background: #fff;
+    height: 400px;
+    width: 285px;
+    border-radius: 10px;
+}
+
+.nftcard-details .nft-image {
+    margin: auto;
+    display: block;
+    padding-top: 8px;
+    width: 265px;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 14px;
+}
+
+.nft-price-number {
+    display: flex;
+    margin-top: -20px;
+    margin-left: 5px;
+}
+
+.nft-name {
+    margin-left: 20px;
+    font-family: "Inter", sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    margin-top: 5px;
+}
+
+.eth-logo {
+    width: 50px;
+    height: 50px;
+}
+
+.nft-price {
+    margin-left: -10px;
+    font-size: 15px;
+    margin-top: 5px;
+    color: #815ee3;
+}
+
+.nftcard-details .nft-price-number-text {
+    margin-left: 155px;
+    font-size: 15px;
+    font-weight: 100;
+    margin-top: 0px;
+}
+
+.nftcard-details .nft-line {
+    margin-top: -5px;
+    border: 0.9px solid #edecec;
+    width: 90%;
+}
+
+.nft-time-button {
+    display: flex;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.countdown {
+    background: #e3daff;
+    text-align: center;
+    color: #1c51fe;
+    width: 80px;
+    font-size: 9px;
+    font-weight: 600;
+    height: 30px;
+    border-radius: 66px;
+}
+
+.bid {
+    margin-left: 90px;
+    background: transparent;
+    border: none;
+    color: #1c51fe;
+    font-size: 14px;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
+}
+
+.bid:hover {
+    cursor: pointer;
+}
+
+.ant-modal {
+    background: transparent !important;
+}
+
+.modal-logo-price {
+    display: flex;
+    align-items: center;
+}
+
+.modal-text {
+    color: #815ee3;
+    font-size: 18px;
+    font-family: "Inter", sans-serif;
+}
+
+.modal-price {
+    font-size: 18px;
+    margin-top: 10px;
+    color: #815ee3;
+}
+
+.ant-modal-content {
+    border-radius: 10px !important;
+}
+
+.view-more-btn {
+    background: linear-gradient(112.62deg, #8d1cfe 29.4%, #0038ed 105.15%);
+    color: #fff;
+    border: none;
+    margin-top: 30px;
+    height: 40px;
+    width: 130px;
+    border-radius: 40px;
+}
+
+.view-more-btn:hover {
+    cursor: pointer;
+}
+
+.live-auction img {
+    width: 100%;
+    padding: 0px;
+}
+
+.nft-modal-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.nft-button .primary-btn {
+    display: block;
+    background: #815ee3;
+    font-size: 15px;
+    border: none;
+    color: #fff;
+    height: 40px;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 4px;
+}
+
+.nft-button .secondary-btn {
+    color: #815ee3;
+    font-size: 15px;
+    width: 100%;
+    background: #fff;
+    height: 40px;
+    font-family: "Inter", sans-serif;
+    border: #815ee3 1px dashed;
+    border-radius: 4px;
+}
+
+.nft-button button:hover {
+    cursor: pointer;
+}
+
+.nft-modal-img {
+    width: 230px;
+    border-radius: 15px;
+}
+
+@media (max-width: 600px) {
+    .nftcard-details .nft-image {
+        width: 250px;
+        padding-top: 15px;
+    }
+    .nft-modal-image .nft-modal-img {
+        width: 150px;
+    }
+    .modal-text {
+        font-size: 14px;
+    }
+}

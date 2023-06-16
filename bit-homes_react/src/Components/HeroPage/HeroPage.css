@@ -1,0 +1,117 @@
+.heropage-container {
+    padding: 30px;
+}
+
+.heropage-details {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 50px;
+}
+
+.mobile-button {
+    background: #0038ED;
+    border: none;
+    width: 100%;
+    height: 35px;
+    color: #FFF;
+    border-radius: 40px;
+    font-size: 16px;
+    display: none;
+}
+
+.mobile-button:hover {
+    cursor: pointer;
+}
+
+.heropage-text h2 {
+    font-size: 70px;
+    font-family: "Inter", sans-serif;
+    font-weight: 800;
+    color: #FFF;
+}
+
+.heropage-text h2 span {
+    color: #0038ED;
+}
+
+.heropage-image .heropage-img {
+    width: 400px;
+}
+
+.heropage-sub-details {
+    display: flex;
+}
+
+.circle {
+    color: #FFF;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(112.62deg, #8D1CFE 29.4%, #0038ED 105.15%);
+    border-radius: 50%;
+}
+
+.circle p {
+    font-size: 13px;
+    text-align: center;
+}
+
+.circle img {
+    margin: auto;
+    display: block;
+    margin-top: 16px;
+    margin-left: 70px;
+    width: 15px;
+}
+
+.description p {
+    color: #FFF;
+    margin-left: 30px;
+    font-size: 17px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+
+.heropage-stats {
+    display: flex;
+    gap: 30px;
+    margin-left: 20px;
+}
+
+.stat {
+    color: #FFF;
+    line-height: 3px;
+}
+
+.stat h5 {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.stat h4 {
+    font-size: 17px;
+}
+
+@media(max-width: 600px) {
+    .heropage-text h2 {
+        font-size: 40px;
+    }
+    .star {
+        display: none;
+    }
+    .circle {
+        display: none;
+    }
+    .description p {
+        margin-left: 0px;
+    }
+    .heropage-stats {
+        margin-left: 0px;
+    }
+    .mobile-button {
+        display: block;
+    }
+    .heropage-image .heropage-img {
+        width: 300px;
+    }
+}
