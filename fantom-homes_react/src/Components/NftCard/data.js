@@ -1,43 +1,43 @@
-import firstNFT from "../../Assets/nfts/nft-image1.png"
-import secondNFT from "../../Assets/nfts/nft-image2.png"
-import thirdNFT from "../../Assets/nfts/nft-image3.png"
-import fourthNFT from "../../Assets/nfts/nft-image4.png"
-import fifthNFT from "../../Assets/nfts/nft-image5.png"
+import firstNFT from "../../Assets/images/first-home.webp"
+import secondNFT from "../../Assets/images/second-property.webp"
+import thirdNFT from "../../Assets/images/third-property.webp"
+import fourthNFT from "../../Assets/images/fourth-property.webp"
+import fifthNFT from "../../Assets/images/fifth-property.webp"
 import sixthNFT from "../../Assets/nfts/nft-image6.png"
 import seventhNFT from "../../Assets/nfts/nft-image7.png"
 import eighthNFT from "../../Assets/nfts/nft-image8.png"
 
 export const NFTs = [{
         key: 1,
-        nftName: "ArtCrypto 01",
+        nftName: "For Sale",
         nftImage: firstNFT,
-        nftPrice: "0.25",
+        nftPrice: "$26,500,000",
         amount: "1 of 32"
     },
     {
         key: 2,
-        nftName: "ArtCrypto 02",
+        nftName: "For Sale",
         nftImage: secondNFT,
-        nftPrice: "0.25",
+        nftPrice: "$50,000",
         amount: "1 of 32"
     },
     {
         key: 3,
-        nftName: "ArtCrypto 03",
+        nftName: "For Sale",
         nftImage: thirdNFT,
-        nftPrice: "0.25",
+        nftPrice: "$2,495,000",
         amount: "1 of 32"
     }, {
         key: 4,
-        nftName: "ArtCrypto 04",
+        nftName: "For Sale",
         nftImage: fourthNFT,
-        nftPrice: "0.25",
+        nftPrice: "$1,199,880",
         amount: "1 of 32"
     }, {
         key: 5,
-        nftName: "ArtCrypto 05",
+        nftName: "For Sale",
         nftImage: fifthNFT,
-        nftPrice: "0.25",
+        nftPrice: "$1,165,000",
         amount: "1 of 32"
     }, {
         key: 6,
