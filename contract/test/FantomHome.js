@@ -134,14 +134,16 @@ describe("FantomHome", () => {
         })
 
         it("Should confirm delivery if satisfied", async () => {
-            tx = await FantomHome.connect(addr2).confirm_delivery()
+            tx = await FantomHome.connect(addr2).confirm_delivery(propertyId)
 
             assert.equal(`${await FantomHome.state()}`, "2")
         })
 
         it("Should only be called by buyer", async () => {
             try {
-                tx = await FantomHome.connect(addr1).confirm_delivery()
+                tx = await FantomHome.connect(addr1).confirm_delivery(
+                    propertyId
+                )
             } catch (e) {
                 expect(tx).to.be.revertedWith("FantomHome_OnlyBuyer")
             }
@@ -149,7 +151,7 @@ describe("FantomHome", () => {
 
         it("Should fail if state is not await_delivery", async () => {
             let txx
-            tx = await FantomHome.connect(addr2).confirm_delivery()
+            tx = await FantomHome.connect(addr2).confirm_delivery(propertyId)
 
             assert.equal(`${await FantomHome.state()}`, "2")
             try {
@@ -170,7 +172,7 @@ describe("FantomHome", () => {
             const agentStartingBalance = await ethers.provider.getBalance(addr1)
             const buyerStartingBalance = await ethers.provider.getBalance(addr2)
 
-            tx = await FantomHome.connect(addr2).confirm_delivery()
+            tx = await FantomHome.connect(addr2).confirm_delivery(propertyId)
 
             const agentEndingBalance = await ethers.provider.getBalance(addr1)
             const buyerEndingBalance = await ethers.provider.getBalance(addr2)
@@ -195,7 +197,7 @@ describe("FantomHome", () => {
         })
 
         it("Should transfer eth to buyer", async () => {
-            tx = await FantomHome.connect(addr1).ReturnPayment()
+            tx = await FantomHome.connect(addr1).ReturnPayment(propertyId)
 
             const buyerCurrentBalance = await ethers.provider.getBalance(addr2)
             assert.equal(
@@ -206,14 +208,14 @@ describe("FantomHome", () => {
 
         it("Should only be called by seller", async () => {
             try {
-                tx = await FantomHome.connect(addr2).ReturnPayment()
+                tx = await FantomHome.connect(addr2).ReturnPayment(propertyId)
             } catch (e) {
                 expect(tx).to.be.revertedWith("FantomHome_OnlySeller")
             }
         })
 
         it("Should reduce contract balance", async () => {
-            tx = await FantomHome.connect(addr1).ReturnPayment()
+            tx = await FantomHome.connect(addr1).ReturnPayment(propertyId)
 
             const fantomBal = await ethers.provider.getBalance(
                 FantomHome.target
