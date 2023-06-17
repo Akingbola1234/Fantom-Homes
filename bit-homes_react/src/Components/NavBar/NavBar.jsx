@@ -36,7 +36,7 @@ const NavBar = () => {
         </ul>
       </div>
       <div className="nav-button">
-        <button>Connect Button</button>
+        <button>Connect Wallet</button>
         {/* <ConnectButton className="connect-btn">Connect Wallet</ConnectButton> */}
       </div>
       <button onClick={showMenu} className="nav-bar-icon">
