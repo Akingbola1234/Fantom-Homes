@@ -36,12 +36,11 @@ contract FantomHome {
     address payable public s_buyer;
     address payable public s_arbiter;
     address payable public s_seller;
-    uint public propertyId;
 
     // Declaring mapping property
     mapping(uint => Property) public properties;
     mapping(uint => Traders) private traders;
-    mapping(uint => State) states;
+    mapping(uint => State) public states;
 
     // Declaring the object of the numerato
     State public state;
@@ -136,7 +135,6 @@ contract FantomHome {
         // Transfer Ownership
         s_buyer = payable(msg.sender);
         traders[_propertyId].buyer = payable(msg.sender);
-        propertyId = _propertyId;
 
         state = State.await_delivery;
         states[_propertyId] = state;
@@ -152,7 +150,7 @@ contract FantomHome {
         onlyBuyer(msg.sender, _propertyId)
         instate(State.await_delivery, _propertyId)
     {
-        Property storage property = properties[propertyId];
+        Property storage property = properties[_propertyId];
         uint price = property.price;
         (bool sent, ) = s_seller.call{value: price}("");
         if (!sent) {
@@ -174,7 +172,7 @@ contract FantomHome {
         onlySeller(msg.sender, _propertyId)
         instate(State.await_delivery, _propertyId)
     {
-        Property storage property = properties[propertyId];
+        Property storage property = properties[_propertyId];
         uint price = property.price;
         (bool sent, ) = s_buyer.call{value: price}("");
         if (!sent) {

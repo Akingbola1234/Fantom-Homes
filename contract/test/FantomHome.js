@@ -4,8 +4,8 @@ const {
 } = require("@nomicfoundation/hardhat-toolbox/network-helpers")
 const { anyValue } = require("@nomicfoundation/hardhat-chai-matchers/withArgs")
 const { expect, assert } = require("chai")
-const { ethers } = require("hardhat")
 const { log } = require("console")
+const { ethers } = require("hardhat")
 
 describe("FantomHome", () => {
     let owner, addr1, addr2, FantomHome, tx
@@ -13,22 +13,26 @@ describe("FantomHome", () => {
     const price = ethers.parseEther("1")
     const propertyAddress = "Shomolu"
     const documents = "docs"
+
+    const properties = 10
     beforeEach(async () => {
         ;[owner, addr1, addr2] = await ethers.getSigners()
         FantomHome = await hre.ethers.deployContract("FantomHome")
 
         await FantomHome.waitForDeployment()
-    })
 
-    describe("Listing", () => {
-        beforeEach(async () => {
+        for (let i = 1; i <= properties; i++) {
             tx = await FantomHome.connect(addr1).listProperty(
-                propertyId,
+                i,
                 propertyAddress,
                 price,
                 documents
             )
-        })
+        }
+    })
+
+    describe("Listing", () => {
+        beforeEach(async () => {})
         it("list the property correctly", async () => {
             expect(await tx)
                 .to.emit(FantomHome, "PropertyListed")
@@ -54,24 +58,19 @@ describe("FantomHome", () => {
     })
 
     describe("Purchasing", () => {
-        beforeEach(async () => {
-            tx = await FantomHome.connect(addr1).listProperty(
-                propertyId,
-                propertyAddress,
-                price,
-                documents
-            )
-        })
+        beforeEach(async () => {})
 
         it("Should purchase property", async () => {
-            tx = await FantomHome.connect(addr2).purchaseProperty(propertyId, {
-                value: price,
-            })
-            expect(tx)
-                .to.emit(FantomHome, "PropertyPurchased")
-                .withArgs(propertyId, price, addr2.address)
+            for (let i = 1; i < properties; i++) {
+                tx = await FantomHome.connect(addr2).purchaseProperty(i, {
+                    value: price,
+                })
+                expect(tx)
+                    .to.emit(FantomHome, "PropertyPurchased")
+                    .withArgs(i, price, addr2.address)
 
-            assert.equal(`${await FantomHome.state()}`, "1")
+                assert.equal(`${await FantomHome.states(i)}`, "1")
+            }
         })
 
         it("Should fail if seller tries to purchase", async () => {
@@ -122,21 +121,19 @@ describe("FantomHome", () => {
 
     describe("Confirm Delivery", () => {
         beforeEach(async () => {
-            tx = await FantomHome.connect(addr1).listProperty(
-                propertyId,
-                propertyAddress,
-                price,
-                documents
-            )
-            tx = await FantomHome.connect(addr2).purchaseProperty(propertyId, {
-                value: price,
-            })
+            for (let i = 1; i <= properties; i++) {
+                tx = await FantomHome.connect(addr2).purchaseProperty(i, {
+                    value: price,
+                })
+            }
         })
 
         it("Should confirm delivery if satisfied", async () => {
-            tx = await FantomHome.connect(addr2).confirm_delivery(propertyId)
+            for (let i = 1; i < properties; i++) {
+                tx = await FantomHome.connect(addr2).confirm_delivery(i)
 
-            assert.equal(`${await FantomHome.state()}`, "2")
+                assert.equal(`${await FantomHome.states(i)}`, "2")
+            }
         })
 
         it("Should only be called by buyer", async () => {
@@ -151,13 +148,17 @@ describe("FantomHome", () => {
 
         it("Should fail if state is not await_delivery", async () => {
             let txx
-            tx = await FantomHome.connect(addr2).confirm_delivery(propertyId)
+            for (let i = 1; i < properties; i++) {
+                tx = await FantomHome.connect(addr2).confirm_delivery(i)
 
-            assert.equal(`${await FantomHome.state()}`, "2")
-            try {
-                txx = await FantomHome.connect(addr2).confirm_delivery()
-            } catch (er) {
-                expect(txx).to.be.revertedWith("FantomHome_NotAllowed")
+                assert.equal(`${await FantomHome.states(i)}`, "2")
+            }
+            for (let i = 1; i < properties; i++) {
+                try {
+                    txx = await FantomHome.connect(addr2).confirm_delivery(i)
+                } catch (er) {
+                    expect(txx).to.be.revertedWith("FantomHome_NotAllowed")
+                }
             }
         })
 
@@ -165,44 +166,56 @@ describe("FantomHome", () => {
             const fantomBal = await ethers.provider.getBalance(
                 FantomHome.target
             )
-            assert.equal(fantomBal, price)
+            assert.equal(
+                ethers.formatEther(fantomBal),
+                ethers.formatEther(price) * properties
+            )
         })
 
         it("Should increase buyer balance", async () => {
             const agentStartingBalance = await ethers.provider.getBalance(addr1)
-            const buyerStartingBalance = await ethers.provider.getBalance(addr2)
 
-            tx = await FantomHome.connect(addr2).confirm_delivery(propertyId)
+            for (let i = 1; i <= properties; i++) {
+                tx = await FantomHome.connect(addr2).confirm_delivery(i)
+            }
 
             const agentEndingBalance = await ethers.provider.getBalance(addr1)
-            const buyerEndingBalance = await ethers.provider.getBalance(addr2)
-
-            assert.equal(agentEndingBalance, agentStartingBalance + price)
+            const expectedBalance =
+                Number(ethers.formatEther(agentStartingBalance)) +
+                Number(ethers.formatEther(price)) * properties
+            assert.equal(
+                Number(ethers.formatEther(agentEndingBalance)),
+                expectedBalance
+            )
         })
     })
 
     describe("Return Payment", () => {
         let buyerStartingBalance
         beforeEach(async () => {
-            tx = await FantomHome.connect(addr1).listProperty(
-                propertyId,
-                propertyAddress,
-                price,
-                documents
-            )
-            tx = await FantomHome.connect(addr2).purchaseProperty(propertyId, {
-                value: price,
-            })
+            for (let i = 1; i <= properties; i++) {
+                tx = await FantomHome.connect(addr2).purchaseProperty(i, {
+                    value: price,
+                })
+            }
             buyerStartingBalance = await ethers.provider.getBalance(addr2)
         })
 
         it("Should transfer eth to buyer", async () => {
-            tx = await FantomHome.connect(addr1).ReturnPayment(propertyId)
+            const not_verify = 5
+
+            for (let i = 1; i <= not_verify; i++) {
+                tx = await FantomHome.connect(addr1).ReturnPayment(i)
+            }
 
             const buyerCurrentBalance = await ethers.provider.getBalance(addr2)
             assert.equal(
-                ethers.formatEther(buyerCurrentBalance),
-                ethers.formatEther(buyerStartingBalance + price)
+                Number(ethers.formatEther(buyerCurrentBalance)),
+                Number(ethers.formatEther(buyerStartingBalance)) +
+                    Number(ethers.formatEther(price) * not_verify)
+            )
+            const fantomBal = await ethers.provider.getBalance(
+                FantomHome.target
             )
         })
 
@@ -215,12 +228,18 @@ describe("FantomHome", () => {
         })
 
         it("Should reduce contract balance", async () => {
-            tx = await FantomHome.connect(addr1).ReturnPayment(propertyId)
+            const not_verify = 5
+
+            for (let i = 1; i <= not_verify; i++) {
+                tx = await FantomHome.connect(addr1).ReturnPayment(i)
+            }
+
+            const buyerCurrentBalance = await ethers.provider.getBalance(addr2)
 
             const fantomBal = await ethers.provider.getBalance(
                 FantomHome.target
             )
-            assert.notEqual(fantomBal, price)
+            assert.equal(Number(fantomBal), Number(price) * not_verify)
         })
     })
 })
