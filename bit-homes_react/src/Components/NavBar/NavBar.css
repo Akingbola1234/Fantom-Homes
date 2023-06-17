@@ -45,6 +45,10 @@
     transform: translateY(-6px);
 }
 
+.navigation-link {
+    text-decoration: none;
+}
+
 .nav-button button {
     width: 130px;
     height: 51px;
