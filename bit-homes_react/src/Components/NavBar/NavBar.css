@@ -52,7 +52,7 @@
 .nav-button button {
     width: 130px;
     height: 51px;
-    background: linear-gradient(112.62deg, #8d1cfe 29.4%, #0038ed 105.15%);
+    background: linear-gradient( 112.62deg, #8d1cfe 29.4%, #0038ed 105.15%) !important;
     color: #fff;
     border-radius: 30px;
     border: none;
