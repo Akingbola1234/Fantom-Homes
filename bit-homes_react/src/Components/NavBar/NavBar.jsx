@@ -1,16 +1,12 @@
 import React, { useState } from "react";
 import { Drawer } from "antd";
-import { useNavigate, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import NftLogo from "../../Assets/images/ApolloNFT.png";
 import { FaBars } from "react-icons/fa";
 
 const NavBar = () => {
-  const navigate = useNavigate();
-  const handleNavigate = () => {
-    navigate("/marketplace");
-  };
   const [open, setOpen] = useState(false);
   const showMenu = () => {
     setOpen(true);
