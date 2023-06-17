@@ -5,6 +5,9 @@ error FantomHome_PropertyListed();
 error FantomHome_PropertyNotAvailable();
 error FantomHome_InsufficientPayment();
 error FantomHome_FailedToSendPrice();
+error FantomHome_OnlyBuyer();
+error FantomHome_OnlySeller();
+error FantomHome_NotAllowed();
 
 contract FantomHome {
     // Declaring the state variables
@@ -50,25 +53,33 @@ contract FantomHome {
 
     constructor() {
         s_arbiter = payable(address(this));
-        state = State.await_payment;
     }
 
     // Defining function modifier 'instate'
     modifier instate(State expected_state) {
-        require(state == expected_state);
-        _;
+        if (state == expected_state) {
+            _;
+        } else {
+            revert FantomHome_NotAllowed();
+        }
     }
 
     // Defining function modifier 'onlyBuyer'
     modifier onlyBuyer(address _buyer) {
-        require(msg.sender == _buyer);
-        _;
+        if (_buyer == s_buyer) {
+            _;
+        } else {
+            revert FantomHome_OnlyBuyer();
+        }
     }
 
     // Defining function modifier 'onlySeller'
     modifier onlySeller(address _seller) {
-        require(msg.sender == _seller);
-        _;
+        if (_seller == s_seller) {
+            _;
+        } else {
+            revert FantomHome_OnlySeller();
+        }
     }
 
     function listProperty(
@@ -93,6 +104,7 @@ contract FantomHome {
         properties[_propertyId] = newproperty;
 
         s_seller = payable(msg.sender);
+        state = State.await_payment;
 
         emit PropertyListed(_propertyId, _price, _propertyAddress, _documents);
     }
@@ -100,7 +112,7 @@ contract FantomHome {
     // Defining function to purchase property;
     function purchaseProperty(
         uint _propertyId
-    ) public payable onlyBuyer(msg.sender) instate(State.await_payment) {
+    ) public payable instate(State.await_payment) {
         Property storage property = properties[_propertyId];
 
         if (!property.isForSale) {
@@ -122,12 +134,11 @@ contract FantomHome {
     // Defining function to confrim delivery
     function confirm_delivery()
         public
-        onlyBuyer(s_buyer)
+        onlyBuyer(msg.sender)
         instate(State.await_delivery)
     {
         Property storage property = properties[propertyId];
-        address payable agent = payable(property.agent);
-        (bool sent, ) = agent.call{value: address(this).balance}("");
+        (bool sent, ) = s_seller.call{value: address(this).balance}("");
         if (!sent) {
             revert FantomHome_FailedToSendPrice();
         }
@@ -141,7 +152,7 @@ contract FantomHome {
     //Defining function to return payment
     function ReturnPayment()
         public
-        onlySeller(s_seller)
+        onlySeller(msg.sender)
         instate(State.await_delivery)
     {
         (bool sent, ) = s_buyer.call{value: address(this).balance}("");
