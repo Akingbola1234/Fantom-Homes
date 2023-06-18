@@ -32,18 +32,25 @@ contract FantomHome {
         address payable seller;
         address payable buyer;
     }
+
+    // Declaring sellers profile
+    struct SellerProfile {
+        address seller;
+        uint numOfProperties;
+        uint successTransactions;
+        uint failedTransactions;
+    }
     // Declaring the state variables
-    address payable public s_buyer;
-    address payable public s_arbiter;
-    address payable public s_seller;
+    uint public s_numProperties = 1;
 
     // Declaring mapping property
     mapping(uint => Property) public properties;
-    mapping(uint => Traders) private traders;
+    mapping(uint => Traders) public traders;
     mapping(uint => State) public states;
+    mapping(address => SellerProfile) public sellerProfiles;
 
     // Declaring the object of the numerato
-    State public state;
+    State private state;
 
     // Declaring events
     event PropertyListed(
@@ -52,15 +59,14 @@ contract FantomHome {
         string indexed propertyAddress,
         string documents
     );
+
     event PropertyPurchased(
         uint indexed _propertyId,
         uint indexed price,
         address indexed buyer
     );
 
-    constructor() {
-        s_arbiter = payable(address(this));
-    }
+    constructor() {}
 
     // Defining function modifier 'instate'
     modifier instate(State expected_state, uint _propertyId) {
@@ -90,17 +96,16 @@ contract FantomHome {
     }
 
     function listProperty(
-        uint _propertyId,
         string memory _propertyAddress,
         uint _price,
         string memory _documents
     ) public {
-        if (properties[_propertyId].isForSale) {
+        if (properties[s_numProperties].isForSale) {
             revert FantomHome_PropertyListed();
         }
 
         Property memory newproperty = Property({
-            propertyId: _propertyId,
+            propertyId: s_numProperties,
             agent: msg.sender,
             propertyAddress: _propertyAddress,
             documents: _documents,
@@ -108,15 +113,26 @@ contract FantomHome {
             isForSale: true
         });
 
-        properties[_propertyId] = newproperty;
+        properties[s_numProperties] = newproperty;
 
-        s_seller = payable(msg.sender);
         state = State.await_payment;
-        states[_propertyId] = state;
+        states[s_numProperties] = state;
 
-        traders[_propertyId].seller = payable(msg.sender);
+        traders[s_numProperties].seller = payable(msg.sender);
+        if (containsSeller()) {
+            sellerProfiles[msg.sender].seller = msg.sender;
+            sellerProfiles[msg.sender].numOfProperties++;
+        } else {
+            sellerProfiles[msg.sender].numOfProperties++;
+        }
 
-        emit PropertyListed(_propertyId, _price, _propertyAddress, _documents);
+        emit PropertyListed(
+            s_numProperties,
+            _price,
+            _propertyAddress,
+            _documents
+        );
+        s_numProperties++;
     }
 
     // Defining function to purchase property;
@@ -133,13 +149,16 @@ contract FantomHome {
         }
 
         // Transfer Ownership
-        s_buyer = payable(msg.sender);
         traders[_propertyId].buyer = payable(msg.sender);
 
         state = State.await_delivery;
         states[_propertyId] = state;
 
-        emit PropertyPurchased(_propertyId, property.price, s_buyer);
+        emit PropertyPurchased(
+            _propertyId,
+            property.price,
+            traders[_propertyId].buyer
+        );
     }
 
     // Defining function to confrim delivery
@@ -152,16 +171,22 @@ contract FantomHome {
     {
         Property storage property = properties[_propertyId];
         uint price = property.price;
-        (bool sent, ) = s_seller.call{value: price}("");
+
+        address payable seller = traders[_propertyId].seller;
+
+        (bool sent, ) = seller.call{value: price}("");
         if (!sent) {
             revert FantomHome_FailedToSendPrice();
         }
 
         // Update property details
-        property.agent = s_buyer;
+        property.agent = traders[_propertyId].buyer;
         property.isForSale = false;
+
         state = State.complete;
         states[_propertyId] = state;
+
+        sellerProfiles[seller].successTransactions++;
     }
 
     //Defining function to return payment
@@ -174,9 +199,24 @@ contract FantomHome {
     {
         Property storage property = properties[_propertyId];
         uint price = property.price;
-        (bool sent, ) = s_buyer.call{value: price}("");
+        address seller = traders[_propertyId].seller;
+        (bool sent, ) = traders[_propertyId].buyer.call{value: price}("");
         if (!sent) {
             revert FantomHome_FailedToSendPrice();
         }
+
+        sellerProfiles[seller].failedTransactions++;
     }
+
+    function containsSeller() internal view returns (bool) {
+        return sellerProfiles[msg.sender].seller == address(0);
+    }
+
+    // Views/Pure Functions
+
+    // function getProperties() public view {
+    //     for (uint i = 1; i <= s_numProperties; i++) {
+
+    //     }
+    // }
 }

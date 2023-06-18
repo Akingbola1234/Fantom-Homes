@@ -23,7 +23,6 @@ describe("FantomHome", () => {
 
         for (let i = 1; i <= properties; i++) {
             tx = await FantomHome.connect(addr1).listProperty(
-                i,
                 propertyAddress,
                 price,
                 documents
@@ -53,7 +52,9 @@ describe("FantomHome", () => {
         })
 
         it("Should be awating purchase", async () => {
-            assert.equal(`${await FantomHome.state()}`, "0")
+            for (let i = 1; i <= properties; i++) {
+                assert.equal(`${await FantomHome.states(i)}`, "0")
+            }
         })
     })
 
