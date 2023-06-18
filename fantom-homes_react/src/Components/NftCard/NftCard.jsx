@@ -61,7 +61,7 @@ const NftCard = () => {
                   Not Yet
                 </button>
                 <button className="primary-btn" onClick={handleMint}>
-                  Mint
+                  Buy
                 </button>
               </div>
             </div>
