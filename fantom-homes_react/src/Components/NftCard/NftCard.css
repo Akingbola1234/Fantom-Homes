@@ -9,7 +9,7 @@
 .nftcard {
     background: #fff;
     height: 420px;
-    width: 370px;
+    width: 270px;
     border-radius: 10px;
 }
 
@@ -17,8 +17,8 @@
     margin: auto;
     display: block;
     padding-top: 8px;
-    width: 340px;
-    height: 280px;
+    width: 240px;
+    height: 260px;
     object-fit: cover;
     border-radius: 14px;
 }
