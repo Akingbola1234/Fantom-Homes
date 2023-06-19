@@ -4,7 +4,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import heroPageImage from "../../Assets/images/heropage-image-new.jpg";
+import heroSlider1 from "../../Assets/images/heropage-image-new.jpg";
+import heroSlider2 from "../../Assets/images/hero-slider-2.jpg"
+import heroSlider3 from "../../Assets/images/hero-slider-3.jpg"
+import heroSlider4 from "../../Assets/images/hero-slider-4.jpg"
+
 import arrowDown from "../../Assets/images/arrow-down.png";
 import "./HeroPage.css";
 import { Autoplay, Pagination, Navigation } from "swiper";
@@ -68,13 +72,16 @@ const HeroPage = () => {
             className="mySwiper"
           >
             <SwiperSlide>
-              <img src={heroPageImage} alt="" />
+              <img src={heroSlider1} alt="" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={heroPageImage} alt="" />
+              <img src={heroSlider2} alt="" />
             </SwiperSlide>
             <SwiperSlide>
-              <img src={heroPageImage} alt="" />
+              <img src={heroSlider3} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={heroSlider4} alt="" />
             </SwiperSlide>
             <div className="autoplay-progress" slot="container-end">
               <svg viewBox="0 0 48 48" ref={progressCircle}>
