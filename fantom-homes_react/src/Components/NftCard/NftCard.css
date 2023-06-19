@@ -13,14 +13,19 @@
     border-radius: 10px;
 }
 
+.nftcard:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
+}
+
 .nftcard-details .nft-image {
     margin: auto;
     display: block;
-    padding-top: 8px;
-    width: 240px;
+    width: 270px;
     height: 260px;
     object-fit: cover;
-    border-radius: 14px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .nft-price-number {
