@@ -42,8 +42,6 @@ const wagmiConfig = createConfig({
 function App() {
   return (
     <>
-      <WagmiConfig config={wagmiConfig}>
-        <RainbowKitProvider chains={chains}>
       <Router>
       <NavBar />
         <Routes>
@@ -66,8 +64,6 @@ function App() {
           <Route exact path="marketplace" element={<SuperDrops/>}/>
         </Routes>
       </Router>
-      </RainbowKitProvider>
-      </WagmiConfig>
     </>
   );
 }
