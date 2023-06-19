@@ -9,7 +9,7 @@ const Footer = () => {
       <div className='footer-details'>
           <div className='footer-logo-text'>
             <div className='footer-logo'>
-              <img src={footerLogo} alt="Apollo Logo" />
+              <h5>FantomHomes</h5>
               <p>This growth plan will help you reach<br/> your resolutions and achieve the goals <br/> you have been striving towards.</p>
             </div>
             <div className='footer-social-icons'>

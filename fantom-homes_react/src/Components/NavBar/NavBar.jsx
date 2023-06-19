@@ -17,7 +17,7 @@ const NavBar = () => {
   return (
     <div className="navbar-container">
       <div className="logo">
-        <img src={NftLogo} alt="Apollo NFT Logo" />
+        <h5>FantomHomes</h5>
       </div>
       <div className="nav-list">
         <ul>
