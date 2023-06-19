@@ -7,7 +7,7 @@
 }
 
 .nftcard {
-    background: #fff;
+    background: #232128;
     height: 420px;
     width: 290px;
     border-radius: 10px;
@@ -37,9 +37,10 @@
 
 .nft-name {
     margin-left: 20px;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
     font-size: 15px;
-    font-weight: 700;
+    color: #fff;
     margin-top: 5px;
 }
 
@@ -50,9 +51,11 @@
 
 .nft-price {
     margin-left: -10px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
     font-size: 15px;
     margin-top: 5px;
-    color: #815ee3;
+    color: #fff;
 }
 
 .nftcard-details .nft-price-number-text {
@@ -64,7 +67,7 @@
 
 .nftcard-details .nft-line {
     margin-top: -5px;
-    border: 0.9px solid #edecec;
+    border: 0.9px solid #4b4659;
     width: 90%;
 }
 
