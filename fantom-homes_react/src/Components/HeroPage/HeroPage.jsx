@@ -69,10 +69,10 @@ const HeroPage = () => {
             pagination={{
               clickable: true,
             }}
-            navigation={true}
+            navigation={false}
             modules={[Autoplay, Pagination, Navigation]}
             onAutoplayTimeLeft={onAutoplayTimeLeft}
-            className="mySwiper"
+            className="mySwiper heropage-slider"
           >
             <SwiperSlide>
               <img src={heroSlider1} alt="" />

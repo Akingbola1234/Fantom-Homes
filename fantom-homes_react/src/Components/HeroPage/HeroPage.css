@@ -150,6 +150,9 @@
     .heropage-text h2 {
         font-size: 40px;
     }
+    .heropage-slider {
+        display: none;
+    }
     .heropage-text {
         width: 100%;
     }
@@ -161,9 +164,6 @@
     }
     .description p {
         margin-left: 0px;
-    }
-    .swiper-slide {
-        display: none;
     }
     .heropage-stats {
         margin-left: 0px;
