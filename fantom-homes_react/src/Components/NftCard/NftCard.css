@@ -106,6 +106,8 @@
 
 .ant-modal-content {
     background: #232128 !important;
+    border-radius: 10px !important;
+    width: 650px;
 }
 
 .modal-logo-price {
@@ -123,10 +125,6 @@
     font-size: 18px;
     margin-top: 10px;
     color: #815ee3;
-}
-
-.ant-modal-content {
-    border-radius: 10px !important;
 }
 
 .view-more-btn {
@@ -184,8 +182,8 @@
 }
 
 .nft-modal-img {
-    width: 230px;
-    border-radius: 15px;
+    width: 380px;
+    border-radius: 5px;
 }
 
 @media (max-width: 600px) {
