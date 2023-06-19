@@ -162,6 +162,9 @@
     .description p {
         margin-left: 0px;
     }
+    .swiper-slide {
+        display: none;
+    }
     .heropage-stats {
         margin-left: 0px;
     }

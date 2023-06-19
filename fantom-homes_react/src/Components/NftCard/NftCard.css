@@ -96,7 +96,7 @@
     border: none;
     color: #fff;
     font-size: 14px;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 600;
 }
 
@@ -104,8 +104,8 @@
     cursor: pointer;
 }
 
-.ant-modal {
-    background: transparent !important;
+.ant-modal-content {
+    background: #232128 !important;
 }
 
 .modal-logo-price {
@@ -116,7 +116,7 @@
 .modal-text {
     color: #815ee3;
     font-size: 18px;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .modal-price {
