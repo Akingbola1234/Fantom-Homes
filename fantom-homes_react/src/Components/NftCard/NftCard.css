@@ -11,6 +11,7 @@
     height: 420px;
     width: 270px;
     border-radius: 10px;
+    transition: ease-in .5s;
 }
 
 .nftcard:hover {

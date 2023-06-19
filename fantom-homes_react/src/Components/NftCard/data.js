@@ -3,7 +3,7 @@ import secondNFT from "../../Assets/images/second-property.webp"
 import thirdNFT from "../../Assets/images/third-property.webp"
 import fourthNFT from "../../Assets/images/fourth-property.webp"
 import fifthNFT from "../../Assets/images/fifth-property.webp"
-import sixthNFT from "../../Assets/nfts/nft-image6.png"
+import sixthNFT from "../../Assets/images/sixth-home.jpg"
 import seventhNFT from "../../Assets/nfts/nft-image7.png"
 import eighthNFT from "../../Assets/nfts/nft-image8.png"
 
@@ -41,7 +41,7 @@ export const NFTs = [{
         amount: "1 of 32"
     }, {
         key: 6,
-        nftName: "ArtCrypto 06",
+        nftName: "For Sale",
         nftImage: sixthNFT,
         nftPrice: "0.25",
         amount: "1 of 32"
