@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import "./NftCard.css";
+import {useNavigate } from "react-router-dom"
 import { Modal } from "antd";
-import ethImage from "../../Assets/images/ETH.png";
 import fantomImage from "../../Assets/images/fantom-logo.webp"
 import { NFTs } from "./data";
 
 const NftCard = () => {
+  const navigate = useNavigate()
+  const handleNavigate = () =>{
+    navigate("/marketplace")
+  }
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState([]);
   const showModal = (Nft) => {
@@ -70,7 +74,7 @@ const NftCard = () => {
         ))}
       </Modal>
       <div>
-        <button className="view-more-btn">View More</button>
+        <button className="view-more-btn" onClick={handleNavigate}>View More</button>
       </div>
     </div>
   );
