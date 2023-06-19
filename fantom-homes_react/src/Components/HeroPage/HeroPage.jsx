@@ -5,9 +5,12 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import heroSlider1 from "../../Assets/images/heropage-image-new.jpg";
-import heroSlider2 from "../../Assets/images/hero-slider-2.jpg"
-import heroSlider3 from "../../Assets/images/hero-slider-3.jpg"
-import heroSlider4 from "../../Assets/images/hero-slider-4.jpg"
+import heroSlider2 from "../../Assets/images/hero-slider-2.jpg";
+import heroSlider3 from "../../Assets/images/hero-slider-3.jpg";
+import heroSlider4 from "../../Assets/images/hero-slider-4.jpg";
+import heroSlider5 from "../../Assets/images/heropage-slider-5.jpg";
+import heroSlider6 from "../../Assets/images/heropage-slider-6.jpg";
+import heroSlider7 from "../../Assets/images/heropage-slider-7.jpg";
 
 import arrowDown from "../../Assets/images/arrow-down.png";
 import "./HeroPage.css";
@@ -82,6 +85,15 @@ const HeroPage = () => {
             </SwiperSlide>
             <SwiperSlide>
               <img src={heroSlider4} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={heroSlider5} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={heroSlider6} alt="" />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img src={heroSlider7} alt="" />
             </SwiperSlide>
             <div className="autoplay-progress" slot="container-end">
               <svg viewBox="0 0 48 48" ref={progressCircle}>
