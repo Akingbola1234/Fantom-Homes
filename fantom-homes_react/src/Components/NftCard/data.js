@@ -4,8 +4,8 @@ import thirdNFT from "../../Assets/images/third-property.webp"
 import fourthNFT from "../../Assets/images/fourth-property.webp"
 import fifthNFT from "../../Assets/images/fifth-property.webp"
 import sixthNFT from "../../Assets/images/sixth-home.jpg"
-import seventhNFT from "../../Assets/nfts/nft-image7.png"
-import eighthNFT from "../../Assets/nfts/nft-image8.png"
+import seventhNFT from "../../Assets/images/seventh-home.jpg"
+import eighthNFT from "../../Assets/images/eighth-home.jpg"
 
 export const NFTs = [{
         key: 1,

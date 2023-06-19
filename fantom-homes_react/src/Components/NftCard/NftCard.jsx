@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./NftCard.css";
 import { Modal } from "antd";
 import ethImage from "../../Assets/images/ETH.png";
+import fantomImage from "../../Assets/images/fantom-logo.webp"
 import { NFTs } from "./data";
 
 const NftCard = () => {
@@ -25,7 +26,7 @@ const NftCard = () => {
             <img className="nft-image" src={Nft.nftImage} alt="" />
             <h5 className="nft-name">{Nft.nftName}</h5>
             <div className="nft-price-number">
-              <img src={ethImage} alt="" className="eth-logo" />
+              <img src={fantomImage} alt="" className="fantom-logo" />
               <span className="nft-price">{Nft.nftPrice}</span>
             </div>
             <hr className="nft-line" />
@@ -53,7 +54,7 @@ const NftCard = () => {
             <div className="nft-modal-details">
               <h5 className="modal-text">{newModal.nftName}</h5>
               <div className="modal-logo-price">
-                <img className="eth-logo" src={ethImage} alt="" />
+                <img className="fantom-logo" src={fantomImage} alt="" />
                 <h5 className="modal-price">{newModal.nftPrice} FTM</h5>
               </div>
               <div className="nft-button">
