@@ -9,36 +9,6 @@ import NavBar from "./Components/NavBar/NavBar";
 import Partners from "./Components/Partners/Partners";
 import SellNft from "./Components/SellNft/SellNft";
 import SuperDrops from "./Components/SuperDrops/SuperDrops";
-import '@rainbow-me/rainbowkit/styles.css';
-
-import {
-  getDefaultWallets,
-  RainbowKitProvider,
-} from '@rainbow-me/rainbowkit';
-import { configureChains, createConfig, WagmiConfig } from 'wagmi';
-import { mainnet, polygon, optimism, arbitrum } from 'wagmi/chains';
-import { alchemyProvider } from 'wagmi/providers/alchemy';
-import { publicProvider } from 'wagmi/providers/public';
-
-const { chains, publicClient } = configureChains(
-  [mainnet, polygon, optimism, arbitrum],
-  [
-    alchemyProvider({ apiKey: process.env.apiKey }),
-    publicProvider()
-  ]
-);
-
-const { connectors } = getDefaultWallets({
-  appName: 'BitHomes',
-  projectId: 'ProjectID',
-  chains
-});
-
-const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient
-})
 function App() {
   return (
     <>
@@ -61,7 +31,7 @@ function App() {
               </>
             }
           />
-          <Route exact path="marketplace" element={<SuperDrops/>}/>
+          <Route exact path="/marketplace" element={<SuperDrops/>}/>
         </Routes>
       </Router>
     </>
