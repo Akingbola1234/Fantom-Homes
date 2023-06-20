@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import "../NftCard/NftCard.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
-import ethImage from "../../Assets/images/ETH.png";
+import fantomImage from "../../Assets/images/fantom-logo.webp";
 import { NFTs } from "./data";
 
-const NftCard = () => {
+import { Autoplay, Pagination, Navigation } from "swiper";
+
+const HomesCard = () => {
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate("/marketplace");
+  };
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalContent, setModalContent] = useState([]);
   const showModal = (Nft) => {
@@ -22,14 +31,11 @@ const NftCard = () => {
       {NFTs.map((Nft) => (
         <div className="nftcard" key={Nft.key}>
           <div className="nftcard-details">
-            <img className="nft-image" src={Nft.nftImage} alt="" />
+            <img className="nft-image" src={Nft.nftImage[0]} alt="" />
             <h5 className="nft-name">{Nft.nftName}</h5>
             <div className="nft-price-number">
-              <img src={ethImage} alt="" className="eth-logo" />
+              <img src={fantomImage} alt="" className="fantom-logo" />
               <span className="nft-price">{Nft.nftPrice}</span>
-              <h5 className="nft-price-number-text">
-                {Nft.key} of {NFTs.length}
-              </h5>
             </div>
             <hr className="nft-line" />
             <div className="nft-time-button">
@@ -50,21 +56,69 @@ const NftCard = () => {
       >
         {modalContent.map((newModal) => (
           <div className="nft-modal-content" key={newModal.nftName}>
-            <div className="nft-modal-image">
-              <img src={newModal.nftImage} alt="" className="nft-modal-img" />
-            </div>
+            <Swiper
+              spaceBetween={30}
+              centeredSlides={true}
+              autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Autoplay, Pagination, Navigation]}
+              className="mySwiper"
+            >
+              <SwiperSlide>
+                <div className="nft-modal-image">
+                  <img
+                    src={newModal.nftImage[0]}
+                    alt=""
+                    className="nft-modal-img"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="nft-modal-image">
+                  <img
+                    src={newModal.nftImage[1]}
+                    alt=""
+                    className="nft-modal-img"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="nft-modal-image">
+                  <img
+                    src={newModal.nftImage[2]}
+                    alt=""
+                    className="nft-modal-img"
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="nft-modal-image">
+                  <img
+                    src={newModal.nftImage[3]}
+                    alt=""
+                    className="nft-modal-img"
+                  />
+                </div>
+              </SwiperSlide>
+            </Swiper>
+
             <div className="nft-modal-details">
               <h5 className="modal-text">{newModal.nftName}</h5>
               <div className="modal-logo-price">
-                <img className="eth-logo" src={ethImage} alt="" />
-                <h5 className="modal-price">{newModal.nftPrice} ETH</h5>
+                <img className="fantom-logo" src={fantomImage} alt="" />
+                <h5 className="modal-price">{newModal.nftPrice} FTM</h5>
               </div>
               <div className="nft-button">
                 <button className="secondary-btn" onClick={handleCancel}>
                   Not Yet
                 </button>
                 <button className="primary-btn" onClick={handleMint}>
-                  Mint
+                  Buy
                 </button>
               </div>
             </div>
@@ -72,10 +126,12 @@ const NftCard = () => {
         ))}
       </Modal>
       <div>
-        <button className="view-more-btn">View More</button>
+        <button className="view-more-btn" onClick={handleNavigate}>
+          View More
+        </button>
       </div>
     </div>
   );
 };
 
-export default NftCard;
+export default HomesCard;

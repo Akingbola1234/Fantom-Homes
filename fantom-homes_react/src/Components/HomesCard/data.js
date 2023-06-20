@@ -1,4 +1,12 @@
-import firstNFT from "../../Assets/homes-nfts/homes-nft-1.jpeg";
+//Apple Collection
+import firstAppleImage from "../../Assets/homes-nfts/firstApple-Collection.jpg"
+import secondAppleImage from "../../Assets/homes-nfts/secondApple-Collection.jpg"
+import thirdAppleImage from "../../Assets/homes-nfts/thirdApple-Collection.jpg"
+import fourthAppleImage from "../../Assets/homes-nfts/fourthApple-Collection.jpg"
+
+
+
+
 import secondNFT from "../../Assets/homes-nfts/homes-nft-2.jpeg";
 import thirdNFT from "../../Assets/homes-nfts/homes-nft-3.jpeg";
 import fourthNFT from "../../Assets/homes-nfts/homes-nft-4.jpeg";
@@ -9,8 +17,8 @@ import eighthNFT from "../../Assets/homes-nfts/homes-nft-8.jpeg";
 
 export const NFTs = [{
         key: 1,
-        nftName: "AvaxHomes 01",
-        nftImage: firstNFT,
+        nftName: "Apple Watch Collection",
+        nftImage: [firstAppleImage, secondAppleImage, thirdAppleImage, fourthAppleImage],
         nftPrice: "0.15",
         amount: "1 of 32",
     },
