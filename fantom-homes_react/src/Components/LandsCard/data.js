@@ -1,32 +1,17 @@
 //Apple Collection
-import firstAppleImage from "../../Assets/homes-nfts/firstApple-Collection.jpg";
-import secondAppleImage from "../../Assets/homes-nfts/secondApple-Collection.jpg";
-import thirdAppleImage from "../../Assets/homes-nfts/thirdApple-Collection.jpg";
-import fourthAppleImage from "../../Assets/homes-nfts/fourthApple-Collection.jpg";
-//Male Trainer Collection
-import firstMaleTrainersImage from "../../Assets/homes-nfts/firstMale-Collection.jpg";
-import secondMaleTrainersImage from "../../Assets/homes-nfts/secondMale-Collection.jpg";
-import thirdMaleTrainersImage from "../../Assets/homes-nfts/thirdMale-Collection.jpg";
-import fourthMaleTrainersImage from "../../Assets/homes-nfts/fourthMale-Collection.jpg";
-//WristWatch
-import wristWatchImage from "../../Assets/homes-nfts/wristwatch-illustration.jpg";
-//Bracelet
-import braceletImage from "../../Assets/homes-nfts/bracelet.jpg";
-//Pants
-import vintagePants from "../../Assets/homes-nfts/vintage pants.jpg";
-import trousersPants from "../../Assets/homes-nfts/trousers.jpg";
-import ultraPants from "../../Assets/homes-nfts/ultra realistic.jpg";
-import geniePants from "../../Assets/homes-nfts/Genie pants.jpg";
+import firstLandImage from "../../Assets/homes-nfts/firstLand.jpg";
+import secondLandImage from "../../Assets/homes-nfts/secondLand.jpg";
+import thirdLandImage from "../../Assets/homes-nfts/thirdLand.jpg";
+import fourthLandImage from "../../Assets/homes-nfts/fourthLand.jpg";
+import fifthLandImage from "../../Assets/homes-nfts/fifthLand.jpg";
+import sixthLandImage from "../../Assets/homes-nfts/sixthLand.jpg";
+import seventhLandImage from "../../Assets/homes-nfts/seventhLand.jpg";
+import eighthLandImage from "../../Assets/homes-nfts/eighthLand.jpg";
 
 export const NFTs = [{
         key: 1,
         nftName: "Apple Watch Collection",
-        nftImage: [
-            firstAppleImage,
-            secondAppleImage,
-            thirdAppleImage,
-            fourthAppleImage,
-        ],
+        nftImage: [firstLandImage, secondLandImage, thirdLandImage, sixthLandImage],
         nftPrice: "0.15",
         amount: "1 of 32",
     },
@@ -34,10 +19,10 @@ export const NFTs = [{
         key: 2,
         nftName: "Male Collections",
         nftImage: [
-            firstMaleTrainersImage,
-            secondMaleTrainersImage,
-            thirdMaleTrainersImage,
-            fourthMaleTrainersImage,
+            secondLandImage,
+            fourthLandImage,
+            fifthLandImage,
+            sixthLandImage,
         ],
         nftPrice: "0.15",
         amount: "1 of 32",
@@ -46,10 +31,10 @@ export const NFTs = [{
         key: 3,
         nftName: "Wrist Watch Collection",
         nftImage: [
-            wristWatchImage,
-            wristWatchImage,
-            wristWatchImage,
-            wristWatchImage,
+            thirdLandImage,
+            fourthLandImage,
+            seventhLandImage,
+            eighthLandImage,
         ],
         nftPrice: "0.15",
         amount: "1 of 32",
@@ -57,35 +42,60 @@ export const NFTs = [{
     {
         key: 4,
         nftName: "Bracelet Collection",
-        nftImage: [braceletImage, braceletImage, braceletImage, braceletImage],
+        nftImage: [
+            fourthLandImage,
+            fifthLandImage,
+            seventhLandImage,
+            eighthLandImage,
+        ],
         nftPrice: "0.15",
         amount: "1 of 32",
     },
     {
         key: 5,
         nftName: "Genie Pants Collection",
-        nftImage: [geniePants, geniePants, geniePants, geniePants],
+        nftImage: [
+            fifthLandImage,
+            seventhLandImage,
+            eighthLandImage,
+            firstLandImage,
+        ],
         nftPrice: "0.15",
         amount: "1 of 32",
     },
     {
         key: 6,
         nftName: "Shirts Collection",
-        nftImage: [trousersPants, trousersPants, trousersPants, trousersPants],
+        nftImage: [
+            sixthLandImage,
+            fifthLandImage,
+            fourthLandImage,
+            eighthLandImage,
+        ],
         nftPrice: "0.15",
         amount: "1 of 32",
     },
     {
         key: 7,
         nftName: "Vintage Pants Collection",
-        nftImage: [vintagePants, vintagePants, vintagePants, vintagePants],
+        nftImage: [
+            seventhLandImage,
+            eighthLandImage,
+            firstLandImage,
+            secondLandImage,
+        ],
         nftPrice: "0.15",
         amount: "1 of 32",
     },
     {
         key: 8,
         nftName: "Ultra Pants Collection",
-        nftImage: [ultraPants, ultraPants, ultraPants, ultraPants],
+        nftImage: [
+            eighthLandImage,
+            fifthLandImage,
+            secondLandImage,
+            thirdLandImage,
+        ],
         nftPrice: "0.15",
         amount: "1 of 32",
     },
