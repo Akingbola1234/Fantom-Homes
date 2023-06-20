@@ -17,7 +17,7 @@ const NavBar = () => {
     return (
         <div className="navbar-container">
             <div className="logo">
-                <img src={NftLogo} alt="Apollo NFT Logo" />
+                <h5>FantomHomes</h5>
             </div>
             <div className="nav-list">
                 <ul>
@@ -36,9 +36,7 @@ const NavBar = () => {
                 </ul>
             </div>
             <div className="nav-button">
-                {/* <button> */}
-                <ConnectButton />
-                {/* </button> */}
+                <button>Connect Wallet</button>
                 {/* <ConnectButton className="connect-btn">Connect Wallet</ConnectButton> */}
             </div>
             <button onClick={showMenu} className="nav-bar-icon">
