@@ -5,28 +5,17 @@ import HomesCard from "../HomesCard/HomesCard"
 
 export const ourTabs = [{
         key: 1,
-        Tab: <Tag className="tags">Modern Homes</Tag>,
+        Tab: <Tag className="tags">Homes</Tag>,
         children:  <NftCard />
     },
     {
         key: 2,
-        Tab: <Tag className="tags">3D Homes</Tag>,
+        Tab: <Tag className="tags">Collections</Tag>,
         children: <HomesCard/>
     },
     {
         key: 3,
-        Tab: <Tag className="tags">Modern Kitchens</Tag>,
+        Tab: <Tag className="tags">Lands</Tag>,
         children: <NftCard/>
     },
-    {
-        key: 4,
-        Tab: <Tag className="tags">Modern Sketches</Tag>,
-        children: <NftCard/>
-    },
-    {
-        key: 5,
-        Tab: <Tag className="tags">Art</Tag>,
-        children: <NftCard/>
-    }
-
 ]
