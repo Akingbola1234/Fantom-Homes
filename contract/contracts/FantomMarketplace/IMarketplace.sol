@@ -38,7 +38,7 @@ interface IDirectListings {
         address assetContract;
         uint256 tokenId;
         uint256 quantity;
-        address currency;
+        // address currency;
         uint256 pricePerToken;
         uint128 startTimestamp;
         uint128 endTimestamp;

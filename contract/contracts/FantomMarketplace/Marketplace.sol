@@ -10,7 +10,7 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
 import "./FantomWorldStorage.sol";
 import "./FantomHomes.sol";
 
-contract FantomWorld is IDirectListings {
+contract Marketplace is IDirectListings {
     address nativeTokenWrapper;
 
     /// @dev Checks wheter a listing exists.
