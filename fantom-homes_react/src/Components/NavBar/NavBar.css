@@ -6,12 +6,8 @@
     gap: 15%;
 }
 
-.navbar-container .logo h5 {
-    font-size: 20px;
-    background: -webkit-linear-gradient( 112.62deg, #8d1cfe 29.4%, #0038ed 105.15%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
+.navbar-container .logo img {
+    width: 150px;
 }
 
 .nav-bar-icon {

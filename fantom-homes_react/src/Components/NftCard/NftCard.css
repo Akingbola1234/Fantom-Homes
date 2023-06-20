@@ -7,26 +7,20 @@
 }
 
 .nftcard {
-    background: #232128;
+    background: #fff;
     height: 420px;
-    width: 290px;
+    width: 370px;
     border-radius: 10px;
-    transition: ease-in 0.5s;
-}
-
-.nftcard:hover {
-    cursor: pointer;
-    transform: translateY(-10px);
 }
 
 .nftcard-details .nft-image {
     margin: auto;
     display: block;
-    width: 290px;
-    height: 260px;
+    padding-top: 8px;
+    width: 340px;
+    height: 280px;
     object-fit: cover;
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
+    border-radius: 14px;
 }
 
 .nft-price-number {
@@ -37,25 +31,22 @@
 
 .nft-name {
     margin-left: 20px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
+    font-family: "Inter", sans-serif;
     font-size: 15px;
-    color: #fff;
+    font-weight: 700;
     margin-top: 5px;
 }
 
-.fantom-logo {
-    width: 25px;
-    height: 25px;
+.eth-logo {
+    width: 50px;
+    height: 50px;
 }
 
 .nft-price {
-    margin-left: 5px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
+    margin-left: -10px;
     font-size: 15px;
-    margin-top: 2px;
-    color: #fff;
+    margin-top: 5px;
+    color: #815ee3;
 }
 
 .nftcard-details .nft-price-number-text {
@@ -66,8 +57,8 @@
 }
 
 .nftcard-details .nft-line {
-    margin-top: 10px;
-    border: 0.9px solid #4b4659;
+    margin-top: -5px;
+    border: 0.9px solid #edecec;
     width: 90%;
 }
 
@@ -88,7 +79,7 @@
 
 .bid {
     width: 90%;
-    margin: 30px auto 0px auto;
+    margin: auto;
     display: block;
     padding: 8px;
     background: #8d1cfe;
@@ -96,18 +87,16 @@
     border: none;
     color: #fff;
     font-size: 14px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
+    font-family: "Inter", sans-serif;
+    font-weight: 600;
 }
 
 .bid:hover {
     cursor: pointer;
 }
 
-.ant-modal-content {
-    background: #232128 !important;
-    border-radius: 10px !important;
-    width: 700px;
+.ant-modal {
+    background: transparent !important;
 }
 
 .modal-logo-price {
@@ -116,16 +105,19 @@
 }
 
 .modal-text {
-    color: #fff;
+    color: #815ee3;
     font-size: 18px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Inter", sans-serif;
 }
 
 .modal-price {
-    font-family: "Poppins", sans-serif;
-    font-weight: 400;
     font-size: 18px;
-    color: #fff;
+    margin-top: 10px;
+    color: #815ee3;
+}
+
+.ant-modal-content {
+    border-radius: 10px !important;
 }
 
 .view-more-btn {
@@ -135,7 +127,6 @@
     margin-top: 30px;
     height: 40px;
     width: 130px;
-    font-family: "Poppins", sans-serif;
     border-radius: 40px;
 }
 
@@ -149,15 +140,15 @@
 }
 
 .nft-modal-content {
-    /* display: flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px; */
+    gap: 50px;
 }
 
 .nft-button .primary-btn {
     display: block;
-    background: #8d1cfe;
+    background: #815ee3;
     font-size: 15px;
     border: none;
     color: #fff;
@@ -165,17 +156,16 @@
     width: 100%;
     margin-top: 20px;
     border-radius: 4px;
-    font-family: "Poppins", sans-serif;
 }
 
 .nft-button .secondary-btn {
-    color: #8d1cfe;
+    color: #815ee3;
     font-size: 15px;
     width: 100%;
     background: #fff;
     height: 40px;
-    font-family: "Poppins", sans-serif;
-    border: #815ee3 1.5px dashed;
+    font-family: "Inter", sans-serif;
+    border: #815ee3 1px dashed;
     border-radius: 4px;
 }
 
@@ -184,8 +174,8 @@
 }
 
 .nft-modal-img {
-    width: 380px;
-    height: 400px !important;
+    width: 230px;
+    border-radius: 15px;
 }
 
 @media (max-width: 600px) {
@@ -194,13 +184,9 @@
         padding-top: 15px;
     }
     .nft-modal-image .nft-modal-img {
-        width: 250px;
-        height: 290px !important;
+        width: 150px;
     }
     .modal-text {
         font-size: 14px;
-    }
-    .ant-modal-content {
-        width: 100%;
     }
 }

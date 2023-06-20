@@ -5,22 +5,22 @@ import HomesCard from "../HomesCard/HomesCard"
 
 export const ourTabs = [{
         key: 1,
-        Tab: <Tag className="tags">Modern Homes</Tag>,
+        Tab: <Tag className="tags">Hope Ape</Tag>,
         children:  <NftCard />
     },
     {
         key: 2,
-        Tab: <Tag className="tags">3D Homes</Tag>,
+        Tab: <Tag className="tags">Homes</Tag>,
         children: <HomesCard/>
     },
     {
         key: 3,
-        Tab: <Tag className="tags">Modern Kitchens</Tag>,
+        Tab: <Tag className="tags">Monkey</Tag>,
         children: <NftCard/>
     },
     {
         key: 4,
-        Tab: <Tag className="tags">Modern Sketches</Tag>,
+        Tab: <Tag className="tags">Cars</Tag>,
         children: <NftCard/>
     },
     {

@@ -9,7 +9,7 @@ const Footer = () => {
       <div className='footer-details'>
           <div className='footer-logo-text'>
             <div className='footer-logo'>
-              <h5>FantomHomes</h5>
+              <img src={footerLogo} alt="Apollo Logo" />
               <p>This growth plan will help you reach<br/> your resolutions and achieve the goals <br/> you have been striving towards.</p>
             </div>
             <div className='footer-social-icons'>
@@ -53,7 +53,7 @@ const Footer = () => {
           </div>
       </div>
       <hr className='footer-divider'/>
-      <p className='footer-copyright'>Copyright © FantomHomes {new Date().getFullYear()} All right reserved</p>
+      <p className='footer-copyright'>Copyright © ApolloNFT {new Date().getFullYear()} All right reserved</p>
     </div>
   )
 }

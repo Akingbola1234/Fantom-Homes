@@ -33,8 +33,11 @@ const NftCard = () => {
             </div>
             <hr className="nft-line" />
             <div className="nft-time-button">
+              <div className="countdown">
+                <p>3h 25m 3s</p>
+              </div>
               <button className="bid" onClick={() => showModal(Nft)}>
-                Preview
+                Place a bid
               </button>
             </div>
           </div>
