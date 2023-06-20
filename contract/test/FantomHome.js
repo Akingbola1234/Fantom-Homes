@@ -26,4 +26,10 @@ describe("FantomHomes", () => {
             expect(result).to.equal("FTH")
         })
     })
+
+    describe("Minting & Royalty Info", () => {
+        beforeEach(async () => {
+            const tx = await fantomHome.connect()
+        })
+    })
 })
