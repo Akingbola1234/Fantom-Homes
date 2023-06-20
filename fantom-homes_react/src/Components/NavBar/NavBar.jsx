@@ -17,7 +17,7 @@ const NavBar = () => {
   return (
     <div className="navbar-container">
       <div className="logo">
-        <h5>FantomWorlds</h5>
+        <h5>FantomWorld</h5>
       </div>
       <div className="nav-list">
         <ul>
