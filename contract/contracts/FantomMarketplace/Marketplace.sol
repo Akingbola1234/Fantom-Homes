@@ -1,14 +1,23 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
-pragma solidity ^0.8.18;
+pragma solidity ^0.8.0;
 
 /// @author Sammy Wise
 
 // ======= External imports =====
 import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
+import "hardhat/console.sol";
 
 // ==== Internal imports ======
 import "./FantomWorldStorage.sol";
 import "./FantomHomes.sol";
+
+error Marketplace_InvalidEndTimeStamp();
+error Marketplace_NotOwnerOfToken();
+error Marketplace_ListingExpired();
+error Marketplace_CannotUpdateNonListedToken();
+error Marketplace_InvalidListing();
+error Marketplace_NotListingCreator();
+error Marketplace_NotWithinSaleWindow();
 
 contract Marketplace is IDirectListings {
     address nativeTokenWrapper;
@@ -17,10 +26,23 @@ contract Marketplace is IDirectListings {
     modifier onlyExistingListing(uint256 _listingId) {
         DirectListingsStorage.Data storage data = DirectListingsStorage
             .directListingsStorage();
-        require(
-            data.listings[_listingId].status == IDirectListings.Status.CREATED,
-            "Marketplace: invalid listing."
-        );
+
+        if (
+            data.listings[_listingId].status != IDirectListings.Status.CREATED
+        ) {
+            revert Marketplace_InvalidListing();
+        }
+        _;
+    }
+
+    /// @dev Checks whether caller is a listing creator.
+    modifier onlyListingCreator(uint256 _listingId, address creator) {
+        DirectListingsStorage.Data storage data = DirectListingsStorage
+            .directListingsStorage();
+
+        if (data.listings[_listingId].listingCreator != creator) {
+            revert Marketplace_NotListingCreator();
+        }
         _;
     }
 
@@ -38,10 +60,10 @@ contract Marketplace is IDirectListings {
         uint128 startime = _params.startTimestamp;
         uint128 endtime = _params.endTimestamp;
 
-        require(
-            startime < endtime,
-            "Marketplace: endTimestamp not greater than startTimestamp."
-        );
+        // require(endtime > startime, "Marketplace: Invalid endtime");
+        if (endtime <= startime) {
+            revert Marketplace_InvalidEndTimeStamp();
+        }
 
         if (startime < block.timestamp) {
             require(
@@ -69,6 +91,7 @@ contract Marketplace is IDirectListings {
             status: IDirectListings.Status.CREATED
         });
 
+        // console.log("Listing", listing);
         DirectListingsStorage.Data storage data = DirectListingsStorage
             .directListingsStorage();
 
@@ -86,35 +109,39 @@ contract Marketplace is IDirectListings {
     function updateListing(
         uint256 _listingId,
         ListingParameters memory _params
-    ) external onlyExistingListing(_listingId) {
+    )
+        external
+        onlyExistingListing(_listingId)
+        onlyListingCreator(_listingId, msg.sender)
+    {
         DirectListingsStorage.Data storage data = DirectListingsStorage
             .directListingsStorage();
 
         address listingCreator = msg.sender;
         Listing memory listing = data.listings[_listingId];
 
-        require(
-            listing.endTimestamp > block.timestamp,
-            "Marketplace: listing expired"
-        );
+        if (listing.endTimestamp < block.timestamp) {
+            revert Marketplace_ListingExpired();
+        }
 
-        require(
-            listing.assetContract == _params.assetContract &&
-                listing.tokenId == _params.tokenId,
-            "Marketplace: cannot update what token is listed."
-        );
+        if (
+            listing.assetContract != _params.assetContract ||
+            listing.tokenId != _params.tokenId
+        ) {
+            revert Marketplace_CannotUpdateNonListedToken();
+        }
         uint128 startTime = _params.startTimestamp;
         uint128 endTime = _params.endTimestamp;
-        require(
-            startTime < endTime,
-            "Marketplace: endTimestamp not greater than startTimestamp."
-        );
-        require(
-            listing.startTimestamp > block.timestamp ||
-                (startTime == listing.startTimestamp &&
-                    endTime > block.timestamp),
-            "Marketplace: listing already active."
-        );
+
+        if (startTime >= endTime) {
+            revert Marketplace_InvalidEndTimeStamp();
+        }
+        // require(
+        //     listing.startTimestamp > block.timestamp ||
+        //         (startTime == listing.startTimestamp &&
+        //             endTime > block.timestamp),
+        //     "Marketplace: listing already active."
+        // );
         if (
             startTime != listing.startTimestamp && startTime < block.timestamp
         ) {
@@ -131,7 +158,7 @@ contract Marketplace is IDirectListings {
                 : startTime + (_params.endTimestamp - _params.startTimestamp);
         }
 
-        _validateNewListing(_params, msg.sender);
+        _validateNewListing(_params, listingCreator);
 
         listing = Listing({
             listingId: _listingId,
@@ -158,7 +185,11 @@ contract Marketplace is IDirectListings {
     /// @notice Cancel a listing.
     function cancelListing(
         uint256 _listingId
-    ) external onlyExistingListing(_listingId) {
+    )
+        external
+        onlyExistingListing(_listingId)
+        onlyListingCreator(_listingId, msg.sender)
+    {
         DirectListingsStorage.Data storage data = DirectListingsStorage
             .directListingsStorage();
 
@@ -172,12 +203,17 @@ contract Marketplace is IDirectListings {
             .directListingsStorage();
 
         Listing memory listing = data.listings[_listingId];
-        address buyer = msg.sender;
         require(
             block.timestamp < listing.endTimestamp &&
                 block.timestamp >= listing.startTimestamp,
             "not within sale window."
         );
+        // if (
+        //     block.timestamp > listing.endTimestamp ||
+        //     block.timestamp <= listing.startTimestamp
+        // ) {
+        //     revert Marketplace_NotWithinSaleWindow();
+        // }
 
         require(
             _validateOwnershipAndApproval(
@@ -334,16 +370,15 @@ contract Marketplace is IDirectListings {
         ListingParameters memory _params,
         address _tokenOwner
     ) internal view {
-        require(_params.quantity > 0, "Marketplace: listing zero quantity.");
-
-        require(
-            _validateOwnershipAndApproval(
+        if (
+            !_validateOwnershipAndApproval(
                 _tokenOwner,
                 _params.assetContract,
                 _params.tokenId
-            ),
-            "Marketplace: not owner of approved tokens."
-        );
+            )
+        ) {
+            revert Marketplace_NotOwnerOfToken();
+        }
     }
 
     /// @dev Validates that `_tokenOwner` owns and has approved Marketplace to transfer NFTs.
@@ -357,6 +392,7 @@ contract Marketplace is IDirectListings {
             IERC721(_assetContract).ownerOf(_tokenId) == _tokenOwner &&
             (IERC721(_assetContract).getApproved(_tokenId) == market ||
                 IERC721(_assetContract).isApprovedForAll(_tokenOwner, market));
+        // console.log(IERC721(_assetContract).getApproved(_tokenId));
     }
 
     /// @dev Checks whether the listing exists, is active, and if the lister has sufficient balance.
