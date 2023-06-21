@@ -29,7 +29,7 @@ const NftCard = () => {
   return (
     <div className="nftcard-container">
       {NFTs.map((Nft) => (
-        <div className="nftcard" key={Nft.key}>
+        <div className="nftcard" key={Nft.key} onClick={() => showModal(Nft)}>
           <div className="nftcard-details">
             <img className="nft-image" src={Nft.nftImage} alt="" />
             <h5 className="nft-name">{Nft.nftName}</h5>
@@ -39,7 +39,7 @@ const NftCard = () => {
             </div>
             <hr className="nft-line" />
             <div className="nft-time-button">
-              <button className="bid" onClick={() => showModal(Nft)}>
+              <button className="bid"onClick={() => showModal(Nft)}>
                 Preview
               </button>
             </div>
