@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom";
 import "./NavBar.css";
 import {useNavigate} from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
-import NftLogo from "../../Assets/images/ApolloNFT.png";
 import { FaBars } from "react-icons/fa";
 
 const NavBar = () => {
