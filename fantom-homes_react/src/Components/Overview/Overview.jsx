@@ -12,10 +12,11 @@ const Overview = () => {
         <div className="overview-card">
           <h5>Homes</h5>
           <span>
-            Create, review and publish your collections of wearables and emotes
+            Build your space in your LAND. You can use free 3D models or upload
+            your own.
           </span>
           <img src={homeImage} alt="collection-icon" className="home-image" />
-          <button>Manage Collections</button>
+          <button>Manage Your Home</button>
         </div>
         <div className="overview-card">
           <h5>Collection</h5>
@@ -32,10 +33,10 @@ const Overview = () => {
         <div className="overview-card">
           <h5>Lands</h5>
           <span>
-            Create, review and publish your collections of wearables and emotes
+            Publish Scenes, create Estates and manage permissions of your LAND.
           </span>
           <img src={landImage} alt="collection-icon" className="land-image" />
-          <button>Manage Collections</button>
+          <button>Manage Your Land</button>
         </div>
       </div>
     </div>
