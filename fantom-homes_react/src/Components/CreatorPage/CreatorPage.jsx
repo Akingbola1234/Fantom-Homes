@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React} from "react";
 import { Tabs } from "antd";
 import "./CreatorPage.css";
 
@@ -7,7 +7,7 @@ const CreatorPage = () => {
   return (
     <div className="creator-container">
       <div className="creator-nav-menu">
-        <Tabs defaultActiveKey="overview">
+        <Tabs defaultActiveKey="overview" className="creators-tabs">
             <TabPane tab="Overview" key="overview">
                 Overview
             </TabPane>
