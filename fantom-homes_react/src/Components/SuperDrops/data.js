@@ -2,31 +2,21 @@ import { Tag } from "antd"
 import "./SuperDrops.css"
 import NftCard from "../NftCard/NftCard"
 import HomesCard from "../HomesCard/HomesCard"
+import LandsCard from "../LandsCard/LandsCard"
 
 export const ourTabs = [{
         key: 1,
-        Tab: <Tag className="tags">Hope Ape</Tag>,
+        Tab: <Tag className="tags">Homes</Tag>,
         children:  <NftCard />
     },
     {
         key: 2,
-        Tab: <Tag className="tags">Homes</Tag>,
+        Tab: <Tag className="tags">Collections</Tag>,
         children: <HomesCard/>
     },
     {
         key: 3,
-        Tab: <Tag className="tags">Monkey</Tag>,
-        children: <NftCard/>
+        Tab: <Tag className="tags">Lands</Tag>,
+        children: <LandsCard/>
     },
-    {
-        key: 4,
-        Tab: <Tag className="tags">Cars</Tag>,
-        children: <NftCard/>
-    },
-    {
-        key: 5,
-        Tab: <Tag className="tags">Art</Tag>,
-        children: <NftCard/>
-    }
-
 ]
