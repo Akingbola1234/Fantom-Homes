@@ -7,18 +7,26 @@
 }
 
 .nftcard {
-background: #232128;
+    background: #232128;
     height: 490px;
     width: 290px;
     border-radius: 10px;
+    transition: ease-in 0.5s;
+}
+
+.nftcard:hover {
+    cursor: pointer;
+    transform: translateY(-10px);
 }
 
 .nftcard-details .nft-image {
-    padding-top: 8px;
-    width: 340px;
-    height: 280px;
+    margin: auto;
+    display: block;
+    width: 290px;
+    height: 340px;
     object-fit: cover;
-    border-radius: 14px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
 }
 
 .nft-price-number {
@@ -29,22 +37,25 @@ background: #232128;
 
 .nft-name {
     margin-left: 20px;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
     font-size: 15px;
-    font-weight: 700;
+    color: #fff;
     margin-top: 5px;
 }
 
-.eth-logo {
-    width: 50px;
-    height: 50px;
+.fantom-logo {
+    width: 25px;
+    height: 25px;
 }
 
 .nft-price {
-    margin-left: -10px;
+    margin-left: 5px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
     font-size: 15px;
-    margin-top: 5px;
-    color: #815ee3;
+    margin-top: 2px;
+    color: #fff;
 }
 
 .nftcard-details .nft-price-number-text {
@@ -55,8 +66,8 @@ background: #232128;
 }
 
 .nftcard-details .nft-line {
-    margin-top: -5px;
-    border: 0.9px solid #edecec;
+    margin-top: 10px;
+    border: 0.9px solid #4b4659;
     width: 90%;
 }
 
@@ -77,7 +88,7 @@ background: #232128;
 
 .bid {
     width: 90%;
-    margin: auto;
+    margin: 30px auto 0px auto;
     display: block;
     padding: 8px;
     background: #8d1cfe;
@@ -85,16 +96,18 @@ background: #232128;
     border: none;
     color: #fff;
     font-size: 14px;
-    font-family: "Inter", sans-serif;
-    font-weight: 600;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
 }
 
 .bid:hover {
     cursor: pointer;
 }
 
-.ant-modal {
-    background: transparent !important;
+.ant-modal-content {
+    background: #232128 !important;
+    border-radius: 10px !important;
+    width: 700px;
 }
 
 .modal-logo-price {
@@ -103,19 +116,16 @@ background: #232128;
 }
 
 .modal-text {
-    color: #815ee3;
+    color: #fff;
     font-size: 18px;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 .modal-price {
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
     font-size: 18px;
-    margin-top: 10px;
-    color: #815ee3;
-}
-
-.ant-modal-content {
-    border-radius: 10px !important;
+    color: #fff;
 }
 
 .view-more-btn {
@@ -125,6 +135,7 @@ background: #232128;
     margin-top: 30px;
     height: 40px;
     width: 130px;
+    font-family: "Poppins", sans-serif;
     border-radius: 40px;
 }
 
@@ -138,15 +149,15 @@ background: #232128;
 }
 
 .nft-modal-content {
-    display: flex;
+    /* display: flex;
     justify-content: center;
     align-items: center;
-    gap: 50px;
+    gap: 50px; */
 }
 
 .nft-button .primary-btn {
     display: block;
-    background: #815ee3;
+    background: #8d1cfe;
     font-size: 15px;
     border: none;
     color: #fff;
@@ -154,16 +165,17 @@ background: #232128;
     width: 100%;
     margin-top: 20px;
     border-radius: 4px;
+    font-family: "Poppins", sans-serif;
 }
 
 .nft-button .secondary-btn {
-    color: #815ee3;
+    color: #8d1cfe;
     font-size: 15px;
     width: 100%;
     background: #fff;
     height: 40px;
-    font-family: "Inter", sans-serif;
-    border: #815ee3 1px dashed;
+    font-family: "Poppins", sans-serif;
+    border: #815ee3 1.5px dashed;
     border-radius: 4px;
 }
 
@@ -172,8 +184,8 @@ background: #232128;
 }
 
 .nft-modal-img {
-    width: 230px;
-    border-radius: 15px;
+    width: 380px;
+    height: 400px !important;
 }
 
 @media (max-width: 600px) {
@@ -181,10 +193,17 @@ background: #232128;
         width: 250px;
         padding-top: 15px;
     }
+
     .nft-modal-image .nft-modal-img {
-        width: 150px;
+        width: 250px;
+        height: 290px !important;
     }
+
     .modal-text {
         font-size: 14px;
+    }
+
+    .ant-modal-content {
+        width: 100%;
     }
 }
