@@ -9,6 +9,7 @@ import NavBar from "./Components/NavBar/NavBar";
 import Partners from "./Components/Partners/Partners";
 import SellNft from "./Components/SellNft/SellNft";
 import SuperDrops from "./Components/SuperDrops/SuperDrops";
+import CreatorPage from "./Components/CreatorPage/CreatorPage";
 function App() {
   return (
     <>
@@ -32,6 +33,7 @@ function App() {
             }
           />
           <Route exact path="/marketplace" element={<SuperDrops/>}/>
+          <Route exact path="/creator" element={<CreatorPage/>}/>
         </Routes>
       </Router>
     </>

@@ -36,7 +36,17 @@ const NavBar = () => {
               Marketplace
             </NavLink>
           </li>
-          <li>Creator</li>
+          <li>
+            <NavLink
+              className="navigation-link"
+              to="/creator"
+              style={({ isActive }) => ({
+                color: isActive ? "#0038ed" : "#FFF",
+              })}
+            >
+              Creator
+            </NavLink>
+          </li>
         </ul>
       </div>
       <div className="nav-button">
