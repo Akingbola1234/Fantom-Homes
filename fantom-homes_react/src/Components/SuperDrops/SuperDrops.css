@@ -7,30 +7,18 @@
     padding: 2px 20px 2px 20px;
 }
 
-<<<<<<< HEAD
-.ant-tabs-ink-bar {
-    background: transparent !important;
-}
-
-.ant-tabs-tab.ant-tabs-tab-active {
-=======
 .tabs-ant .ant-tabs-ink-bar {
     background: transparent !important;
 }
 
 .tabs-ant .ant-tabs-tab.ant-tabs-tab-active {
->>>>>>> 25e99bfdea4658629ce97e7cf69368fe7aeaa58d
     background: linear-gradient(112.62deg, #8D1CFE 29.4%, #0038ED 105.15%);
     border-radius: 66px;
 }
 
 .drops-text {
     color: #FFF;
-<<<<<<< HEAD
-    font-family: "Inter", sans-serif;
-=======
     font-family: "Poppins", sans-serif;
->>>>>>> 25e99bfdea4658629ce97e7cf69368fe7aeaa58d
     font-weight: 700;
     font-size: 40px;
 }
