@@ -2,6 +2,7 @@ import { React} from "react";
 import { Tabs } from "antd";
 import "./CreatorPage.css";
 import Overview from "../Overview/Overview";
+import CreatorHomes from "../CreatorHomes/CreatorHomes";
 
 const {TabPane} = Tabs;
 const CreatorPage = () => {  
@@ -13,7 +14,7 @@ const CreatorPage = () => {
                 <Overview/>
             </TabPane>
             <TabPane tab="Homes" key="homes">
-                Homes
+                <CreatorHomes/>
             </TabPane>
             <TabPane tab="Collection" key="collection">
                 Collection
