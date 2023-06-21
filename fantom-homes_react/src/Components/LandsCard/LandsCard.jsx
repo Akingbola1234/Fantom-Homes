@@ -27,6 +27,7 @@ const LandsCard = () => {
     setIsModalOpen(false);
   };
   return (
+    <>
     <div className="nftcard-container">
       {NFTs.map((Nft) => (
         <div className="nftcard" key={Nft.key}>
@@ -125,12 +126,14 @@ const LandsCard = () => {
           </div>
         ))}
       </Modal>
-      <div>
+      
+    </div>
+    <div>
         <button className="view-more-btn" onClick={handleNavigate}>
           View More
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

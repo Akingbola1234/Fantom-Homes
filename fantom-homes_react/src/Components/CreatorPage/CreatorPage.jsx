@@ -2,6 +2,8 @@ import { React} from "react";
 import { Tabs } from "antd";
 import "./CreatorPage.css";
 import Overview from "../Overview/Overview";
+import LandsCard from "../LandsCard/LandsCard"
+import HomesCard from "../HomesCard/HomesCard"
 import CreatorHomes from "../CreatorHomes/CreatorHomes";
 
 const {TabPane} = Tabs;
@@ -17,10 +19,10 @@ const CreatorPage = () => {
                 <CreatorHomes/>
             </TabPane>
             <TabPane tab="Collection" key="collection">
-                Collection
+                <HomesCard/>
             </TabPane>
             <TabPane tab="Lands" key="Land">
-                Land
+                <LandsCard/>
             </TabPane>
         </Tabs>
       </div>
