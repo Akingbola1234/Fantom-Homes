@@ -1,6 +1,7 @@
 import { React} from "react";
 import { Tabs } from "antd";
 import "./CreatorPage.css";
+import Overview from "../Overview/Overview";
 
 const {TabPane} = Tabs;
 const CreatorPage = () => {  
@@ -9,13 +10,16 @@ const CreatorPage = () => {
       <div className="creator-nav-menu">
         <Tabs defaultActiveKey="overview" className="creators-tabs">
             <TabPane tab="Overview" key="overview">
-                Overview
+                <Overview/>
             </TabPane>
             <TabPane tab="Homes" key="homes">
                 Homes
             </TabPane>
             <TabPane tab="Collection" key="collection">
                 Collection
+            </TabPane>
+            <TabPane tab="Lands" key="Land">
+                Land
             </TabPane>
         </Tabs>
       </div>
