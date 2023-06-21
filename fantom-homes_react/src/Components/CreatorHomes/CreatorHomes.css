@@ -1,0 +1,20 @@
+.creator-homes-container {
+    padding: 30px;
+    font-family: "Poppins", sans-serif;
+}
+
+.creator-text-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.creator-text>h5 {
+    color: #fff;
+    font-size: 19px;
+    font-weight: 500;
+}
+
+.creator-text>span {
+    color: #fff;
+}
