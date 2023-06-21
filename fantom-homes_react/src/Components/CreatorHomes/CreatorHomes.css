@@ -31,6 +31,9 @@
 .upload-icon {
     font-size: 19px;
 }
+.creator-modal{
+    color: #FFF;
+}
 
 .creator-button>button:hover {
     cursor: pointer;
