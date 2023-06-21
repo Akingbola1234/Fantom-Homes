@@ -1,8 +1,8 @@
 import React from "react";
 import "./Overview.css";
-import collectionImage from "../../Assets/images/collections.png";
-import homeImage from "../../Assets/images/home-illustration.png"
-import landImage from "../../Assets/images/land-illustration.png"
+import collectionImage from "../../Assets/images/collection-illustration.png";
+import homeImage from "../../Assets/images/home-illustration.png";
+import landImage from "../../Assets/images/land-illustration.png";
 
 const Overview = () => {
   return (
@@ -14,11 +14,7 @@ const Overview = () => {
           <span>
             Create, review and publish your collections of wearables and emotes
           </span>
-          <img
-            src={homeImage}
-            alt="collection-icon"
-            className="home-image"
-          />
+          <img src={homeImage} alt="collection-icon" className="home-image" />
           <button>Manage Collections</button>
         </div>
         <div className="overview-card">
@@ -29,7 +25,7 @@ const Overview = () => {
           <img
             src={collectionImage}
             alt="collection-icon"
-            className="card-image"
+            className="collection-image"
           />
           <button>Manage Collections</button>
         </div>
@@ -38,11 +34,7 @@ const Overview = () => {
           <span>
             Create, review and publish your collections of wearables and emotes
           </span>
-          <img
-            src={landImage}
-            alt="collection-icon"
-            className="land-image"
-          />
+          <img src={landImage} alt="collection-icon" className="land-image" />
           <button>Manage Collections</button>
         </div>
       </div>

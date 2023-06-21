@@ -49,9 +49,12 @@
     margin: 30px auto;
 }
 .land-image{
-    animation: popup alternate 2s infinite;
+    animation: popup alternate 3s infinite;
 }
 .home-image{
+    animation: popup alternate 2s infinite;
+}
+.collection-image{
     animation: popup alternate 2.5s infinite;
 }
 @keyframes popup {
