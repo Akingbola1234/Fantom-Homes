@@ -53,11 +53,12 @@ const CreatorHomes = () => {
         onCancel={handleCancel}
         footer={null}
         centered={true}
-        className="creator-modal"
       >
-        <h5>Upload Homes</h5>
-        <span>You can upload your Creative Homes on FantomWorld</span>
-        <Dragger {...props}>
+        <h5 className="creator-modal-text">Upload Homes</h5>
+        <span className="creator-modal-span">
+          You can upload your Creative Homes on FantomWorld
+        </span>
+        <Dragger {...props} className="drag-drop">
           <p className="ant-upload-drag-icon">
             <AiOutlineInbox />
           </p>
