@@ -5,16 +5,16 @@
 .heropage-details {
     display: flex;
     justify-content: center;
-    align-items: center;
     flex-wrap: wrap;
+    gap: 50px;
 }
 
 .mobile-button {
-    background: #0038ed;
+    background: #0038ED;
     border: none;
     width: 100%;
     height: 35px;
-    color: #fff;
+    color: #FFF;
     border-radius: 40px;
     font-size: 16px;
     display: none;
@@ -24,23 +24,15 @@
     cursor: pointer;
 }
 
-.heropage-text {
-    width: 40%;
-}
-
 .heropage-text h2 {
     font-size: 70px;
-    font-family: "Poppins", sans-serif;
+    font-family: "Inter", sans-serif;
     font-weight: 800;
-    color: #fff;
+    color: #FFF;
 }
 
 .heropage-text h2 span {
-    color: #0038ed;
-}
-
-.heropage-image {
-    width: 60%;
+    color: #0038ED;
 }
 
 .heropage-image .heropage-img {
@@ -52,10 +44,10 @@
 }
 
 .circle {
-    color: #fff;
+    color: #FFF;
     width: 100px;
     height: 100px;
-    background: linear-gradient(112.62deg, #8d1cfe 29.4%, #0038ed 105.15%);
+    background: linear-gradient(112.62deg, #8D1CFE 29.4%, #0038ED 105.15%);
     border-radius: 50%;
 }
 
@@ -73,7 +65,7 @@
 }
 
 .description p {
-    color: #fff;
+    color: #FFF;
     margin-left: 30px;
     font-size: 17px;
     font-family: "Inter", sans-serif;
@@ -87,7 +79,7 @@
 }
 
 .stat {
-    color: #fff;
+    color: #FFF;
     line-height: 3px;
 }
 
@@ -100,61 +92,9 @@
     font-size: 17px;
 }
 
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    /* Center slide text vertically */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.autoplay-progress {
-    position: absolute;
-    right: 16px;
-    bottom: 16px;
-    z-index: 10;
-    width: 48px;
-    height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-    color: var(--swiper-theme-color);
-}
-
-.autoplay-progress svg {
-    --progress: 0;
-    position: absolute;
-    left: 0;
-    top: 0px;
-    z-index: 10;
-    width: 100%;
-    height: 100%;
-    stroke-width: 4px;
-    stroke: var(--swiper-theme-color);
-    fill: none;
-    stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
-    stroke-dasharray: 125.6;
-    transform: rotate(-90deg);
-}
-
-@media (max-width: 600px) {
+@media(max-width: 600px) {
     .heropage-text h2 {
         font-size: 40px;
-    }
-    .heropage-slider {
-        display: none;
-    }
-    .heropage-text {
-        width: 100%;
     }
     .star {
         display: none;

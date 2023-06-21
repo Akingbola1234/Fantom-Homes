@@ -193,13 +193,16 @@
         width: 250px;
         padding-top: 15px;
     }
+
     .nft-modal-image .nft-modal-img {
         width: 250px;
         height: 290px !important;
     }
+
     .modal-text {
         font-size: 14px;
     }
+
     .ant-modal-content {
         width: 100%;
     }

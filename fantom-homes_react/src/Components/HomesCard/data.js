@@ -1,24 +1,25 @@
 //Apple Collection
-import firstAppleImage from "../../Assets/homes-nfts/firstApple-Collection.jpg";
-import secondAppleImage from "../../Assets/homes-nfts/secondApple-Collection.jpg";
-import thirdAppleImage from "../../Assets/homes-nfts/thirdApple-Collection.jpg";
-import fourthAppleImage from "../../Assets/homes-nfts/fourthApple-Collection.jpg";
+import firstAppleImage from "../../Assets/homes-nfts/firstApple-Collection.jpg"
+import secondAppleImage from "../../Assets/homes-nfts/secondApple-Collection.jpg"
+import thirdAppleImage from "../../Assets/homes-nfts/thirdApple-Collection.jpg"
+import fourthAppleImage from "../../Assets/homes-nfts/fourthApple-Collection.jpg"
 //Male Trainer Collection
-import firstMaleTrainersImage from "../../Assets/homes-nfts/firstMale-Collection.jpg";
-import secondMaleTrainersImage from "../../Assets/homes-nfts/secondMale-Collection.jpg";
-import thirdMaleTrainersImage from "../../Assets/homes-nfts/thirdMale-Collection.jpg";
-import fourthMaleTrainersImage from "../../Assets/homes-nfts/fourthMale-Collection.jpg";
+import firstMaleTrainersImage from "../../Assets/homes-nfts/firstMale-Collection.jpg"
+import secondMaleTrainersImage from "../../Assets/homes-nfts/secondMale-Collection.jpg"
+import thirdMaleTrainersImage from "../../Assets/homes-nfts/thirdMale-Collection.jpg"
+import fourthMaleTrainersImage from "../../Assets/homes-nfts/fourthMale-Collection.jpg"
 //WristWatch
-import wristWatchImage from "../../Assets/homes-nfts/wristwatch-illustration.jpg";
+import wristWatchImage from "../../Assets/homes-nfts/wristwatch-illustration.jpg"
 //Bracelet
-import braceletImage from "../../Assets/homes-nfts/bracelet.jpg";
+import braceletImage from "../../Assets/homes-nfts/bracelet.jpg"
 //Pants
-import vintagePants from "../../Assets/homes-nfts/vintage pants.jpg";
-import trousersPants from "../../Assets/homes-nfts/trousers.jpg";
-import ultraPants from "../../Assets/homes-nfts/ultra realistic.jpg";
-import geniePants from "../../Assets/homes-nfts/Genie pants.jpg";
+import vintagePants from "../../Assets/homes-nfts/vintage pants.jpg"
+import trousersPants from "../../Assets/homes-nfts/trousers.jpg"
+import ultraPants from "../../Assets/homes-nfts/ultra realistic.jpg"
+import geniePants from "../../Assets/homes-nfts/Genie pants.jpg"
 
-export const NFTs = [{
+export const NFTs = [
+    {
         key: 1,
         nftName: "Apple Watch Collection",
         nftImage: [
@@ -89,4 +90,4 @@ export const NFTs = [{
         nftPrice: "0.15",
         amount: "1 of 32",
     },
-];
+]
