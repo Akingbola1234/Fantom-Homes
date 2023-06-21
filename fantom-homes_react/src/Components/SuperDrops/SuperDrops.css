@@ -7,18 +7,18 @@
     padding: 2px 20px 2px 20px;
 }
 
-.ant-tabs-ink-bar {
+.tabs-ant .ant-tabs-ink-bar {
     background: transparent !important;
 }
 
-.ant-tabs-tab.ant-tabs-tab-active {
+.tabs-ant .ant-tabs-tab.ant-tabs-tab-active {
     background: linear-gradient(112.62deg, #8D1CFE 29.4%, #0038ED 105.15%);
     border-radius: 66px;
 }
 
 .drops-text {
     color: #FFF;
-    font-family: "Inter", sans-serif;
+    font-family: "Poppins", sans-serif;
     font-weight: 700;
     font-size: 40px;
 }
