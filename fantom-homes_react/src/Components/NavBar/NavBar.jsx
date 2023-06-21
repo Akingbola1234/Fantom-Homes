@@ -2,11 +2,16 @@ import React, { useState } from "react";
 import { Drawer } from "antd";
 import { NavLink } from "react-router-dom";
 import "./NavBar.css";
+import {useNavigate} from "react-router-dom";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import NftLogo from "../../Assets/images/ApolloNFT.png";
 import { FaBars } from "react-icons/fa";
 
 const NavBar = () => {
+  const navigate = useNavigate()
+  const handleNavigate = () =>{
+    navigate("/")
+  }
   const [open, setOpen] = useState(false);
   const showMenu = () => {
     setOpen(true);
@@ -17,7 +22,7 @@ const NavBar = () => {
   return (
     <div className="navbar-container">
       <div className="logo">
-        <h5>FantomWorlds</h5>
+        <h5 onClick={handleNavigate}>FantomWorld</h5>
       </div>
       <div className="nav-list">
         <ul>

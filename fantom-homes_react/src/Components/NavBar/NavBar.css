@@ -13,6 +13,9 @@
     -webkit-text-fill-color: transparent;
     font-weight: 700;
 }
+.navbar-container .logo h5:hover{
+    cursor: pointer;
+}
 
 .nav-bar-icon {
     display: none;
