@@ -45,6 +45,28 @@
     font-family: "Poppins", sans-serif;
 }
 
+.ant-modal-content {
+    width: 90%;
+}
+
+.ant-upload-text {
+    color: #0038ed !important;
+}
+
+.ant-upload-hint {
+    color: #fff !important;
+}
+
+.ant-upload-wrapper .ant-upload-drag {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.ant-upload-drag-icon {
+    color: #fff;
+    font-size: 50px;
+}
+
 .creator-button>button:hover {
     cursor: pointer;
 }
