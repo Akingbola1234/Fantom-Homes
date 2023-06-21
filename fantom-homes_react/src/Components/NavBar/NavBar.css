@@ -9,6 +9,9 @@
 .navbar-container .logo img {
     width: 150px;
 }
+.navbar-container .logo h5:hover{
+    cursor: pointer;
+}
 
 .nav-bar-icon {
     display: none;

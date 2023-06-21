@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import firstNFT from "../../Assets/images/first-home.webp"
 import secondNFT from "../../Assets/images/second-property.webp"
 import thirdNFT from "../../Assets/images/third-property.webp"
@@ -6,6 +7,16 @@ import fifthNFT from "../../Assets/images/fifth-property.webp"
 import sixthNFT from "../../Assets/nfts/nft-image6.png"
 import seventhNFT from "../../Assets/nfts/nft-image7.png"
 import eighthNFT from "../../Assets/nfts/nft-image8.png"
+=======
+import firstNFT from "../../Assets/images/sixth-home.jpg"
+import secondNFT from "../../Assets/images/sixth-home.jpg"
+import thirdNFT from "../../Assets/images/sixth-home.jpg"
+import fourthNFT from "../../Assets/images/sixth-home.jpg"
+import fifthNFT from "../../Assets/images/sixth-home.jpg"
+import sixthNFT from "../../Assets/images/sixth-home.jpg"
+import seventhNFT from "../../Assets/images/seventh-home.jpg"
+import eighthNFT from "../../Assets/images/eighth-home.jpg"
+>>>>>>> 25e99bfdea4658629ce97e7cf69368fe7aeaa58d
 
 export const NFTs = [{
         key: 1,

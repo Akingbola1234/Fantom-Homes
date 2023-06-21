@@ -1,0 +1,73 @@
+.overview-container>h4 {
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-size: 29px;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.overview-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.overview-card {
+    width: 320px;
+    text-align: center;
+    font-family: "Poppins", sans-serif;
+    background: #232128;
+    padding: 30px;
+}
+
+.overview-card>h5 {
+    color: #fff;
+    font-weight: 400;
+    font-size: 19px;
+    margin-bottom: 20px;
+}
+
+.overview-card>span {
+    color: #736e7d;
+    margin-bottom: 30px;
+}
+
+.overview-card button {
+    color: #fff;
+    border: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 15px;
+    padding: 13px;
+    width: 90%;
+    border-radius: 8px;
+    background: #0038ed;
+}
+
+.overview-card img {
+    width: 200px;
+    display: block;
+    margin: 30px auto;
+}
+
+.land-image {
+    animation: popup alternate 3s infinite;
+}
+
+.home-image {
+    animation: popup alternate 2s infinite;
+}
+
+.collection-image {
+    animation: popup alternate 2.5s infinite;
+}
+
+@keyframes popup {
+    from {
+        transform: translateY(-5px);
+    }
+    to {
+        transform: translateY(0px);
+    }
+}
