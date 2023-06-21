@@ -14,6 +14,8 @@ const CreatorHomes = () => {
           <button><AiOutlineUpload className="upload-icon"/> Upload Homes</button>
         </div>
       </div>
+      <div>
+      </div>
     </div>
   );
 };
