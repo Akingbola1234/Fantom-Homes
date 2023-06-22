@@ -1,12 +1,10 @@
 import React, { useState } from "react";
+import { AiOutlineUpload } from "react-icons/ai";
 import { AiOutlineInbox } from "react-icons/ai";
 import { Modal, Upload, message } from "antd";
-import "./CreatorHomes.css";
-import { AiOutlineUpload } from "react-icons/ai";
-import NftCard from "../NftCard/NftCard";
+import LandsCard from "../LandsCard/LandsCard"
 
 const { Dragger } = Upload;
-
 const props = {
   name: "file",
   multiple: true,
@@ -26,7 +24,7 @@ const props = {
     console.log("Dropped files", e.dataTransfer.file);
   },
 };
-const CreatorHomes = () => {
+const CreatorLands = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const showModal = () => {
     setIsModalOpen(true);
@@ -35,7 +33,7 @@ const CreatorHomes = () => {
     setIsModalOpen(false);
   };
   return (
-    <div className="creator-homes-container">
+    <div className="creator-land-container">
       <div className="creator-text-button">
         <div className="creator-text">
           <h5>My Homes</h5>
@@ -47,7 +45,7 @@ const CreatorHomes = () => {
           </button>
         </div>
       </div>
-      <NftCard />
+      <LandsCard/>
       <Modal
         open={isModalOpen}
         onCancel={handleCancel}
@@ -75,4 +73,4 @@ const CreatorHomes = () => {
   );
 };
 
-export default CreatorHomes;
+export default CreatorLands;

@@ -1,11 +1,11 @@
-import firstNFT from "../../Assets/images/sixth-home.jpg"
-import secondNFT from "../../Assets/images/sixth-home.jpg"
-import thirdNFT from "../../Assets/images/sixth-home.jpg"
-import fourthNFT from "../../Assets/images/sixth-home.jpg"
-import fifthNFT from "../../Assets/images/sixth-home.jpg"
-import sixthNFT from "../../Assets/images/sixth-home.jpg"
-import seventhNFT from "../../Assets/images/seventh-home.jpg"
-import eighthNFT from "../../Assets/images/eighth-home.jpg"
+import firstNFT from "../../Assets/images/3d-home.jpg"
+import secondNFT from "../../Assets/images/3d-Second-home.jpg"
+import thirdNFT from "../../Assets/images/3d-third-home.jpg"
+import fourthNFT from "../../Assets/images/3d-fourth-home.jpg"
+import fifthNFT from "../../Assets/images/3d-fifth-home.jpg"
+import sixthNFT from "../../Assets/images/3d-sixth-home.jpg"
+import seventhNFT from "../../Assets/images/3d-seventh-home.jpg"
+import eighthNFT from "../../Assets/images/3d-eighth-home.jpg"
 
 export const NFTs = [{
         key: 1,
