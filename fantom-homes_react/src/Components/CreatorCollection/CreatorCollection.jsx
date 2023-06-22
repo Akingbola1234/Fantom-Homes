@@ -42,7 +42,7 @@ const CreatorCollection = () => {
         </div>
         <div className="creator-button">
           <button onClick={showModal}>
-            <AiOutlineUpload className="upload-icon" /> Upload Homes
+            <AiOutlineUpload className="upload-icon" /> Upload Collection
           </button>
         </div>
       </div>
@@ -53,9 +53,9 @@ const CreatorCollection = () => {
         footer={null}
         centered={true}
       >
-        <h5 className="creator-modal-text">Upload Homes</h5>
+        <h5 className="creator-modal-text">Upload Collections</h5>
         <span className="creator-modal-span">
-          You can upload your Creative Homes on FantomWorld
+          You can upload your Creative Collections on FantomWorld
         </span>
         <Dragger {...props} className="drag-drop">
           <p className="ant-upload-drag-icon">
