@@ -38,7 +38,7 @@ contract FantomHomes is
             string(abi.encodePacked(metadataURI, tokenId.toString(), ".json"))
         );
 
-        _setTokenRoyalty(tokenId, artist, _royaltyFee);
+        _setTokenRoyalty(tokenId, payable(artist), _royaltyFee);
         _tokenIds.increment();
     }
 

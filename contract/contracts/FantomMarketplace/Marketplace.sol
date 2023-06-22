@@ -81,7 +81,7 @@ contract Marketplace is IDirectListings {
 
         Listing memory listing = Listing({
             listingId: listingId,
-            listingCreator: listingCreator,
+            listingCreator: payable(listingCreator),
             assetContract: _params.assetContract,
             tokenId: _params.tokenId,
             pricePerToken: _params.pricePerToken,
@@ -91,7 +91,6 @@ contract Marketplace is IDirectListings {
             status: IDirectListings.Status.CREATED
         });
 
-        // console.log("Listing", listing);
         DirectListingsStorage.Data storage data = DirectListingsStorage
             .directListingsStorage();
 
@@ -198,22 +197,20 @@ contract Marketplace is IDirectListings {
     }
 
     /// @notice Buy NFTs from a listing.
-    function buyFromListing(uint256 _listingId) external payable {
+    function buyFromListing(
+        uint256 _listingId
+    ) external payable onlyExistingListing(_listingId) {
         DirectListingsStorage.Data storage data = DirectListingsStorage
             .directListingsStorage();
 
         Listing memory listing = data.listings[_listingId];
-        require(
-            block.timestamp < listing.endTimestamp &&
-                block.timestamp >= listing.startTimestamp,
-            "not within sale window."
-        );
-        // if (
-        //     block.timestamp > listing.endTimestamp ||
-        //     block.timestamp <= listing.startTimestamp
-        // ) {
-        //     revert Marketplace_NotWithinSaleWindow();
-        // }
+
+        if (
+            listing.endTimestamp < block.timestamp ||
+            block.timestamp >= listing.startTimestamp
+        ) {
+            revert Marketplace_NotWithinSaleWindow();
+        }
 
         require(
             _validateOwnershipAndApproval(
@@ -313,29 +310,38 @@ contract Marketplace is IDirectListings {
     }
 
     /// @dev Pays out stakeholders in a sale.
-    function _payout(Listing memory _listing) public {
-        uint royaltyCut;
-        address royaltyRecipient;
+    function _payout(Listing memory _listing) internal {
         FantomHomes nftContract = FantomHomes(_listing.assetContract);
-        try
-            nftContract.royaltyInfo(_listing.tokenId, _listing.pricePerToken)
-        returns (address royalTyFeeRecipient, uint royaltyFeeAmount) {
-            if (royalTyFeeRecipient != address(0) && royaltyFeeAmount > 0) {
-                // Pay the stakeholder
-                (bool sent, ) = royalTyFeeRecipient.call{
-                    value: royaltyFeeAmount
-                }("");
-                royaltyCut = royaltyFeeAmount;
-                require(sent);
-            } else {
-                // Pay the lister
 
-                (bool sent, ) = _listing.listingCreator.call{
-                    value: (_listing.pricePerToken - royaltyCut)
-                }("");
-                require(sent);
-            }
-        } catch {}
+        (address royalTyFeeRecipient, uint256 fee) = nftContract.royaltyInfo(
+            _listing.tokenId,
+            _listing.pricePerToken
+        );
+        require(fee > 0, "Invalid fee amount");
+
+        // Perform all checks and computations before performing transfers
+        // ...
+
+        // Prepare the transfer amounts
+        uint256 feeToArtist = fee;
+        uint256 paymentToLister = _listing.pricePerToken - feeToArtist;
+
+        // Update state to reflect the transfer
+        _listing.status = IDirectListings.Status.SOLD;
+        DirectListingsStorage.Data storage data = DirectListingsStorage
+            .directListingsStorage();
+        data.listings[_listing.listingId] = _listing;
+
+        // Perform the external transfers as the last step
+        (bool successArtist, ) = payable(royalTyFeeRecipient).call{
+            value: feeToArtist
+        }("");
+        require(successArtist, "Unable to send fee to artist");
+
+        (bool successLister, ) = _listing.listingCreator.call{
+            value: paymentToLister
+        }("");
+        require(successLister, "Unable to send payment to lister");
     }
 
     /// @dev Transfers tokens listed for sale in a direct listing
