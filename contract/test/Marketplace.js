@@ -5,7 +5,7 @@ describe("FantomHomes", () => {
     const METADATA_URL = "ipfs://CID/"
     const ROYALTY_FEE = 500 // 5%
     const COST = ethers.parseEther("1")
-    const startTimestamp = Math.floor(Date.now() / 1000) + 300
+    const startTimestamp = Math.floor(Date.now() / 1000) + 5000
     const endTimestamp = Math.floor(startTimestamp + 500)
 
     let deployer,
@@ -328,11 +328,12 @@ describe("FantomHomes", () => {
     })
 
     describe("Buy From Listing", () => {
-        beforeEach(async () => {
-            tx = await marketPlace.connect(buyer).buyFromListing(0)
-        })
+        beforeEach(async () => {})
 
         it("Send royalFee to artist", async () => {
+            console.log("FantomHome contract", fantomHomes.target)
+            console.log("Artist address", artist.address)
+            tx = await marketPlace.connect(buyer).buyFromListing(0)
             const result = await ethers.provider.getBalance(artist.address)
             expect(result).to.be.equal("10000050000000000000000") // 0.05 ETH (5% of 1 ETH)
         })

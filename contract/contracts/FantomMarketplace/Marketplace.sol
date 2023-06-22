@@ -81,7 +81,7 @@ contract Marketplace is IDirectListings {
 
         Listing memory listing = Listing({
             listingId: listingId,
-            listingCreator: listingCreator,
+            listingCreator: payable(listingCreator),
             assetContract: _params.assetContract,
             tokenId: _params.tokenId,
             pricePerToken: _params.pricePerToken,
@@ -203,17 +203,16 @@ contract Marketplace is IDirectListings {
             .directListingsStorage();
 
         Listing memory listing = data.listings[_listingId];
-        require(
-            block.timestamp < listing.endTimestamp &&
-                block.timestamp >= listing.startTimestamp,
-            "not within sale window."
-        );
-        // if (
-        //     block.timestamp > listing.endTimestamp ||
-        //     block.timestamp <= listing.startTimestamp
-        // ) {
-        //     revert Marketplace_NotWithinSaleWindow();
-        // }
+        console.log(block.timestamp);
+        console.log(listing.startTimestamp);
+        console.log(listing.endTimestamp);
+
+        if (
+            listing.endTimestamp < block.timestamp ||
+            block.timestamp >= listing.startTimestamp
+        ) {
+            revert Marketplace_NotWithinSaleWindow();
+        }
 
         require(
             _validateOwnershipAndApproval(
@@ -224,7 +223,35 @@ contract Marketplace is IDirectListings {
             "Marketplace: not owner or approved tokens."
         );
 
-        _payout(listing);
+        FantomHomes nftContract = FantomHomes(listing.assetContract);
+
+        (address royalTyFeeRecipient, uint256 fee) = nftContract.royaltyInfo(
+            listing.tokenId,
+            listing.pricePerToken
+        );
+        console.log(address(nftContract));
+        console.log(listing.pricePerToken);
+
+        // Pay the stakeholder
+
+        // (bool success, ) = payable(royalTyFeeRecipient).call{value: fee}("");
+        // console.log(fee);
+        // console.log(royalTyFeeRecipient);
+        // require(success, "Unable to send fee to artist");
+
+        // Check if the recipient is payable
+        require(
+            payable(royalTyFeeRecipient).send(fee),
+            "Unable to send fee to artist"
+        );
+
+        // Pay the lister
+        (bool successOwner, ) = listing.listingCreator.call{
+            value: (listing.pricePerToken - fee)
+        }("");
+        require(successOwner, "Unable to send payment to lister");
+
+        // _payout(listing);
         _transferListingTokens(listing.listingCreator, msg.sender, listing);
     }
 
@@ -313,30 +340,7 @@ contract Marketplace is IDirectListings {
     }
 
     /// @dev Pays out stakeholders in a sale.
-    function _payout(Listing memory _listing) public {
-        uint royaltyCut;
-        address royaltyRecipient;
-        FantomHomes nftContract = FantomHomes(_listing.assetContract);
-        try
-            nftContract.royaltyInfo(_listing.tokenId, _listing.pricePerToken)
-        returns (address royalTyFeeRecipient, uint royaltyFeeAmount) {
-            if (royalTyFeeRecipient != address(0) && royaltyFeeAmount > 0) {
-                // Pay the stakeholder
-                (bool sent, ) = royalTyFeeRecipient.call{
-                    value: royaltyFeeAmount
-                }("");
-                royaltyCut = royaltyFeeAmount;
-                require(sent);
-            } else {
-                // Pay the lister
-
-                (bool sent, ) = _listing.listingCreator.call{
-                    value: (_listing.pricePerToken - royaltyCut)
-                }("");
-                require(sent);
-            }
-        } catch {}
-    }
+    function _payout(Listing memory _listing) public payable {}
 
     /// @dev Transfers tokens listed for sale in a direct listing
 
