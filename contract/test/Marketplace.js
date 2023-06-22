@@ -328,23 +328,58 @@ describe("FantomHomes", () => {
     })
 
     describe("Buy From Listing", () => {
-        beforeEach(async () => {})
+        let minterBalanceBefore, buyerBalanceBefore
+        beforeEach(async () => {
+            minterBalanceBefore = await ethers.provider.getBalance(
+                minter.address
+            )
+
+            buyerBalanceBefore = await ethers.provider.getBalance(buyer.address)
+            tx = await marketPlace
+                .connect(buyer)
+                .buyFromListing(0, { value: COST })
+        })
 
         it("Send royalFee to artist", async () => {
-            console.log("FantomHome contract", fantomHomes.target)
-            console.log("Artist address", artist.address)
-            tx = await marketPlace.connect(buyer).buyFromListing(0)
             const result = await ethers.provider.getBalance(artist.address)
             expect(result).to.be.equal("10000050000000000000000") // 0.05 ETH (5% of 1 ETH)
         })
 
-        // it("Should not buy when sales is over", async () => {
-        //     try {
-        //         await network.provider.send("evm_increaseTime", [820])
-        //         tx = await marketPlace.connect(buyer).buyFromListing(0)
-        //     } catch (e) {
-        //         expect(tx).to.be.revertedWith("Marketplace_NotWithinSaleWindow")
-        //     }
-        // })
+        it("Should send amount to minter", async () => {
+            const result = await ethers.provider.getBalance(minter.address)
+            expect(result).to.be.greaterThan(minterBalanceBefore)
+        })
+
+        it("should update buyer balance", async () => {
+            const result = await ethers.provider.getBalance(buyer.address)
+            expect(result).to.be.lessThan(buyerBalanceBefore)
+        })
+
+        it("Should not buy when sales is over", async () => {
+            try {
+                await network.provider.send("evm_increaseTime", [820])
+                tx = await marketPlace
+                    .connect(buyer)
+                    .buyFromListing(0, { value: COST })
+            } catch (e) {
+                expect(tx).to.be.revertedWith("Marketplace_NotWithinSaleWindow")
+            }
+        })
+        it("should update ownership", async () => {
+            const result = await fantomHomes.ownerOf(0)
+            expect(result).to.equal(buyer.address)
+        })
+
+        it("only existing listing", async () => {
+            try {
+                tx = await marketPlace
+                    .connect(buyer)
+                    .buyFromListing(1, { value: COST })
+
+                await tx.wait()
+
+                expect(tx).to.be.revertedWith("Marketplace_InvalidListing")
+            } catch (e) {}
+        })
     })
 })

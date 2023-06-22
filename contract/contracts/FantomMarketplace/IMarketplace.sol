@@ -18,7 +18,8 @@ interface IDirectListings {
         UNSET,
         CREATED,
         COMPLETED,
-        CANCELLED
+        CANCELLED,
+        SOLD
     }
 
     /**
