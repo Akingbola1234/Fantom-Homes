@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AiOutlineUpload } from "react-icons/ai";
 import { AiOutlineInbox } from "react-icons/ai";
 import { Modal, Upload, message } from "antd";
-import LandsCard from "../LandsCard/LandsCard"
+import LandsCard from "../LandsCard/LandsCard";
 
 const { Dragger } = Upload;
 const props = {
@@ -45,16 +45,16 @@ const CreatorLands = () => {
           </button>
         </div>
       </div>
-      <LandsCard/>
+      <LandsCard />
       <Modal
         open={isModalOpen}
         onCancel={handleCancel}
         footer={null}
         centered={true}
       >
-        <h5 className="creator-modal-text">Upload Homes</h5>
+        <h5 className="creator-modal-text">Upload Lands</h5>
         <span className="creator-modal-span">
-          You can upload your Creative Homes on FantomWorld
+          You can upload your Creative Lands on FantomWorld
         </span>
         <Dragger {...props} className="drag-drop">
           <p className="ant-upload-drag-icon">
