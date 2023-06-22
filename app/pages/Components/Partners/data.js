@@ -1,26 +1,27 @@
-import firstPartner from "../../Assets/images/coinbase.svg"
-import secondPartner from "../../Assets/images/spotify.svg"
-import thirdPartner from "../../Assets/images/slack.svg"
-import fourthPartner from "../../Assets/images/dropbox.svg"
-import fifthPartner from "../../Assets/images/webflow.svg"
-export const ourPartners = [{
+// import firstPartner from "../../Assets/images/coinbase.svg"
+// import secondPartner from "../../Assets/images/spotify.svg"
+// import thirdPartner from "../../Assets/images/slack.svg"
+// import fourthPartner from "../../Assets/images/dropbox.svg"
+// import fifthPartner from "../../Assets/images/webflow.svg"
+export const ourPartners = [
+    {
         key: 1,
-        partnerProfile: firstPartner
+        partnerProfile: "./Assets/images/coinbase.svg",
     },
     {
         key: 2,
-        partnerProfile: secondPartner
+        partnerProfile: "./Assets/images/spotify.svg",
     },
     {
         key: 3,
-        partnerProfile: thirdPartner
+        partnerProfile: "./Assets/images/slack.svg",
     },
     {
         key: 4,
-        partnerProfile: fourthPartner
+        partnerProfile: "./Assets/images/dropbox.svg",
     },
     {
         key: 5,
-        partnerProfile: fifthPartner
-    }
+        partnerProfile: "./Assets/images/webflow.svg",
+    },
 ]

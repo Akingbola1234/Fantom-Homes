@@ -1,5 +1,7 @@
 .cta-container {
-    background: url("../../Assets/images/join-community-background.png");
+    /* background: url("./Assets/images/join-community-background.png");
+     */
+    background: url("../../../public/Assets/images/join-community-background.png");
     padding: 30px;
     background-repeat: no-repeat;
     background-position: center;
