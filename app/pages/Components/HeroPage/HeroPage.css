@@ -1,0 +1,177 @@
+.heropage-container {
+    padding: 30px;
+}
+
+.heropage-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.mobile-button {
+    background: #0038ed;
+    border: none;
+    width: 100%;
+    height: 35px;
+    color: #fff;
+    border-radius: 40px;
+    font-size: 16px;
+    display: none;
+}
+
+.mobile-button:hover {
+    cursor: pointer;
+}
+
+.heropage-text {
+    width: 40%;
+}
+
+.heropage-text h2 {
+    font-size: 70px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 800;
+    color: #fff;
+}
+
+.heropage-text h2 span {
+    color: #0038ed;
+}
+
+.heropage-image {
+    width: 60%;
+}
+
+.heropage-image .heropage-img {
+    width: 400px;
+}
+
+.heropage-sub-details {
+    display: flex;
+}
+
+.circle {
+    color: #fff;
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(112.62deg, #8d1cfe 29.4%, #0038ed 105.15%);
+    border-radius: 50%;
+}
+
+.circle p {
+    font-size: 13px;
+    text-align: center;
+}
+
+.circle img {
+    margin: auto;
+    display: block;
+    margin-top: 16px;
+    margin-left: 70px;
+    width: 15px;
+}
+
+.description p {
+    color: #fff;
+    margin-left: 30px;
+    font-size: 17px;
+    font-family: "Inter", sans-serif;
+    font-weight: 400;
+}
+
+.heropage-stats {
+    display: flex;
+    gap: 30px;
+    margin-left: 20px;
+}
+
+.stat {
+    color: #fff;
+    line-height: 3px;
+}
+
+.stat h5 {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.stat h4 {
+    font-size: 17px;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.autoplay-progress {
+    position: absolute;
+    right: 16px;
+    bottom: 16px;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--swiper-theme-color);
+}
+
+.autoplay-progress svg {
+    --progress: 0;
+    position: absolute;
+    left: 0;
+    top: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    stroke-width: 4px;
+    stroke: var(--swiper-theme-color);
+    fill: none;
+    stroke-dashoffset: calc(125.6 * (1 - var(--progress)));
+    stroke-dasharray: 125.6;
+    transform: rotate(-90deg);
+}
+
+@media (max-width: 600px) {
+    .heropage-text h2 {
+        font-size: 40px;
+    }
+    .heropage-slider {
+        display: none;
+    }
+    .heropage-text {
+        width: 100%;
+    }
+    .star {
+        display: none;
+    }
+    .circle {
+        display: none;
+    }
+    .description p {
+        margin-left: 0px;
+    }
+    .heropage-stats {
+        margin-left: 0px;
+    }
+    .mobile-button {
+        display: block;
+    }
+    .heropage-image .heropage-img {
+        width: 300px;
+    }
+}

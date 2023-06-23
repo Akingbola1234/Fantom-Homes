@@ -1,0 +1,71 @@
+.footer-container {
+    padding: 30px;
+}
+
+.footer-details {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 125px;
+}
+
+.footer-logo-text {
+    color: #999999;
+    font-family: "Inter", sans-serif;
+}
+
+.icon {
+    margin: 10px 30px 0px 0px;
+    font-size: 23px;
+    transition: ease-in-out 0.6s;
+}
+
+.icon:hover {
+    cursor: pointer;
+    color: #8d1cfe;
+    transform: translateY(-15px);
+}
+
+.footer-logo h5 {
+    font-size: 20px;
+    font-family: "Poppins", sans-serif;
+    background: -webkit-linear-gradient( 112.62deg, #8d1cfe 29.4%, #0038ed 105.15%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.footer-links h5 {
+    color: #fff;
+    font-size: 15.5px;
+    margin-top: -10px;
+    font-family: "Inter", sans-serif;
+}
+
+.footer-links ul li {
+    list-style: none;
+    color: #999999;
+    margin-left: -40px;
+    margin-top: 10px;
+    transition: ease-in-out 0.6s;
+}
+
+.footer-links ul li:hover {
+    transform: translateX(20px);
+    cursor: pointer;
+    color: #8d1cfe;
+}
+
+.footer-divider {
+    width: 90%;
+    margin-top: 30px;
+    border: 0.6px solid rgba(234, 236, 240, 0.16);
+}
+
+.footer-copyright {
+    color: #999999;
+    text-align: center;
+    margin-top: 30px;
+    font-family: "Inter", sans-serif;
+}
