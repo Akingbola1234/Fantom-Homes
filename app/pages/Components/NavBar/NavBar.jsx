@@ -3,6 +3,9 @@ import { Drawer } from "antd"
 // import { NavLink } from "react-router-dom"
 // import "./NavBar.css"
 // import { useNavigate } from "react-router-dom"
+import { ConnectButton } from "@rainbow-me/rainbowkit"
+import { ConnectBtn } from "../ConnectButton/ConnectButton.jsx"
+
 import { FaBars } from "react-icons/fa"
 
 const NavBar = () => {
@@ -48,8 +51,13 @@ const NavBar = () => {
                     </li>
                 </ul>
             </div>
+            <ConnectButton />
+
             <div className="nav-button">
-                <button>Connect Wallet</button>
+                {/* <button>Connect Wallet</button>
+                 */}
+                {/* <ConnectBtn />
+                 */}
                 {/* <ConnectButton className="connect-btn">Connect Wallet</ConnectButton> */}
             </div>
             <button onClick={showMenu} className="nav-bar-icon">

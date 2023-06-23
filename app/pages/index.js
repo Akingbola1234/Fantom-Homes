@@ -14,7 +14,7 @@ export default function Home() {
     return (
         <div className=" flex flex-col relative scrollbar-hide overflow-hidden">
             <Head>
-                <title>CollectTix</title>
+                <title>Fantom World</title>
                 <link rel="icon" href="/ct.png" />
             </Head>
 
