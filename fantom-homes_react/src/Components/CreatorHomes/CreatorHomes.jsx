@@ -3,7 +3,7 @@ import { AiOutlineInbox } from "react-icons/ai";
 import { Modal, Upload, message } from "antd";
 import "./CreatorHomes.css";
 import { AiOutlineUpload } from "react-icons/ai";
-import NftCard from "../NftCard/NftCard";
+import NftCard from "../HomesCard/HomesCard";
 
 const { Dragger } = Upload;
 

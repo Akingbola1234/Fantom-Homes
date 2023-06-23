@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./NftCard.css";
+import "./HomesCard.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import { useNavigate } from "react-router-dom";
