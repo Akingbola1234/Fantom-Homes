@@ -9,7 +9,7 @@ import { NFTs } from "./data";
 
 import { Autoplay, Pagination, Navigation } from "swiper";
 
-const LandsCard = () => {
+const CollectionsCard = () => {
   const navigate = useNavigate();
   const handleNavigate = () => {
     navigate("/marketplace");
@@ -136,4 +136,4 @@ const LandsCard = () => {
   );
 };
 
-export default LandsCard;
+export default CollectionsCard;

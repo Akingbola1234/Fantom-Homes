@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { AiOutlineUpload } from "react-icons/ai";
 import { AiOutlineInbox } from "react-icons/ai";
 import { Modal, Upload, message } from "antd";
-import HomesCard from '../HomesCard/HomesCard';
+import CollectionsCard from '../CollectionsCard/CollectionsCard';
 
 const { Dragger } = Upload;
 const props = {
@@ -46,7 +46,7 @@ const CreatorCollection = () => {
           </button>
         </div>
       </div>
-      <HomesCard/>
+      <CollectionsCard/>
       <Modal
         open={isModalOpen}
         onCancel={handleCancel}
