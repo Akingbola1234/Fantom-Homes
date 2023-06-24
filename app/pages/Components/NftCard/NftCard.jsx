@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
-
+import styles from "./NftCard.module.css"
 // import { useNavigate } from "react-router-dom";
 import { Modal } from "antd"
 // import fantomImage from "../../Assets/images/fantom-logo.webp"
@@ -26,28 +26,34 @@ const NftCard = () => {
         setIsModalOpen(false)
     }
     return (
-        <div className="nftcard-container">
+        <div className={styles.nftcard_container}>
             {NFTs.map((Nft) => (
                 <div
-                    className="nftcard"
+                    className={styles.nftcard}
                     key={Nft.key}
                     onClick={() => showModal(Nft)}
                 >
-                    <div className="nftcard-details">
-                        <img className="nft-image" src={Nft.nftImage} alt="" />
-                        <h5 className="nft-name">{Nft.nftName}</h5>
-                        <div className="nft-price-number">
+                    <div className={styles.nftcard_details}>
+                        <img
+                            className={styles.nft_image}
+                            src={Nft.nftImage}
+                            alt=""
+                        />
+                        <h5 className={styles.nft_name}>{Nft.nftName}</h5>
+                        <div className={styles.nft_price_number}>
                             <img
-                                src={"./Assets/images/fantom-logo.webp"}
+                                src={"/Assets/images/fantom-logo.webp"}
                                 alt=""
-                                className="fantom-logo"
+                                className={styles.fantom_logo}
                             />
-                            <span className="nft-price">{Nft.nftPrice}</span>
+                            <span className={styles.nft_price}>
+                                {Nft.nftPrice}
+                            </span>
                         </div>
-                        <hr className="nft-line" />
-                        <div className="nft-time-button">
+                        <hr className={styles.nft_line} />
+                        <div className={styles.nft_time_button}>
                             <button
-                                className="bid"
+                                className={styles.bid}
                                 onClick={() => showModal(Nft)}
                             >
                                 Preview
@@ -57,7 +63,7 @@ const NftCard = () => {
                 </div>
             ))}
             <Modal
-                className="nft-modal"
+                className="nft-modal bg-[#000]"
                 open={isModalOpen}
                 centered={true}
                 footer={null}
@@ -65,70 +71,41 @@ const NftCard = () => {
                 onCancel={handleCancel}
             >
                 {modalContent.map((newModal) => (
-                    <div className="nft-modal-content" key={newModal.nftName}>
-                        <Swiper
-                            spaceBetween={30}
-                            centeredSlides={true}
-                            autoplay={{
-                                delay: 2500,
-                                disableOnInteraction: false,
-                            }}
-                            pagination={{
-                                clickable: true,
-                            }}
-                            modules={[Autoplay, Pagination, Navigation]}
-                            className="mySwiper"
-                        >
-                            <SwiperSlide>
-                                <div className="nft-modal-image">
-                                    <img
-                                        src={newModal.nftImage}
-                                        alt=""
-                                        className="nft-modal-img"
-                                    />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="nft-modal-image">
-                                    <img
-                                        src={newModal.nftImage}
-                                        alt=""
-                                        className="nft-modal-img"
-                                    />
-                                </div>
-                            </SwiperSlide>
-                            <SwiperSlide>
-                                <div className="nft-modal-image">
-                                    <img
-                                        src={newModal.nftImage}
-                                        alt=""
-                                        className="nft-modal-img"
-                                    />
-                                </div>
-                            </SwiperSlide>
-                        </Swiper>
+                    <div
+                        className={styles.nft_modal_content}
+                        key={newModal.nftName}
+                    >
+                        <div className={styles.nft_modal_image}>
+                            <img
+                                src={newModal.nftImage}
+                                alt=""
+                                className={styles.nft_modal_img}
+                            />
+                        </div>
 
-                        <div className="nft-modal-details">
-                            <h5 className="modal-text">{newModal.nftName}</h5>
-                            <div className="modal-logo-price">
+                        <div className={styles.nft_modal_details}>
+                            <h5 className={styles.modal_text}>
+                                {newModal.nftName}
+                            </h5>
+                            <div className={styles.modal_logo_price}>
                                 <img
-                                    className="fantom-logo"
-                                    src={"./Assets/images/fantom-logo.webp"}
+                                    className={styles.fantom_logo}
+                                    src={"/Assets/images/fantom-logo.webp"}
                                     alt=""
                                 />
-                                <h5 className="modal-price">
+                                <h5 className={styles.modal_price}>
                                     {newModal.nftPrice} FTM
                                 </h5>
                             </div>
-                            <div className="nft-button">
+                            <div className={styles.nft_button}>
                                 <button
-                                    className="secondary-btn"
+                                    className={styles.secondary_btn}
                                     onClick={handleCancel}
                                 >
                                     Not Yet
                                 </button>
                                 <button
-                                    className="primary-btn"
+                                    className={styles.primary_btn}
                                     onClick={handleMint}
                                 >
                                     Buy
@@ -139,7 +116,10 @@ const NftCard = () => {
                 ))}
             </Modal>
             <div>
-                <button className="view-more-btn" onClick={handleNavigate}>
+                <button
+                    className={styles.view_more_btn}
+                    onClick={handleNavigate}
+                >
                     View More
                 </button>
             </div>

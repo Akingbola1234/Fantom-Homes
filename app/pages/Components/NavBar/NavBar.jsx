@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import { Drawer } from "antd"
-// import { NavLink } from "react-router-dom"
-// import "./NavBar.css"
+import Link from "next/link"
 // import { useNavigate } from "react-router-dom"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
 import { ConnectBtn } from "../ConnectButton/ConnectButton.jsx"
@@ -23,31 +22,39 @@ const NavBar = () => {
     return (
         <div className="navbar-container">
             <div className="logo">
-                <h5 onClick={handleNavigate}>FantomWorld</h5>
+                <Link
+                    href={"/"}
+                    style={{
+                        outline: "none",
+                        textDecoration: "none",
+                    }}
+                >
+                    <h5>FantomWorld</h5>
+                </Link>
             </div>
             <div className="nav-list">
                 <ul>
                     <li>
-                        {/* <NavLink
+                        <Link
                             className="navigation-link"
-                            to="/marketplace"
-                            style={({ isActive }) => ({
-                                color: isActive ? "#0038ed" : "#FFF",
-                            })}
+                            href={"/page/Marketplace"}
+                            // style={({ isActive }) => ({
+                            //     color: isActive ? "#0038ed" : "#FFF",
+                            // })}
                         >
                             Marketplace
-                        </NavLink> */}
+                        </Link>
                     </li>
                     <li>
-                        {/* <NavLink
+                        <Link
                             className="navigation-link"
-                            to="/creator"
-                            style={({ isActive }) => ({
-                                color: isActive ? "#0038ed" : "#FFF",
-                            })}
+                            href="/page/Creator"
+                            // style={({ isActive }) => ({
+                            //     color: isActive ? "#0038ed" : "#FFF",
+                            // })}
                         >
                             Creator
-                        </NavLink> */}
+                        </Link>
                     </li>
                 </ul>
             </div>
