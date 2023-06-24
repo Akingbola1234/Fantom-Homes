@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 
 import { Swiper, SwiperSlide } from "swiper/react"
-import styles from "../NftCard/NftCard.module.css"
+import styles from "../HomeCard/HomesCard.module.css"
 // import { useNavigate } from "react-router-dom";
 import { Modal } from "antd"
 // import fantomImage from "../../Assets/images/fantom-logo.webp"
@@ -9,7 +9,7 @@ import { NFTs } from "./data"
 
 import { Autoplay, Pagination, Navigation } from "swiper"
 
-const HomesCard = () => {
+const CollectionsCard = () => {
     // const navigate = useNavigate();
     const handleNavigate = () => {
         // navigate("/marketplace");
@@ -130,4 +130,4 @@ const HomesCard = () => {
     )
 }
 
-export default HomesCard
+export default CollectionsCard

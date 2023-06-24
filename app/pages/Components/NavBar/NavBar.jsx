@@ -3,7 +3,6 @@ import { Drawer } from "antd"
 import Link from "next/link"
 // import { useNavigate } from "react-router-dom"
 import { ConnectButton } from "@rainbow-me/rainbowkit"
-import { ConnectBtn } from "../ConnectButton/ConnectButton.jsx"
 
 import { FaBars } from "react-icons/fa"
 
