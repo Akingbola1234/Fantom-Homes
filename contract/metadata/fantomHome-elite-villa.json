@@ -1,0 +1,35 @@
+{
+    "name": "Elite Villa",
+    "description": "A residence of extraordinary prestige and exclusivity. This magnificent villa offers the epitome of luxury living with its impeccable design and meticulous attention to detail. It provides a sanctuary of refined elegance and unparalleled comfort.",
+    "image": "https://bafkreifu3nkxl6o56cmyvn2p47ayelusibzwbt6iqtogmf4wfk2yc442xi.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Generous"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Contemporary Mediterranean"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Cliffside overlooking the ocean"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Sleek and modern"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Infinity pool, rooftop terrace, gym"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Smart home automation"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Tropical gardens with water features"
+        }
+    ]
+}

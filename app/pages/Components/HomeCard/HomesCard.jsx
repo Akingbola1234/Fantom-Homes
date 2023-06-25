@@ -4,7 +4,7 @@ import styles from "./HomesCard.module.css"
 // import { useNavigate } from "react-router-dom";
 import { Modal } from "antd"
 // import fantomImage from "../../Assets/images/fantom-logo.webp"
-import { NFTs } from "./data"
+import { NFTs } from "../NotListedNFT/data"
 
 import { Autoplay, Pagination, Navigation } from "swiper"
 
