@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link"
 import { FaAngleLeft } from "react-icons/fa";
 import styles from "./NftDetailsPage.module.css";
 
@@ -10,15 +11,17 @@ const NftDetailsPage = () => {
           <img src="/Assets/images/3d-home.jpg" alt="NFT Image" />
         </div>
         <div className={styles["ntf-card-page-card"]}>
-          <button>
+          <Link href={"/"}>
+          <button className={styles["nft-card-page-back-button"]}>
             {" "}
             <FaAngleLeft /> Back | FantomWorld
           </button>
-          <h4>FantomHomes</h4>
-          <span>NFT ID </span>
-          <h5>Attributes: </h5>
-          <span>Owned by </span>
-          <button>Place a bid</button>
+          </Link>
+          <h4 className={styles["nft-card-page-text"]}>FantomHomes</h4>
+          <span className={styles["nft-card-page-span"]}>NFT ID </span>
+          <h5 className={styles["nft-card-page-attributes"]}>Attributes: </h5>
+          <span className={styles["nft-card-page-span"]}>Owned by </span>
+          <button className={styles["nft-card-page-bid"]}>Place a bid</button>
         </div>
       </div>
     </div>
