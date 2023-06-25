@@ -56,7 +56,7 @@ const HomesCard = () => {
                                 className={styles.bid}
                                 onClick={() => showModal(Nft)}
                             >
-                                Preview
+                                View
                             </button>
                         </div>
                     </div>
@@ -102,13 +102,13 @@ const HomesCard = () => {
                                     className={styles.secondary_btn}
                                     onClick={handleCancel}
                                 >
-                                    Not Yet
+                                 View full Details
                                 </button>
                                 <button
                                     className={styles.primary_btn}
                                     onClick={handleMint}
                                 >
-                                    Buy
+                                    Place a bid
                                 </button>
                             </div>
                         </div>
