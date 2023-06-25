@@ -18,8 +18,49 @@
 
 .ntf-card-page-card {
   background: #232128;
+  padding: 20px;
   width: 500px;
-  height: 450px;
+  height: 420px;
   border-radius: 8px;
   box-shadow: 2px 2px 10px#2a282e;
+}
+
+.nft-card-page-back-button {
+  border: none;
+  font-family: "Poppins", sans-serif;
+  background: #0038ed;
+  color: #fff;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.nft-card-page-back-button:hover {
+  cursor: pointer;
+}
+
+.nft-card-page-text {
+  font-size: 25px;
+  color: #736e7d;
+}
+
+.nft-card-page-span {
+  color: #736e7d;
+  font-size: 18px;
+}
+
+.nft-card-page-attributes {
+  font-size: 20px;
+  color: #736e7d;
+}
+
+.nft-card-page-bid {
+  display: block;
+  margin-top: 30px;
+  width: 100%;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  background: #0038ed;
+  color: #fff;
+  padding: 8px;
+  border-radius: 8px;
 }
