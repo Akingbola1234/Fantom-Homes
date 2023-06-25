@@ -187,6 +187,9 @@
 .nft_modal_img {
   width: 380px;
   height: 400px !important;
+  object-fit: cover;
+  margin: auto;
+  display: block;
 }
 
 @media (max-width: 600px) {
