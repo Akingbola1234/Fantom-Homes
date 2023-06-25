@@ -1,6 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
 body {
-    background: #18141B;
-    font-family: "Poppins", sans-serif;
-    
+  background: #18141b;
+  font-family: "Poppins", sans-serif;
+}
+
+.ant-modal-content {
+  background-color: #232128 !important;
+  border-radius: 10px !important;
+  width: 700px;
+}
+
+@media (max-width: 1200px) {
+  .ant-modal-content {
+    width: 100%;
+  }
 }

@@ -63,7 +63,7 @@ const HomesCard = () => {
                 </div>
             ))}
             <Modal
-                className="nft-modal bg-[#000]"
+                className="nft-modal"
                 open={isModalOpen}
                 centered={true}
                 footer={null}
