@@ -1,8 +1,11 @@
 import React from 'react'
+import styles from "./NftDetailsPage.module.css"
 
 const NftDetailsPage = () => {
   return (
-    <div>NftDetailsPage</div>
+    <div className=''>
+
+    </div>
   )
 }
 
