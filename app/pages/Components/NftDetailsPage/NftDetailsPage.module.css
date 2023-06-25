@@ -1,0 +1,25 @@
+.ntf-card-page-container {
+  padding: 20px;
+}
+
+.ntf-card-page-details {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: center;
+}
+
+.ntf-card-page-image > img {
+  width: 400px;
+  height: 450px;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.ntf-card-page-card {
+  background: #232128;
+  width: 500px;
+  height: 450px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 10px#2a282e;
+}

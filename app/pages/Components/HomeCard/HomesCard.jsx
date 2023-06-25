@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import styles from "./HomesCard.module.css"
+import Link from "next/link"
 // import { useNavigate } from "react-router-dom";
 import { Modal } from "antd"
 // import fantomImage from "../../Assets/images/fantom-logo.webp"
@@ -56,7 +57,7 @@ const HomesCard = () => {
                                 className={styles.bid}
                                 onClick={() => showModal(Nft)}
                             >
-                                Preview
+                                View
                             </button>
                         </div>
                     </div>
@@ -98,17 +99,19 @@ const HomesCard = () => {
                                 </h5>
                             </div>
                             <div className={styles.nft_button}>
+                                <Link href={"/page/NftDetails"}>
                                 <button
                                     className={styles.secondary_btn}
                                     onClick={handleCancel}
                                 >
-                                    Not Yet
+                                 View full Details
                                 </button>
+                                </Link>
                                 <button
                                     className={styles.primary_btn}
                                     onClick={handleMint}
                                 >
-                                    Buy
+                                    Place a bid
                                 </button>
                             </div>
                         </div>
