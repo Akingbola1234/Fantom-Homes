@@ -1,18 +1,17 @@
 import { Tag } from "antd"
-import NftCard from "../NftCard/NftCard"
-import HomesCard from "../HomesCard/HomesCard"
+import CollectionsCard from "../CollectionsCard/CollectionsCard"
 import LandsCard from "../LandsCard/LandsCard"
-
+import HomesCard from "../HomeCard/HomesCard"
 export const ourTabs = [
     {
         key: 1,
         Tab: <Tag className="tags">Homes</Tag>,
-        children: <NftCard />,
+        children: <HomesCard />,
     },
     {
         key: 2,
         Tab: <Tag className="tags">Collections</Tag>,
-        children: <HomesCard />,
+        children: <CollectionsCard />,
     },
     {
         key: 3,
