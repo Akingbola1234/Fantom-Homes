@@ -43,9 +43,38 @@ async function depolyFantomHome() {
     }
     return [FantomHomes.target]
 }
+
+async function deployFantomAcc() {
+    const uri = [
+        "https://bafkreigfhrqgo4xyi45xbji2pinm6ee5cwvgumkvkk2ugyt3odmjwjzlea.ipfs.nftstorage.link/",
+        "https://bafkreiaagmfztazl7qk5roguvurcx643jywrhziehgzocjgcd63dllnuue.ipfs.nftstorage.link/",
+        "https://bafkreidmgqdh22vq6ehmmtdvfx4cbyvgh5l5rdpqlv7drofhoglvab5lz4.ipfs.nftstorage.link/",
+        "https://bafkreiejuditannvet3swytmlj72id3hgajagyvntatdrany3r56squdki.ipfs.nftstorage.link/",
+        "https://bafkreihvimbiibhmc2veqivqzufsjjwjsbd3j72s36lp6ffcweulzcpc4a.ipfs.nftstorage.link/",
+    ]
+
+    const FantomAcc = await hre.ethers.deployContract("FantomAcc")
+
+    await FantomAcc.waitForDeployment(5)
+
+    console.log(`FantomAcc deployed to ${FantomAcc.target}`)
+    console.log("Waiting for block txs")
+    await FantomAcc.deploymentTransaction(5)
+
+    const artist = "0xb1f540756be3c06ebbcac15d701c5477f271a7a0"
+    const royaltyFee = 500
+    let tx
+    for (let i = 0; i < uri.length; i++) {
+        tx = await FantomAcc.mint(artist, royaltyFee, uri[i])
+        await tx.wait(2)
+    }
+    return [FantomAcc.target]
+}
 async function main() {
     const FantomHomeAddress = await depolyFantomHome()
+    const FantomAccAddress = await deployFantomAcc()
     await verify("FantomHomes", FantomHomeAddress.toString(), [])
+    await verify("FantomAcc", FantomAccAddress.toString(), [])
 
     const MarketPlace = await hre.ethers.deployContract("Marketplace")
 

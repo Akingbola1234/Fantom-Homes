@@ -1,0 +1,31 @@
+{
+    "name": "Men's Hoodie Collection",
+    "description": "A collection of stylish and comfortable hoodies for men, perfect for any occasion. Each hoodie is uniquely designed with premium materials and attention to detail.",
+    "image": "https://bafybeiflzr42lfa3bcw3n3kyqneyj3eq3pxyljvr5bverwopxktwj2tpva.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Color",
+            "value": "Black"
+        },
+        {
+            "trait_type": "Size",
+            "value": "Medium"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Cotton"
+        },
+        {
+            "trait_type": "Style",
+            "value": "Casual"
+        },
+        {
+            "trait_type": "Design",
+            "value": "Logo Print"
+        },
+        {
+            "trait_type": "Limited Edition",
+            "value": true
+        }
+    ]
+}

@@ -1,0 +1,31 @@
+{
+    "name": "Gold Wristwatch",
+    "description": "A luxurious wristwatch with a stunning gold color, exuding elegance and sophistication. This timepiece is meticulously crafted with precision and attention to detail, offering both style and functionality.",
+    "image": "https://bafybeih6hsjv4ksvxsrwva2h66zredrixfvomudp53p32sps4l3cro4hzi.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Color",
+            "value": "Gold"
+        },
+        {
+            "trait_type": "Brand",
+            "value": "Apple"
+        },
+        {
+            "trait_type": "Style",
+            "value": "Classic"
+        },
+        {
+            "trait_type": "Movement",
+            "value": "Automatic"
+        },
+        {
+            "trait_type": "Water Resistance",
+            "value": "50 meters"
+        },
+        {
+            "trait_type": "Limited Edition",
+            "value": false
+        }
+    ]
+}

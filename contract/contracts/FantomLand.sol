@@ -21,7 +21,6 @@ contract FantomLands is
     Counters.Counter private _tokenIds;
 
     // Declaring state variables
-    address public s_artist;
 
     constructor() ERC721("FantomLands", "FTL") {}
 
@@ -33,10 +32,7 @@ contract FantomLands is
         uint256 tokenId = _tokenIds.current();
 
         _safeMint(msg.sender, tokenId);
-        _setTokenURI(
-            tokenId,
-            string(abi.encodePacked(metadataURI, tokenId.toString(), ".json"))
-        );
+        _setTokenURI(tokenId, metadataURI);
 
         _setTokenRoyalty(tokenId, artist, _royaltyFee);
         _tokenIds.increment();

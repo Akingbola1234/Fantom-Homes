@@ -1,0 +1,31 @@
+{
+    "name": "Vintage Trousers Collection",
+    "description": "A collection of timeless vintage trousers that exude classic style and sophistication. These trousers are carefully curated from the finest materials and showcase unique designs from different eras, offering a blend of nostalgia and fashion-forward elegance.",
+    "image": "https://bafybeibvfb6ilhy43k5nv5n4hlgkazmvrhhvvaqwgf5zzvp3ydzahs6pgy.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Color",
+            "value": "Various"
+        },
+        {
+            "trait_type": "Size",
+            "value": "Multiple Sizes Available"
+        },
+        {
+            "trait_type": "Material",
+            "value": "High-Quality Fabrics"
+        },
+        {
+            "trait_type": "Era",
+            "value": "Vintage"
+        },
+        {
+            "trait_type": "Style",
+            "value": "Timeless"
+        },
+        {
+            "trait_type": "Limited Edition",
+            "value": true
+        }
+    ]
+}
