@@ -1,21 +1,22 @@
-import { useState } from "react";
-import "./Components/NavBar/NavBar.css";
-import "./Components/HeroPage/HeroPage.css";
-import "./Components/Partners/Partners.css";
-import "./Components/HomeCard/HomesCard.module.css";
-import "./Components/SuperDrops/SuperDrops.css";
-import "./Components/LiveAuction/LiveAuction.css";
-import "./Components/Creators/Creators.css";
-import "./Components/SellNft/SellNft.css";
-import "./Components/Cta/Cta.css";
-import "./Components/Footer/Footer.css";
+import { useState } from "react"
+import "./Components/NavBar/NavBar.css"
+import "./Components/HeroPage/HeroPage.css"
+import "./Components/Partners/Partners.css"
+import "./Components/HomeCard/HomesCard.module.css"
+import "./Components/SuperDrops/SuperDrops.css"
+import "./Components/LiveAuction/LiveAuction.css"
+import "./Components/Creators/Creators.css"
+import "./Components/SellNft/SellNft.css"
+import "./Components/Cta/Cta.css"
+import "./Components/Footer/Footer.css"
 // import "./Components/CreatorPage/CreatorPage.css"
-import "./Components/CreatorPage/CreatorPage.css";
-import "./Components/CreatorCollection/CreatorCollection.css";
-import "./Components/CreatorHomes/CreatorHomes.css";
-import "./App.css";
+import "./Components/CreatorPage/CreatorPage.css"
+import "./Components/CreatorCollection/CreatorCollection.css"
+import "./Components/CreatorHomes/CreatorHomes.css"
+import "./App.css"
+import "../styles/globals.css"
 
-import "@rainbow-me/rainbowkit/styles.css";
+import "@rainbow-me/rainbowkit/styles.css"
 import {
     getDefaultWallets,
     RainbowKitProvider,
@@ -27,19 +28,20 @@ import { configureChains, createConfig, sepolia, WagmiConfig } from "wagmi"
 import { goerli, optimismGoerli, fantomTestnet } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy"
 import { publicProvider } from "wagmi/providers/public"
+import HookProvider from "../context/Hook"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-  [sepolia],
-  [
-    alchemyProvider({ apiKey: "PrdHvDC9SU7_y9GyCH3tG734SOMbwAkj" }),
-    publicProvider(),
-  ]
-);
+    [sepolia],
+    [
+        alchemyProvider({ apiKey: "PrdHvDC9SU7_y9GyCH3tG734SOMbwAkj" }),
+        publicProvider(),
+    ]
+)
 const { connectors } = getDefaultWallets({
-  appName: "VoteChain",
-  projectId: "1694a591eac2ab285be5adbbfff34913",
-  chains,
-});
+    appName: "VoteChain",
+    projectId: "1694a591eac2ab285be5adbbfff34913",
+    chains,
+})
 // const connectors = connectorsForWallets([
 //     {
 //         groupName: "Other",
@@ -53,24 +55,26 @@ const { connectors } = getDefaultWallets({
 //     },
 // ])
 const wagmiConfig = createConfig({
-  autoConnect: true,
-  connectors,
-  publicClient,
-  webSocketPublicClient,
-});
+    autoConnect: true,
+    connectors,
+    publicClient,
+    webSocketPublicClient,
+})
 
 function MyApp({ Component, pageProps }) {
-  return (
-    <WagmiConfig config={wagmiConfig}>
-      <RainbowKitProvider
-        theme={darkTheme()}
-        modalSize="compact"
-        chains={chains}
-      >
-        <Component {...pageProps} />{" "}
-      </RainbowKitProvider>{" "}
-    </WagmiConfig>
-  );
+    return (
+        <WagmiConfig config={wagmiConfig}>
+            <HookProvider>
+                <RainbowKitProvider
+                    theme={darkTheme()}
+                    modalSize="compact"
+                    chains={chains}
+                >
+                    <Component {...pageProps} />{" "}
+                </RainbowKitProvider>{" "}
+            </HookProvider>
+        </WagmiConfig>
+    )
 }
 
-export default MyApp;
+export default MyApp

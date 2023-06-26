@@ -1,7 +1,7 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
-.eth {
+/* .eth {
   background: rgb(9, 7, 31);
   background: radial-gradient(
     circle,
@@ -9,9 +9,9 @@
     rgba(0, 0, 30, 1) 47%,
     rgba(7, 9, 9, 1) 100%
   );
-}
+} */
 body {
-  @apply h-screen w-screen text-gray-500 bg-[#111524] overflow-x-hidden;
+  @apply h-screen w-screen text-gray-500 overflow-x-hidden;
   /* background: radial-gradient(
     circle,
     rgba(9, 7, 31, 1) 0%,
@@ -46,7 +46,7 @@ body {
 }
 
 .swapBtn {
-  @apply bg-[#0d81fc] w-full flex justify-center items-center rounded-2xl text-[#4492e4] text-xl font-medium cursor-pointer h-14 hover:bg-[#1d4c81] text-white;
+  @apply bg-[#8d1cfe] w-full flex justify-center items-center rounded-2xl text-[#4492e4] text-xl font-medium cursor-pointer h-14 hover:bg-[#8d1cfe] text-white;
 }
 
 .headerConnect {
@@ -70,26 +70,17 @@ body {
   @apply h-fit bg-[#0b111c] rounded-2xl border border-[#1c2231] shadow-xl p-5 relative;
 }
 .position {
-  @apply flex bg-blue-500 overflow-hidden items-center px-2 py-1 h-fit text-white rounded-xl cursor-pointer hover:bg-blue-600;
+  @apply flex bg-[#8d1cfe] overflow-hidden items-center px-2 py-1 h-fit text-white rounded-xl cursor-pointer hover:bg-blue-600;
 }
 
 .preview {
-  @apply flex w-full justify-center items-center text-center rounded-lg border-2 h-[23rem] border-[#333a4b] cursor-pointer hover:border-[3px] hover:border-[#3c4351] hover:shadow-lg hover:shadow-slate-900
+  @apply  w-full text-left rounded-2xl border-2 h-[30rem] border-[#333a4b] cursor-pointer hover:border-[3px] hover:border-[#3c4351] hover:shadow-lg hover:shadow-slate-900
 }
 
 .label {
   color: #fff !important;
 }
-.before::before {
-  content: "";
-  position: fixed;
-  z-index: -10;
-  width: 100%;
-  height: 100vh;
-  
-  background-color: #101011;
-  filter: opacity(65%);
-}
+
 .nfts-container {
   padding: 50px;
   margin-top: 40px;
@@ -121,28 +112,20 @@ body {
   color: #a3a4a6;
   font-size: 16px;
 }
-.nft-name {
-  color: #fff;
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 5px;
-}
+
 .price-container {
   display: flex;
   gap: 90px;
   padding: 10px;
   margin-top: 15px;
-  background: #212538;
+  /* background: #212538;    */
   border-radius: 15px;
 }
-.price,
+/* .price,
 .bid span {
   color: #a3a4a6;
-}
-.price,
-.bid h5 {
-  color: #fff;
-}
+} */
+
 .nft-card:hover {
   transform: translateY(-5px);
   cursor: pointer;
@@ -190,7 +173,4 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
-.header{
-  z-index: 999;
 }

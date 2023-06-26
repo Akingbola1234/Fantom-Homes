@@ -90,7 +90,6 @@ const CreatorHomes = () => {
             }
         }
 
-        console.log(tokensArr)
         return tokensArr
     }
     const tokens = getAddressTokens()
@@ -123,7 +122,7 @@ const CreatorHomes = () => {
             <div className="creator-text-button">
                 <div className="creator-text">
                     <h5>My Homes</h5>
-                    <span>0 RESULTS</span>
+                    <span>{nftData.length} RESULTS</span>
                 </div>
                 <div className="creator-button">
                     <button onClick={showModal}>
