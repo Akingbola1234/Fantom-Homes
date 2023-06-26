@@ -21,7 +21,6 @@ contract FantomHomes is
     Counters.Counter private _tokenIds;
 
     // Declaring state variables
-    address public s_artist;
 
     constructor() ERC721("FantomHomes", "FTH") {}
 
@@ -33,10 +32,7 @@ contract FantomHomes is
         uint256 tokenId = _tokenIds.current();
 
         _safeMint(msg.sender, tokenId);
-        _setTokenURI(
-            tokenId,
-            string(abi.encodePacked(metadataURI, tokenId.toString(), ".json"))
-        );
+        _setTokenURI(tokenId, metadataURI);
 
         _setTokenRoyalty(tokenId, payable(artist), _royaltyFee);
         _tokenIds.increment();

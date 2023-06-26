@@ -1,0 +1,35 @@
+{
+    "name": "Grand Manor",
+    "description": "A luxurious and prestigious residence exuding opulence and grandeur. It is a symbol of wealth and sophistication, offering lavish living spaces and exquisite amenities. This magnificent estate is a testament to refined taste and elegance.",
+    "image": "https://bafkreihd4p6xqi5yd5gjx4usdlndplgdbbboeeehnxpatess4mjaapseda.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Spacious"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Neo-Classical"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Prime waterfront"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Luxurious and ornate"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Private pool, spa, home theater"
+        },
+        {
+            "trait_type": "Security",
+            "value": "State-of-the-art surveillance"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Meticulously manicured gardens"
+        }
+    ]
+}

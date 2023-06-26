@@ -17,16 +17,16 @@ import "./App.css";
 
 import "@rainbow-me/rainbowkit/styles.css";
 import {
-  getDefaultWallets,
-  RainbowKitProvider,
-  connectorsForWallets,
-  darkTheme,
-  midnightTheme,
-} from "@rainbow-me/rainbowkit";
-import { configureChains, createConfig, sepolia, WagmiConfig } from "wagmi";
-import { goerli, optimismGoerli, fantomTestnet } from "wagmi/chains";
-import { alchemyProvider } from "wagmi/providers/alchemy";
-import { publicProvider } from "wagmi/providers/public";
+    getDefaultWallets,
+    RainbowKitProvider,
+    connectorsForWallets,
+    darkTheme,
+    midnightTheme,
+} from "@rainbow-me/rainbowkit"
+import { configureChains, createConfig, sepolia, WagmiConfig } from "wagmi"
+import { goerli, optimismGoerli, fantomTestnet } from "wagmi/chains"
+import { alchemyProvider } from "wagmi/providers/alchemy"
+import { publicProvider } from "wagmi/providers/public"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
   [sepolia],
