@@ -34,34 +34,40 @@ const NotListedNft = ({ data }) => {
 
     return (
         <div className={styles.nftcard_container}>
-            {data.map((Nft) => (
-                <div
-                    className={styles.nftcard}
-                    key={Nft.tokenId}
-                    onClick={() => showModal(Nft)}
-                >
-                    <div className={styles.nftcard_details}>
-                        <img
-                            className={styles.nft_image}
-                            src={Nft.nftParams.image}
-                            alt=""
-                        />
-                        <h5 className={styles.nft_name}>
-                            {Nft.nftParams.name}
-                        </h5>
+            {data ? (
+                data.map((Nft) => (
+                    <div
+                        className={styles.nftcard}
+                        key={Nft.tokenId}
+                        onClick={() => showModal(Nft)}
+                    >
+                        <div className={styles.nftcard_details}>
+                            <img
+                                className={styles.nft_image}
+                                src={Nft.nftParams.image}
+                                alt=""
+                            />
+                            <h5 className={styles.nft_name}>
+                                {Nft.nftParams.name}
+                            </h5>
 
-                        <hr className={styles.nft_line} />
-                        <div className={styles.nft_time_button}>
-                            <button
-                                className={styles.bid}
-                                onClick={() => handleNavigate(Nft)}
-                            >
-                                List For Sale
-                            </button>
+                            <hr className={styles.nft_line} />
+                            <div className={styles.nft_time_button}>
+                                <button
+                                    className={styles.bid}
+                                    onClick={() => handleNavigate(Nft)}
+                                >
+                                    List For Sale
+                                </button>
+                            </div>
                         </div>
                     </div>
+                ))
+            ) : (
+                <div className="text-[30px] text-[#fff]">
+                    Getting Your Nfts....
                 </div>
-            ))}
+            )}
         </div>
     )
 }
