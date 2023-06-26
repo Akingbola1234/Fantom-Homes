@@ -122,7 +122,7 @@ const CreatorCollection = () => {
             <div className="creator-text-button">
                 <div className="creator-text">
                     <h5>My Collection</h5>
-                    <span>0 RESULTS</span>
+                    <span>{nftData.length} RESULTS</span>
                 </div>
                 <div className="creator-button">
                     <button onClick={showModal}>

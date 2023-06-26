@@ -16,7 +16,21 @@
     flex-wrap: wrap;
     gap: 30px;
 }
+.creators.view-more-btn {
+    background: linear-gradient(112.62deg, #8d1cfe 29.4%, #0038ed 105.15%);
+    color: #fff;
+    border: none;
+    display: block;
+    margin: 30px auto;
+    height: 40px;
+    width: 130px;
+    font-family: "Poppins", sans-serif;
+    border-radius: 40px;
+}
 
+.view-more-btn:hover {
+    cursor: pointer;
+}
 .creators-card {
     display: flex;
     align-items: center;

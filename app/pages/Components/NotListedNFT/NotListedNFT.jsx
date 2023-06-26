@@ -46,7 +46,7 @@ const NotListedNft = ({ data }) => {
                                 className={styles.bid}
                                 onClick={() => showModal(Nft)}
                             >
-                                List Nft
+                                List For Sale
                             </button>
                         </div>
                     </div>

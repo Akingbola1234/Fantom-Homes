@@ -13,7 +13,6 @@ import "./Components/Footer/Footer.css"
 import "./Components/CreatorPage/CreatorPage.css"
 import "./Components/CreatorCollection/CreatorCollection.css"
 import "./Components/CreatorHomes/CreatorHomes.css"
-
 import "./App.css"
 
 import "@rainbow-me/rainbowkit/styles.css"
@@ -68,8 +67,8 @@ function MyApp({ Component, pageProps }) {
                 modalSize="compact"
                 chains={chains}
             >
-                <Component {...pageProps} />
-            </RainbowKitProvider>
+                <Component {...pageProps} />{" "}
+            </RainbowKitProvider>{" "}
         </WagmiConfig>
     )
 }
