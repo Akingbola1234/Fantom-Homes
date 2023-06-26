@@ -1,8 +1,16 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { AiOutlineInbox } from "react-icons/ai"
 import { Modal, Upload, message } from "antd"
 import { AiOutlineUpload } from "react-icons/ai"
 import HomesCard from "../HomeCard/HomesCard"
+import {
+    useContractInfiniteReads,
+    useContractRead,
+    paginatedIndexesConfig,
+    useAccount,
+} from "wagmi"
+import { FantomHomesAbi, FantomHomesAddress } from "../../../constants"
+import NotListedNft from "../NotListedNFT/NotListedNFT"
 
 const { Dragger } = Upload
 
@@ -27,12 +35,89 @@ const props = {
 }
 const CreatorHomes = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [nftData, setNftData] = useState([])
+    const [getUri, setgetUri] = useState(true)
+    const { address } = useAccount()
+    const totalSupply = useContractRead({
+        address: FantomHomesAddress,
+        abi: FantomHomesAbi,
+        functionName: "totalSupply",
+    })
+    const mlootContractConfig = {
+        address: FantomHomesAddress,
+        abi: FantomHomesAbi,
+    }
+    const { data } = useContractInfiniteReads({
+        ...paginatedIndexesConfig(
+            (index) => {
+                return [
+                    {
+                        ...mlootContractConfig,
+                        functionName: "ownerOf",
+                        args: [index],
+                    },
+                ]
+            },
+            {
+                start: 0,
+                perPage: Number(totalSupply.data),
+                direction: "increment",
+            }
+        ),
+    })
     const showModal = () => {
-        setIsModalOpen(true)
+        // setIsModalOpen(true)
     }
     const handleCancel = () => {
-        setIsModalOpen(false)
+        // setIsModalOpen(false)
     }
+
+    function getAddressTokens() {
+        const tokensArr = []
+        for (let i = 0; i < data.pages[0].length; i++) {
+            if (data.pages[0][i].result == address) {
+                const fetchUri = useContractRead({
+                    address: FantomHomesAddress,
+                    abi: FantomHomesAbi,
+                    functionName: "tokenURI",
+                    args: [i],
+                })
+                const token = {
+                    tokenId: i,
+                    tokenUri: fetchUri.data,
+                }
+                tokensArr.push(token)
+            }
+        }
+
+        console.log(tokensArr)
+        return tokensArr
+    }
+    const tokens = getAddressTokens()
+
+    if (address && getUri) {
+        async function logJSONData() {
+            const data = []
+            for (let i = 0; i < tokens.length; i++) {
+                const element = tokens[i]
+                const response = await fetch(element.tokenUri)
+                const jsonData = await response.json()
+                const thisData = {
+                    tokenId: element.tokenId,
+                    nftParams: jsonData,
+                }
+                data.push(thisData)
+
+                if (data.length == tokens.length) {
+                    setgetUri(false)
+                }
+            }
+
+            setNftData(data)
+        }
+        logJSONData()
+    }
+
     return (
         <div className={"creator-homes-container"}>
             <div className="creator-text-button">
@@ -46,7 +131,8 @@ const CreatorHomes = () => {
                     </button>
                 </div>
             </div>
-            <HomesCard />
+            {/* <HomesCard /> */}
+            <NotListedNft data={nftData} />
             <Modal
                 open={isModalOpen}
                 onCancel={handleCancel}

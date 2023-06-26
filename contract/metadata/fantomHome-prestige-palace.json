@@ -1,0 +1,35 @@
+{
+    "name": "Prestige Palace",
+    "description": "A palace of unrivaled prestige and grandeur, epitomizing luxury and refinement. This extraordinary residence showcases the finest craftsmanship and opulent details, creating an atmosphere of regal elegance. It is a testament to exceptional taste and the epitome of luxury living.",
+    "image": "https://bafkreibrmz4cikorvnyfln2laz6fvraqkvalppadpxemiemgythik7o4lm.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Expansive"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Neo-Baroque"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Private island"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Palatial and ornate"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Private theater, ballroom, wine cellar"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Advanced biometric access"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Formal gardens with fountains and statues"
+        }
+    ]
+}

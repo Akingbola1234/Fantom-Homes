@@ -5,7 +5,7 @@ import Link from "next/link"
 import {useRouter} from "next/router"
 import { Modal } from "antd"
 // import fantomImage from "../../Assets/images/fantom-logo.webp"
-import { NFTs } from "./data"
+import { NFTs } from "../NotListedNFT/data"
 
 import { Autoplay, Pagination, Navigation } from "swiper"
 

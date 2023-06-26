@@ -1,0 +1,35 @@
+{
+    "name": "Regal Residence",
+    "description": "A residence fit for royalty, exuding regal splendor and majestic charm. This distinguished abode combines timeless elegance with modern comforts, offering a harmonious blend of grandeur and sophistication. It is an architectural masterpiece that commands attention and admiration.",
+    "image": "https://bafkreigir6st2egaoiz5qtmbaukvf4bdsale54v3gj6ivwa3zafyjuv5ea.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Palatial"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Baroque"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Historic city center"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Opulent and lavish"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Private ballroom, wine cellar, library"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Gated entrance with security personnel"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Formal gardens with sculptures and hedges"
+        }
+    ]
+}

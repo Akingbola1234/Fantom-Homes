@@ -1,0 +1,31 @@
+{
+    "name": "Shirts Collection",
+    "description": "A collection of stylish and versatile shirts for every occasion. Each shirt is meticulously designed with premium fabrics and attention to detail, offering comfort and timeless fashion.",
+    "image": "https://bafybeigvznlaypxlrrnojs4vxc4azphlyxdwlt6feduw3iyi57gevnjtbm.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Color",
+            "value": "Various"
+        },
+        {
+            "trait_type": "Size",
+            "value": "Multiple Sizes Available"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Cotton"
+        },
+        {
+            "trait_type": "Pattern",
+            "value": "Assorted"
+        },
+        {
+            "trait_type": "Style",
+            "value": "Casual"
+        },
+        {
+            "trait_type": "Limited Edition",
+            "value": false
+        }
+    ]
+}

@@ -1,0 +1,35 @@
+{
+    "name": "Majestic Estate",
+    "description": "An extraordinary and awe-inspiring estate that embodies magnificence and grandiosity. This opulent residence offers unparalleled luxury and extravagant living spaces. It is a masterpiece of architectural brilliance and refined elegance.",
+    "image": "https://bafkreifqthnd2fz32bzbyoj6ju45jya2focmpmoxs6akwsvdnjt7q7n7ea.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Vast"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "French Renaissance"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Secluded countryside"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Sumptuous and regal"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Private tennis court, wine cellar, spa"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Fortified perimeter"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Expansive grounds with fountains and statues"
+        }
+    ]
+}

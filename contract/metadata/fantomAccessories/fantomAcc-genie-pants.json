@@ -1,0 +1,31 @@
+{
+    "name": "Genie Pants Collection",
+    "description": "A collection of vibrant and stylish Genie pants that embody comfort, freedom, and unique fashion. These pants are designed with flowing fabrics and distinctive patterns, allowing individuals to express their individuality and embrace a bohemian style.",
+    "image": "https://bafybeieyztun2hsznxkqr4mwn6tlcmkmrbetikb3jjnntshlrwhmvm3eje.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Color",
+            "value": "Multicolor"
+        },
+        {
+            "trait_type": "Size",
+            "value": "One Size Fits Most"
+        },
+        {
+            "trait_type": "Material",
+            "value": "Silk Blend"
+        },
+        {
+            "trait_type": "Pattern",
+            "value": "Geometric"
+        },
+        {
+            "trait_type": "Style",
+            "value": "Bohemian"
+        },
+        {
+            "trait_type": "Limited Edition",
+            "value": true
+        }
+    ]
+}
