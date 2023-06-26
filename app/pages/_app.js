@@ -24,7 +24,7 @@ import {
   midnightTheme,
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, sepolia, WagmiConfig } from "wagmi";
-import { goerli, optimismGoerli } from "wagmi/chains";
+import { goerli, optimismGoerli, fantomTestnet } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 
