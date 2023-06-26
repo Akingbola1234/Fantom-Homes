@@ -15,6 +15,7 @@ import { BigNumber, ethers, utils } from "ethers"
 import { useRouter } from "next/router"
 import { ClipLoader } from "react-spinners"
 import { HookContext } from "../../context/Hook"
+import styles from "./listNft.module.css"
 
 const CreateNFT = () => {
     const label = { inputProps: { "aria-label": "Color switch demo" } }
