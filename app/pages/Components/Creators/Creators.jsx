@@ -28,7 +28,7 @@ const Creators = () => {
                 ))}
             </div>
             <div className="view-more">
-                <button onClick={watchVideo} className="view-more-btn">
+                <button onClick={watchVideo} className="creators view-more-btn">
                     Watch Video
                 </button>
             </div>

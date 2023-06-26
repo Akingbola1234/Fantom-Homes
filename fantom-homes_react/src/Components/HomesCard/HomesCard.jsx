@@ -47,7 +47,7 @@ const NftCard = () => {
         </div>
       ))}
       <Modal
-        className="nft-modal"
+        className="homes-nft-modal"
         open={isModalOpen}
         centered={true}
         footer={null}
@@ -55,7 +55,7 @@ const NftCard = () => {
         onCancel={handleCancel}
       >
         {modalContent.map((newModal) => (
-          <div className="nft-modal-content" key={newModal.nftName}>
+          <div key={newModal.nftName}>
             <Swiper
               spaceBetween={30}
               centeredSlides={true}

@@ -104,7 +104,7 @@
     cursor: pointer;
 }
 
-.ant-modal-content {
+.homes-nft-modal .ant-modal-content {
     background: #232128 !important;
     border-radius: 10px !important;
     width: 700px;
