@@ -4,12 +4,13 @@ import styles from "./HomesCard.module.css"
 import { Modal } from "antd"
 // import fantomImage from "../../Assets/images/fantom-logo.webp"
 import { NFTs } from "../HomeCard/data"
+import Link from "next/link"
+import { useContext } from "react"
+import HookProvider, { HookContext } from "../../../context/Hook"
+import { useRouter } from "next/router"
 
 const NotListedNft = ({ data }) => {
-    // const navigate = useNavigate();
-    const handleNavigate = () => {
-        // navigate("/marketplace");
-    }
+    const { clickedNft, setClickedNft } = useContext(HookContext)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [modalContent, setModalContent] = useState([])
     const showModal = (Nft) => {
@@ -22,6 +23,15 @@ const NotListedNft = ({ data }) => {
     const handleCancel = () => {
         setIsModalOpen(false)
     }
+
+    const router = useRouter()
+
+    const handleNavigate = (nftData) => {
+        setClickedNft(nftData)
+        console.log(clickedNft)
+        router.push("/page/CreatNft")
+    }
+
     return (
         <div className={styles.nftcard_container}>
             {data.map((Nft) => (
@@ -44,7 +54,7 @@ const NotListedNft = ({ data }) => {
                         <div className={styles.nft_time_button}>
                             <button
                                 className={styles.bid}
-                                onClick={() => showModal(Nft)}
+                                onClick={() => handleNavigate(Nft)}
                             >
                                 List For Sale
                             </button>

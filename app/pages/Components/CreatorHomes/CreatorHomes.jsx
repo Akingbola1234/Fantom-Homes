@@ -90,7 +90,6 @@ const CreatorHomes = () => {
             }
         }
 
-        console.log(tokensArr)
         return tokensArr
     }
     const tokens = getAddressTokens()

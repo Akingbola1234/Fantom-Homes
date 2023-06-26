@@ -14,6 +14,7 @@ import "./Components/CreatorPage/CreatorPage.css"
 import "./Components/CreatorCollection/CreatorCollection.css"
 import "./Components/CreatorHomes/CreatorHomes.css"
 import "./App.css"
+import "../styles/globals.css"
 
 import "@rainbow-me/rainbowkit/styles.css"
 import {
@@ -27,6 +28,7 @@ import { configureChains, createConfig, sepolia, WagmiConfig } from "wagmi"
 import { goerli, optimismGoerli, fantomTestnet } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy"
 import { publicProvider } from "wagmi/providers/public"
+import HookProvider from "../context/Hook"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
     [sepolia],
@@ -62,13 +64,15 @@ const wagmiConfig = createConfig({
 function MyApp({ Component, pageProps }) {
     return (
         <WagmiConfig config={wagmiConfig}>
-            <RainbowKitProvider
-                theme={darkTheme()}
-                modalSize="compact"
-                chains={chains}
-            >
-                <Component {...pageProps} />{" "}
-            </RainbowKitProvider>{" "}
+            <HookProvider>
+                <RainbowKitProvider
+                    theme={darkTheme()}
+                    modalSize="compact"
+                    chains={chains}
+                >
+                    <Component {...pageProps} />{" "}
+                </RainbowKitProvider>{" "}
+            </HookProvider>
         </WagmiConfig>
     )
 }
