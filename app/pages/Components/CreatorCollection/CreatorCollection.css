@@ -38,6 +38,10 @@
   border-radius: 10px;
 }
 
+.attribute-textarea:focus {
+  outline: none;
+}
+
 .label-input > input:focus {
   outline: none;
 }
