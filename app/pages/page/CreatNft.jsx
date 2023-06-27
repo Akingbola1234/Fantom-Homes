@@ -11,10 +11,16 @@ import Switch from "@mui/material/Switch"
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 import Navbar from "../Components/NavBar/NavBar"
 import { Blob } from "nft.storage"
-import { BigNumber, ethers, utils } from "ethers"
+import { BigNumber, Contract, ethers, providers, utils } from "ethers"
 import { useRouter } from "next/router"
 import { ClipLoader } from "react-spinners"
 import { HookContext } from "../../context/Hook"
+import {
+    FantomAccAbi,
+    FantomHomesAbi,
+    FantomHomesAddress,
+    Marketplace,
+} from "../../constants"
 
 const CreateNFT = () => {
     const label = { inputProps: { "aria-label": "Color switch demo" } }
@@ -44,6 +50,22 @@ const CreateNFT = () => {
         setNftImage(null)
     }
     console.log(clickedNft)
+    const provider = new providers.Web3Provider(window.ethereum)
+
+    const approveMarketplace = async () => {
+        const assetAbi =
+            clickedNft.assetContract == FantomHomesAddress
+                ? FantomHomesAbi
+                : FantomAccAbi
+        const signer = provider.getSigner()
+        const contract = new Contract(
+            clickedNft.assetContract,
+            assetAbi,
+            signer
+        )
+
+        await contract.approve(Marketplace)
+    }
 
     //  struct ListingParameters {
     //     address assetContract;
@@ -103,12 +125,13 @@ const CreateNFT = () => {
                             disabled
                         />
                     </div>
-                    <input className="set-price-input"
-                     name={"Set A Price"}
-                     placeholder={"Set A Price"}
-                     required={"required"}
-                     nftParam={buyoutPrice}
-                     setNftParam={setBuyoutPrice}
+                    <input
+                        className="set-price-input"
+                        name={"Set A Price"}
+                        placeholder={"Set A Price"}
+                        required={"required"}
+                        nftParam={buyoutPrice}
+                        setNftParam={setBuyoutPrice}
                     />
                     <p className="text-white-500 text-[20px] font-medium mt-8 mb-3">
                         Duration
@@ -182,7 +205,10 @@ const CreateNFT = () => {
                     </div>
                     <div className="mt-10 mb-20">
                         {!loading ? (
-                            <Button text={"Complete Listing"} />
+                            <Button
+                                text={"Complete Listing"}
+                                click={approveMarketplace}
+                            />
                         ) : (
                             <Button
                                 text={

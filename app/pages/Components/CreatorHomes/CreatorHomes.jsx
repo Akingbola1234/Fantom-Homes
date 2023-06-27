@@ -103,6 +103,7 @@ const CreatorHomes = () => {
             const thisData = {
                 tokenId: element.tokenId,
                 nftParams: jsonData,
+                assetContract: FantomHomesAddress,
             }
             console.log(thisData)
             data.push(thisData)
@@ -141,7 +142,9 @@ const CreatorHomes = () => {
                     Collection Attributes
                 </h5>
                 <div className="attributes-div">
-                    <input />
+                    <label>Traits</label>
+                    <input placeholder="Traits" />
+                    <label>Character</label>
                     <input />
                     <input />
                     <input />
