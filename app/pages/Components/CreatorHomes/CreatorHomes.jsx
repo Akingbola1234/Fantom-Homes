@@ -145,6 +145,15 @@ const CreatorHomes = () => {
           <span className="creator-modal-span">
             You can upload your Creative Homes on FantomWorld
           </span>
+          <h5 className="collection-attribute-text">Homes Attributes</h5>
+          <div className="attributes-div">
+            <input />
+            <input />
+            <input />
+            <input />
+            <input />
+            <input />
+          </div>
           <Dragger {...props} className="drag-drop">
             <p className="ant-upload-drag-icon">
               <AiOutlineInbox />
