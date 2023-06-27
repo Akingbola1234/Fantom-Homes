@@ -1,13 +1,9 @@
 import React, { useState } from "react"
-import { Swiper, SwiperSlide } from "swiper/react"
 import styles from "./HomesCard.module.css"
 import Link from "next/link"
 import { useRouter } from "next/router"
 import { Modal } from "antd"
-// import fantomImage from "../../Assets/images/fantom-logo.webp"
 import { NFTs } from "../NotListedNFT/data"
-
-import { Autoplay, Pagination, Navigation } from "swiper"
 
 const HomesCard = () => {
     const router = useRouter()

@@ -1,72 +1,74 @@
 .creator-homes-container {
-    padding: 30px;
-    font-family: "Poppins", sans-serif;
+  padding: 30px;
+  font-family: "Poppins", sans-serif;
 }
 
 .creator-text-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.creator-text>h5 {
-    color: #fff;
-    font-size: 19px;
-    font-weight: 500;
+.creator-text > h5 {
+  color: #fff;
+  font-size: 19px;
+  font-weight: 500;
 }
 
-.creator-text>span {
-    color: #fff;
+.creator-text > span {
+  color: #fff;
 }
 
-.creator-button>button {
-    background: #0038ed;
-    border: none;
-    padding: 12px;
-    border-radius: 8px;
-    color: #fff;
-    font-family: "Poppins", sans-serif;
+.creator-button > button {
+  background: #0038ed;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
 }
 
 .upload-icon {
-    font-size: 19px;
+  font-size: 19px;
 }
 
 .creator-modal-text {
-    font-size: 20px;
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-    margin-bottom: 20px;
-    color: #fff;
+  font-size: 20px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  margin-bottom: 20px;
+  color: #fff;
 }
 
 .creator-modal-span {
-    color: #fff;
-    font-family: "Poppins", sans-serif;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
 }
 
 .ant-modal-content {
-    width: 90%;
+  width: 90%;
 }
 
 .ant-upload-text {
-    color: #0038ed !important;
+  color: #0038ed !important;
 }
 
 .ant-upload-hint {
-    color: #fff !important;
+  color: #fff !important;
 }
 
 .ant-upload-wrapper .ant-upload-drag {
-    width: 100%;
-    margin-top: 20px;
+  width: 80%;
+  display: block;
+  margin: 20px auto;
+  margin-top: 20px;
 }
 
 .ant-upload-drag-icon {
-    color: #fff;
-    font-size: 50px;
+  color: #fff;
+  font-size: 50px;
 }
 
-.creator-button>button:hover {
-    cursor: pointer;
+.creator-button > button:hover {
+  cursor: pointer;
 }

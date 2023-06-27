@@ -1,0 +1,23 @@
+.ethereum-border {
+  border: 1.5px solid #333a4b !important;
+}
+
+.set-price-input {
+  background: #232127;
+  border: 1px solid #333a4b !important;
+  border-radius: 10px;
+  width: 90%;
+  padding: 15px;
+}
+
+.preview-image {
+  border: 1.5px solid #333a4b;
+}
+
+.preview-text {
+  margin-left: 20px;
+}
+
+.set-price-input:focus {
+  outline: none;
+}
