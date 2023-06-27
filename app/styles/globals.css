@@ -1,5 +1,5 @@
-@import "tailwindcss/base";
 @import "tailwindcss/components";
+/* @import "tailwindcss/base"; */
 @import "tailwindcss/utilities";
 /* .eth {
   background: rgb(9, 7, 31);
@@ -75,102 +75,4 @@ body {
 
 .preview {
   @apply  w-full text-left rounded-2xl border-2 h-[30rem] border-[#333a4b] cursor-pointer hover:border-[3px] hover:border-[#3c4351] hover:shadow-lg hover:shadow-slate-900
-}
-
-.label {
-  color: #fff !important;
-}
-
-.nfts-container {
-  padding: 50px;
-  margin-top: 40px;
-}
-.nft-cards {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  align-items: center;
-}
-.nft-card {
-  background: transparent;
-  width: 300px;
-  height: 454px;
-  padding: 10px;
-  border: 1.2px solid #2a2e31;
-  border-radius: 20px;
-  position: relative;
-}
-.nft-card > img {
-  height: 270px;
-  width: 300px;
-  object-fit: cover;
-  border-radius: 15px;
-  margin-bottom: 15px;
-}
-.owner {
-  color: #a3a4a6;
-  font-size: 16px;
-}
-
-.price-container {
-  display: flex;
-  gap: 90px;
-  padding: 10px;
-  margin-top: 15px;
-  /* background: #212538;    */
-  border-radius: 15px;
-}
-/* .price,
-.bid span {
-  color: #a3a4a6;
-} */
-
-.nft-card:hover {
-  transform: translateY(-5px);
-  cursor: pointer;
-  transition: ease 0.5s;
-}
-.nft-text {
-  color: #a3a4a6;
-  font-size: 30px;
-  font-weight: 500;
-  padding: 50px;
-}
-.overlay {
-  position: absolute;
-  top: 0;
-  background: transparent;
-  width: 100%;
-  height: 100%;
-  transition: 0.5s ease;
-  opacity: 0;
-}
-.nft-card:hover .overlay {
-  opacity: 1;
-}
-.action-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 70%;
-}
-.action-buy{
-  background: #FFF;
-  border-radius: 10px;
-  padding: 10px;
-  z-index: 9999;
-}
-.create-nft-button{
-  background: #FFF;
-  height: 35px;
-  width: 120px;
-  border-radius: 10px;
-  text-align: center;
-  padding-top: 5px;
-}
-.nft-text-button{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
 }
