@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { AiOutlineUpload } from "react-icons/ai"
 import { AiOutlineInbox } from "react-icons/ai"
 import { Modal, Upload, message } from "antd"
@@ -11,6 +11,7 @@ import {
 } from "wagmi"
 import { FantomAcc, FantomAccAbi } from "../../../constants"
 import NotListedNft from "../NotListedNFT/NotListedNFT"
+import { providers, getDefaultProvider, Contract } from "ethers"
 
 const { Dragger } = Upload
 const props = {
@@ -38,33 +39,7 @@ const CreatorCollection = () => {
     const [nftData, setNftData] = useState([])
     const [getUri, setgetUri] = useState(true)
     const { address } = useAccount()
-    const totalSupply = useContractRead({
-        address: FantomAcc,
-        abi: FantomAccAbi,
-        functionName: "totalSupply",
-    })
-    const mlootContractConfig = {
-        address: FantomAcc,
-        abi: FantomAccAbi,
-    }
-    const { data } = useContractInfiniteReads({
-        ...paginatedIndexesConfig(
-            (index) => {
-                return [
-                    {
-                        ...mlootContractConfig,
-                        functionName: "ownerOf",
-                        args: [index],
-                    },
-                ]
-            },
-            {
-                start: 0,
-                perPage: Number(totalSupply.data),
-                direction: "increment",
-            }
-        ),
-    })
+    const provider = new providers.Web3Provider(window.ethereum)
     const showModal = () => {
         setIsModalOpen(true)
     }
@@ -72,51 +47,61 @@ const CreatorCollection = () => {
         setIsModalOpen(false)
     }
 
-    function getAddressTokens() {
-        const tokensArr = []
-        for (let i = 0; i < data.pages[0].length; i++) {
-            if (data.pages[0][i].result == address) {
-                const fetchUri = useContractRead({
-                    address: FantomAcc,
-                    abi: FantomAccAbi,
-                    functionName: "tokenURI",
-                    args: [i],
-                })
-                const token = {
-                    tokenId: i,
-                    tokenUri: fetchUri.data,
-                }
-                tokensArr.push(token)
+    async function getTotalSupply() {
+        const contract = new Contract(FantomAcc, FantomAccAbi, provider)
+        const supply = await contract.totalSupply()
+        return Number(supply)
+    }
+
+    async function getOwnersOfNft() {
+        const ownersArr = []
+        const totalSupply = await getTotalSupply()
+        const contract = new Contract(FantomAcc, FantomAccAbi, provider)
+        for (let i = 0; i < totalSupply; i++) {
+            const owner = await contract.ownerOf(i)
+            if (owner == address) {
+                const obj = { tokenId: i, tokenOwner: owner }
+                ownersArr.push(obj)
             }
         }
+        return ownersArr
+    }
 
-        console.log(tokensArr)
+    async function getTokensUri() {
+        const nftArr = await getOwnersOfNft()
+        const contract = new Contract(FantomAcc, FantomAccAbi, provider)
+        const tokensArr = []
+        for (let i = 0; i < nftArr.length; i++) {
+            const element = nftArr[i]
+            const tokenUri = await contract.tokenURI(element.tokenId)
+            const obj = { tokenId: element.tokenId, tokenUri: tokenUri }
+            tokensArr.push(obj)
+        }
+
         return tokensArr
     }
-    const tokens = getAddressTokens()
 
-    if (address && getUri) {
-        async function logJSONData() {
-            const data = []
-            for (let i = 0; i < tokens.length; i++) {
-                const element = tokens[i]
-                const response = await fetch(element.tokenUri)
-                const jsonData = await response.json()
-                const thisData = {
-                    tokenId: element.tokenId,
-                    nftParams: jsonData,
-                }
-                data.push(thisData)
-
-                if (data.length == tokens.length) {
-                    setgetUri(false)
-                }
+    async function logJSONData() {
+        const tokens = await getTokensUri()
+        const data = []
+        for (let i = 0; i < tokens.length; i++) {
+            const element = tokens[i]
+            const response = await fetch(element.tokenUri)
+            const jsonData = await response.json()
+            const thisData = {
+                tokenId: element.tokenId,
+                nftParams: jsonData,
             }
-
-            setNftData(data)
+            console.log(thisData)
+            data.push(thisData)
         }
-        logJSONData()
+        console.log(data)
+        setNftData(data)
     }
+    useEffect(() => {
+        logJSONData()
+    }, [address])
+
     return (
         <div>
             <div className="creator-text-button">
