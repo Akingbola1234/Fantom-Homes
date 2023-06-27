@@ -83,6 +83,7 @@ const CreatorLands = () => {
               <label for="acre">Acre</label>
               <input id="acre" />
             </div>
+            <textarea rows={"5"} className="attribute-textarea"></textarea>
           </form>
         </div>
         <Dragger {...props} className="drag-drop">
