@@ -13,6 +13,7 @@ import "./Components/Footer/Footer.css"
 import "./Components/CreatorPage/CreatorPage.css"
 import "./Components/CreatorCollection/CreatorCollection.css"
 import "./Components/CreatorHomes/CreatorHomes.css"
+import "./page/CreateNFT.css"
 import "./App.css"
 import "../styles/globals.css"
 

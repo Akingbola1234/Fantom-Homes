@@ -15,7 +15,6 @@ import { BigNumber, ethers, utils } from "ethers"
 import { useRouter } from "next/router"
 import { ClipLoader } from "react-spinners"
 import { HookContext } from "../../context/Hook"
-import styles from "./listNft.module.css"
 
 const CreateNFT = () => {
     const label = { inputProps: { "aria-label": "Color switch demo" } }
@@ -69,7 +68,7 @@ const CreateNFT = () => {
                         Single edition on Ethereum{" "}
                     </p>
                     <h2 className="mb-4">Choose wallet</h2>
-                    <div className="flex justify-between mb-8 items-start border p-4 border-[#333a4b] rounded-xl">
+                    <div className="ethereum-border flex justify-between mb-8 items-start border p-4 border-[#333a4b] rounded-xl">
                         <div className="flex items-center justify-center">
                             <Image src="/ethre.webp" width={40} height={40} />
                             <div className="ml-3">
@@ -152,12 +151,12 @@ const CreateNFT = () => {
                             disabled
                         />
                     </div>
-                    <FormInput
-                        name={"Set A Price"}
-                        placeholder={"Set A Price"}
-                        required={"required"}
-                        nftParam={buyoutPrice}
-                        setNftParam={setBuyoutPrice}
+                    <input className="set-price-input"
+                     name={"Set A Price"}
+                     placeholder={"Set A Price"}
+                     required={"required"}
+                     nftParam={buyoutPrice}
+                     setNftParam={setBuyoutPrice}
                     />
                     {/* <FormInput
                         name={"Minimum Bid"}
@@ -257,8 +256,8 @@ const CreateNFT = () => {
                     </div>
                 </div>
                 {/* Preview NFT image  */}
-                <div className=" w-[30%] fixed right-[12%] top-[20%] flex flex-col justify-center border-[#333a4b] rounded-xl ">
-                    <p className="mb-3 font-medium">Preview</p>
+                <div className="preview-image w-[30%] fixed right-[12%] top-[20%] flex flex-col justify-center border-[#333a4b] rounded-xl ">
+                    <p className="preview-text mb-3 font-medium">Preview</p>
                     {!clickedNft.nftParams ? (
                         <div className="preview">
                             <h1 className="text-gray-500">
