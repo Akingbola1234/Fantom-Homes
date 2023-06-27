@@ -36,12 +36,12 @@ const CreatorLands = () => {
     <div className="creator-land-container">
       <div className="creator-text-button">
         <div className="creator-text">
-          <h5>My Homes</h5>
+          <h5>My Lands</h5>
           <span>0 RESULTS</span>
         </div>
         <div className="creator-button">
           <button onClick={showModal}>
-            <AiOutlineUpload className="upload-icon" /> Upload Homes
+            <AiOutlineUpload className="upload-icon" /> Upload Lands
           </button>
         </div>
       </div>
@@ -52,7 +52,7 @@ const CreatorLands = () => {
         footer={null}
         centered={true}
       >
-        <h5 className="creator-modal-text">Upload Homes</h5>
+        <h5 className="creator-modal-text">Upload Lands</h5>
         <span className="creator-modal-span">
           You can upload your Creative Homes on FantomWorld
         </span>
