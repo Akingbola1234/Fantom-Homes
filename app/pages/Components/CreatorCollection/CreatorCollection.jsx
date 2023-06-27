@@ -91,6 +91,7 @@ const CreatorCollection = () => {
             const thisData = {
                 tokenId: element.tokenId,
                 nftParams: jsonData,
+                assetContrac: FantomAcc,
             }
             console.log(thisData)
             data.push(thisData)

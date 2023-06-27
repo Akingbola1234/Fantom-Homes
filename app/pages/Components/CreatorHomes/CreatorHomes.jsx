@@ -100,6 +100,7 @@ const CreatorHomes = () => {
             const thisData = {
                 tokenId: element.tokenId,
                 nftParams: jsonData,
+                assetContract: FantomHomesAddress,
             }
             console.log(thisData)
             data.push(thisData)
