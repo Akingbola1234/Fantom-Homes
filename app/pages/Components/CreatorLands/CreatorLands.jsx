@@ -58,12 +58,33 @@ const CreatorLands = () => {
         </span>
         <h5 className="collection-attribute-text">Land Attributes</h5>
         <div className="attributes-div">
-          <input />
-          <input />
-          <input />
-          <input />
-          <input />
-          <input />
+          <form className="attribute-form">
+            <div className="label-input">
+              <label for="acre">Acre</label>
+              <input id="acre" />
+            </div>
+            <div className="label-input">
+              <label for="acre">Acre</label>
+              <input id="acre" />
+            </div>
+            <div className="label-input">
+              <label for="acre">Acre</label>
+              <input id="acre" />
+            </div>
+            <div className="label-input">
+              <label for="acre">Acre</label>
+              <input id="acre" />
+            </div>
+            <div className="label-input">
+              <label for="acre">Acre</label>
+              <input id="acre" />
+            </div>
+            <div className="label-input">
+              <label for="acre">Acre</label>
+              <input id="acre" />
+            </div>
+            <textarea rows={"5"} className="attribute-textarea"></textarea>
+          </form>
         </div>
         <Dragger {...props} className="drag-drop">
           <p className="ant-upload-drag-icon">
