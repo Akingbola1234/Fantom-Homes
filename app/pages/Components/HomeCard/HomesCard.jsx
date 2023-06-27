@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import styles from "./HomesCard.module.css"
 import Link from "next/link"
-import {useRouter} from "next/router"
+import { useRouter } from "next/router"
 import { Modal } from "antd"
 // import fantomImage from "../../Assets/images/fantom-logo.webp"
 import { NFTs } from "../NotListedNFT/data"
@@ -12,6 +12,7 @@ import { Autoplay, Pagination, Navigation } from "swiper"
 const HomesCard = () => {
     const router = useRouter()
     // const navigate = useNavigate();
+
     const handleNavigate = (newModal) => {
         // navigate("/marketplace");
         router.push(`/page/NftDetails?${newModal.key}`)
@@ -101,14 +102,13 @@ const HomesCard = () => {
                                 </h5>
                             </div>
                             <div className={styles.nft_button}>
-                                
                                 <button
                                     className={styles.secondary_btn}
                                     onClick={() => handleNavigate(newModal)}
                                 >
-                                 View full Details
+                                    View full Details
                                 </button>
-                            
+
                                 <button
                                     className={styles.primary_btn}
                                     onClick={handleMint}

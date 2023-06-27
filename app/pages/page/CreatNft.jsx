@@ -3,7 +3,7 @@ import Image from "next/image"
 import { useContext } from "react"
 import { truncate } from "truncate-ethereum-address"
 import Button from "../Components/Button"
-import { XCircleIcon } from "@heroicons/react/24/outline"
+import { BackwardIcon, XCircleIcon } from "@heroicons/react/24/outline"
 import FormInput from "../Components/FormInput"
 import { alpha, styled } from "@mui/material/styles"
 import { pink } from "@mui/material/colors"
@@ -15,6 +15,7 @@ import { BigNumber, ethers, utils } from "ethers"
 import { useRouter } from "next/router"
 import { ClipLoader } from "react-spinners"
 import { HookContext } from "../../context/Hook"
+import styles from "./listNft.module.css"
 
 const CreateNFT = () => {
     const label = { inputProps: { "aria-label": "Color switch demo" } }
@@ -53,8 +54,15 @@ const CreateNFT = () => {
     return (
         <div className="">
             <Navbar />
-            <div className="w-[50%]  ml-auto mr-auto text-white mt-[7rem] flex justify-between  overflow-hidden">
+
+            <div className="w-[50%]  ml-auto mr-auto text-white mt-[7rem] overflow-hidden">
                 {/* Create NFT-: ERC-721  */}
+                <div
+                    className="flex mb-3 bg-[#8d1cfe] justify-center items-center cursor-pointer w-fit rounded-xl p-1 "
+                    onClick={() => router.back()}
+                >
+                    <BackwardIcon className="w-5 h-5" /> Go Back
+                </div>
                 <div className="w-[60%] overflow-auto">
                     <h1 className="text-5xl font-medium mb-5">List New NFT</h1>
                     <p className="text-gray-500 font-base text-xl mb-8">
