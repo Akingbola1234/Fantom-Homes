@@ -1,0 +1,28 @@
+.attributes-div {
+  margin-bottom: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.collection-attribute-text {
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-size: 19px;
+  font-weight: 300;
+}
+
+.attributes-div > input {
+  width: 40%;
+  padding: 8px;
+  color: #fff;
+  background: #232127;
+  border: 1px solid #333a4b !important;
+  border-radius: 10px;
+}
+
+.attributes-div > input:focus {
+  outline: none;
+}
