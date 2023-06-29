@@ -89,7 +89,6 @@ const CreatorHomes = () => {
             const obj = { tokenId: element.tokenId, tokenUri: tokenUri }
             tokensArr.push(obj)
         }
-
         return tokensArr
     }
 
@@ -124,8 +123,7 @@ const CreatorHomes = () => {
                 </div>
                 <div className="creator-button">
                     <button onClick={showModal}>
-                        <AiOutlineUpload className="upload-icon" /> Upload
-                        Collection
+                        <AiOutlineUpload className="upload-icon" /> Upload Homes
                     </button>
                 </div>
             </div>
@@ -137,23 +135,45 @@ const CreatorHomes = () => {
                 footer={null}
                 centered={true}
             >
-                <h5 className="creator-modal-text">Upload Collections</h5>
+                <h5 className="creator-modal-text">Upload Homes</h5>
                 <h5 className="collection-attribute-text">
                     Collection Attributes
                 </h5>
                 <div className="attributes-div">
-                    <label>Traits</label>
-                    <input placeholder="Traits" />
-                    <label>Character</label>
-                    <input />
-                    <input />
-                    <input />
-                    <input />
-                    <input />
+                    <form className="attribute-form">
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input w-full">
+                            <label>Description</label>
+                            <textarea
+                                rows={"5"}
+                                className="attribute-textarea w-full"
+                            ></textarea>
+                        </div>
+                    </form>
                 </div>
-                <span className="creator-modal-span">
-                    You can upload your Creative Collections on FantomWorld
-                </span>
                 <Dragger {...props} className="drag-drop">
                     <p className="ant-upload-drag-icon">
                         <AiOutlineInbox />

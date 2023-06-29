@@ -5,7 +5,10 @@
 .set-price-input {
   background: #232127;
   border: 1px solid #333a4b !important;
+  color: #fff;
   border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
   width: 90%;
   padding: 15px;
 }

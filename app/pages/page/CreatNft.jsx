@@ -15,11 +15,14 @@ import { BigNumber, Contract, ethers, providers, utils } from "ethers"
 import { useRouter } from "next/router"
 import { ClipLoader } from "react-spinners"
 import { HookContext } from "../../context/Hook"
+import { watchContractEvent } from "@wagmi/core"
 import {
     FantomAccAbi,
     FantomHomesAbi,
     FantomHomesAddress,
     Marketplace,
+    MarketplaceAbi,
+    MarketplaceAddress,
 } from "../../constants"
 
 const CreateNFT = () => {
@@ -49,10 +52,10 @@ const CreateNFT = () => {
     const removeImage = () => {
         setNftImage(null)
     }
-    console.log(clickedNft)
     const provider = new providers.Web3Provider(window.ethereum)
 
     const approveMarketplace = async () => {
+        console.log(clickedNft)
         const assetAbi =
             clickedNft.assetContract == FantomHomesAddress
                 ? FantomHomesAbi
@@ -64,7 +67,46 @@ const CreateNFT = () => {
             signer
         )
 
-        await contract.approve(Marketplace)
+        const tx = await contract.approve(
+            MarketplaceAddress,
+            clickedNft.tokenId
+        )
+        await tx.wait()
+    }
+
+    const listNft = async () => {
+        try {
+            setLoading(true)
+            await approveMarketplace()
+
+            const signer = provider.getSigner()
+            const contract = new Contract(
+                MarketplaceAddress,
+                MarketplaceAbi,
+                signer
+            )
+
+            const StartDate =
+                Math.floor(Date.now() / 1000) + 60 + Number(startTime)
+            const EndDate = Math.floor(StartDate + Number(endTime))
+            const ListingParameters = {
+                assetContract: clickedNft.assetContract,
+                tokenId: clickedNft.tokenId,
+                quantity: 1,
+                pricePerToken: ethers.utils.parseEther(buyoutPrice),
+                startTimestamp: StartDate,
+                endTimestamp: EndDate,
+                bool: false,
+            }
+
+            const tx = await contract.createListing(ListingParameters)
+            console.log(tx)
+            setLoading(false)
+            router.push("/page/Marketplace")
+        } catch (e) {
+            // console.log(e)
+            setLoading(false)
+        }
     }
 
     //  struct ListingParameters {
@@ -77,7 +119,14 @@ const CreateNFT = () => {
     //     uint128 endTimestamp;
     //     bool reserved;
     // }
-
+    const unwatch = watchContractEvent(
+        {
+            address: MarketplaceAddress,
+            abi: MarketplaceAbi,
+            eventName: "NewListing",
+        },
+        (log) => console.log(log)
+    )
     return (
         <div className="">
             <Navbar />
@@ -130,8 +179,8 @@ const CreateNFT = () => {
                         name={"Set A Price"}
                         placeholder={"Set A Price"}
                         required={"required"}
-                        nftParam={buyoutPrice}
-                        setNftParam={setBuyoutPrice}
+                        value={buyoutPrice}
+                        onChange={(e) => setBuyoutPrice(e.target.value)}
                     />
                     <p className="text-white-500 text-[20px] font-medium mt-8 mb-3">
                         Duration
@@ -205,10 +254,7 @@ const CreateNFT = () => {
                     </div>
                     <div className="mt-10 mb-20">
                         {!loading ? (
-                            <Button
-                                text={"Complete Listing"}
-                                click={approveMarketplace}
-                            />
+                            <Button text={"Complete Listing"} click={listNft} />
                         ) : (
                             <Button
                                 text={
@@ -252,7 +298,7 @@ const CreateNFT = () => {
                             <p className="text-gray-500">FantomHomes</p>
 
                             {
-                                <h1 className="text-[20px] mt-7 font-semibold">
+                                <h1 className="text-[20px] mt-5 font-semibold">
                                     {buyoutPrice ? buyoutPrice : "---"} FTM
                                 </h1>
                             }

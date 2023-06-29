@@ -91,11 +91,10 @@ const CreatorCollection = () => {
             const thisData = {
                 tokenId: element.tokenId,
                 nftParams: jsonData,
+                assetContract: FantomAcc,
             }
-            console.log(thisData)
             data.push(thisData)
         }
-        console.log(data)
         setNftData(data)
     }
     useEffect(() => {
@@ -125,20 +124,38 @@ const CreatorCollection = () => {
                 centered={true}
             >
                 <h5 className="creator-modal-text">Upload Collections</h5>
-                <h5 className="collection-attribute-text">
-                    Collection Attributes
-                </h5>
                 <div className="attributes-div">
-                    <input />
-                    <input />
-                    <input />
-                    <input />
-                    <input />
-                    <input />
+                    <form className="attribute-form">
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <div className="label-input">
+                            <label for="acre">Acre</label>
+                            <input id="acre" />
+                        </div>
+                        <textarea
+                            rows={"5"}
+                            className="attribute-textarea"
+                        ></textarea>
+                    </form>
                 </div>
-                <span className="creator-modal-span">
-                    You can upload your Creative Collections on FantomWorld
-                </span>
                 <Dragger {...props} className="drag-drop">
                     <p className="ant-upload-drag-icon">
                         <AiOutlineInbox />

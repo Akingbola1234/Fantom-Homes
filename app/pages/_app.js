@@ -64,8 +64,8 @@ const wagmiConfig = createConfig({
 
 function MyApp({ Component, pageProps }) {
     return (
-        <WagmiConfig config={wagmiConfig}>
-            <HookProvider>
+        <HookProvider>
+            <WagmiConfig config={wagmiConfig}>
                 <RainbowKitProvider
                     theme={darkTheme()}
                     modalSize="compact"
@@ -73,8 +73,8 @@ function MyApp({ Component, pageProps }) {
                 >
                     <Component {...pageProps} />{" "}
                 </RainbowKitProvider>{" "}
-            </HookProvider>
-        </WagmiConfig>
+            </WagmiConfig>
+        </HookProvider>
     )
 }
 
