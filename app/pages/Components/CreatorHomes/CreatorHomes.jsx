@@ -12,6 +12,7 @@ import {
 import { FantomHomesAddress, FantomHomesAbi } from "../../../constants"
 import NotListedNft from "../NotListedNFT/NotListedNFT"
 import { providers, getDefaultProvider, Contract } from "ethers"
+import Button from "../Button"
 
 const { Dragger } = Upload
 const props = {
@@ -136,6 +137,32 @@ const CreatorHomes = () => {
                 centered={true}
             >
                 <h5 className="creator-modal-text">Upload Homes</h5>
+
+                <Dragger className="drag-drop">
+                    <p className="ant-upload-drag-icon">
+                        <AiOutlineInbox />
+                    </p>
+                    <p className="ant-upload-text">
+                        Click or drag file to this area to upload
+                    </p>
+                    <p className="ant-upload-hint">
+                        Support for a single or bulk upload. Strictly prohibited
+                        from uploading company data or other banned files.
+                    </p>
+                </Dragger>
+                <div className="label-input w-full">
+                    <label for="acre" className="w-[50%]">
+                        Name
+                    </label>
+                    <input id="acre" className="w-[25%] mb-5" />
+                </div>
+                <div className="label-input w-full">
+                    <label>Description</label>
+                    <textarea
+                        rows={"5"}
+                        className="attribute-textarea w-full"
+                    ></textarea>
+                </div>
                 <h5 className="collection-attribute-text">
                     Collection Attributes
                 </h5>
@@ -165,27 +192,10 @@ const CreatorHomes = () => {
                             <label for="acre">Acre</label>
                             <input id="acre" />
                         </div>
-                        <div className="label-input w-full">
-                            <label>Description</label>
-                            <textarea
-                                rows={"5"}
-                                className="attribute-textarea w-full"
-                            ></textarea>
-                        </div>
                     </form>
                 </div>
-                <Dragger {...props} className="drag-drop">
-                    <p className="ant-upload-drag-icon">
-                        <AiOutlineInbox />
-                    </p>
-                    <p className="ant-upload-text">
-                        Click or drag file to this area to upload
-                    </p>
-                    <p className="ant-upload-hint">
-                        Support for a single or bulk upload. Strictly prohibited
-                        from uploading company data or other banned files.
-                    </p>
-                </Dragger>
+
+                <Button text={"Create Home"} />
             </Modal>
         </div>
     )
