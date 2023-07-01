@@ -20,7 +20,7 @@
   background: #232128;
   padding: 20px;
   width: 500px;
-  height: 420px;
+  height: auto;
   border-radius: 8px;
   box-shadow: 2px 2px 10px#2a282e;
 }
@@ -46,11 +46,13 @@
 .nft-card-page-span {
   color: #736e7d;
   font-size: 18px;
+  font-weight: 600;
 }
 
 .nft-card-page-attributes {
   font-size: 20px;
   color: #736e7d;
+  margin-bottom: 0px !important;
 }
 
 .nft-card-page-bid {
@@ -63,4 +65,5 @@
   color: #fff;
   padding: 8px;
   border-radius: 8px;
+  cursor: pointer;
 }

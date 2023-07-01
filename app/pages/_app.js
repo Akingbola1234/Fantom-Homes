@@ -32,14 +32,14 @@ import { publicProvider } from "wagmi/providers/public"
 import HookProvider from "../context/Hook"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-    [sepolia],
+    [fantomTestnet],
     [
         alchemyProvider({ apiKey: "PrdHvDC9SU7_y9GyCH3tG734SOMbwAkj" }),
         publicProvider(),
     ]
 )
 const { connectors } = getDefaultWallets({
-    appName: "VoteChain",
+    appName: "FantomWorld",
     projectId: "1694a591eac2ab285be5adbbfff34913",
     chains,
 })

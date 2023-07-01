@@ -21,11 +21,11 @@ async function verify(contractName, contractAddress, args) {
 async function depolyFantomHome() {
     const FantomHomes = await hre.ethers.deployContract("FantomHomes")
 
-    await FantomHomes.waitForDeployment(5)
+    await FantomHomes.waitForDeployment(3)
 
     console.log(`FantomHome deployed to ${FantomHomes.target}`)
     console.log("Waiting for block txs")
-    await FantomHomes.deploymentTransaction(5)
+    await FantomHomes.deploymentTransaction(3)
 
     const artist = "0xb1f540756be3c06ebbcac15d701c5477f271a7a0"
     const royaltyFee = 500
@@ -55,11 +55,11 @@ async function deployFantomAcc() {
 
     const FantomAcc = await hre.ethers.deployContract("FantomAcc")
 
-    await FantomAcc.waitForDeployment(5)
+    await FantomAcc.waitForDeployment(3)
 
     console.log(`FantomAcc deployed to ${FantomAcc.target}`)
     console.log("Waiting for block txs")
-    await FantomAcc.deploymentTransaction(5)
+    await FantomAcc.deploymentTransaction(3)
 
     const artist = "0xb1f540756be3c06ebbcac15d701c5477f271a7a0"
     const royaltyFee = 500
@@ -78,11 +78,11 @@ async function main() {
 
     const MarketPlace = await hre.ethers.deployContract("Marketplace")
 
-    await MarketPlace.waitForDeployment(10)
+    await MarketPlace.waitForDeployment(5)
 
     console.log(`Marketplace deployed at ${MarketPlace.target}`)
     console.log("Waiting for block txs")
-    await MarketPlace.deploymentTransaction(10)
+    await MarketPlace.deploymentTransaction(5)
     await verify("Marketplace", MarketPlace.target, [])
 }
 

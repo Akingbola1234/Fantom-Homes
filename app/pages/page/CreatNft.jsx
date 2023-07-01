@@ -11,10 +11,19 @@ import Switch from "@mui/material/Switch"
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material"
 import Navbar from "../Components/NavBar/NavBar"
 import { Blob } from "nft.storage"
-import { BigNumber, ethers, utils } from "ethers"
+import { BigNumber, Contract, ethers, providers, utils } from "ethers"
 import { useRouter } from "next/router"
 import { ClipLoader } from "react-spinners"
 import { HookContext } from "../../context/Hook"
+import { watchContractEvent } from "@wagmi/core"
+import {
+    FantomAccAbi,
+    FantomHomesAbi,
+    FantomHomesAddress,
+    Marketplace,
+    MarketplaceAbi,
+    MarketplaceAddress,
+} from "../../constants"
 
 const CreateNFT = () => {
     const label = { inputProps: { "aria-label": "Color switch demo" } }
@@ -43,7 +52,63 @@ const CreateNFT = () => {
     const removeImage = () => {
         setNftImage(null)
     }
-    console.log(clickedNft)
+    const provider = new providers.Web3Provider(window.ethereum)
+
+    const approveMarketplace = async () => {
+        console.log(clickedNft)
+        const assetAbi =
+            clickedNft.assetContract == FantomHomesAddress
+                ? FantomHomesAbi
+                : FantomAccAbi
+        const signer = provider.getSigner()
+        const contract = new Contract(
+            clickedNft.assetContract,
+            assetAbi,
+            signer
+        )
+
+        const tx = await contract.approve(
+            MarketplaceAddress,
+            clickedNft.tokenId
+        )
+        await tx.wait()
+    }
+
+    const listNft = async () => {
+        try {
+            setLoading(true)
+            await approveMarketplace()
+
+            const signer = provider.getSigner()
+            const contract = new Contract(
+                MarketplaceAddress,
+                MarketplaceAbi,
+                signer
+            )
+
+            const StartDate =
+                Math.floor(Date.now() / 1000) + 60 + Number(startTime)
+            const EndDate = Math.floor(StartDate + Number(endTime))
+            const ListingParameters = {
+                assetContract: clickedNft.assetContract,
+                tokenId: clickedNft.tokenId,
+                quantity: 1,
+                pricePerToken: ethers.utils.parseEther(buyoutPrice),
+                startTimestamp: StartDate,
+                endTimestamp: EndDate,
+                bool: false,
+            }
+
+            const tx = await contract.createListing(ListingParameters)
+            console.log(tx)
+            await tx.wait(3)
+            setLoading(false)
+            router.push("/page/Marketplace")
+        } catch (e) {
+            // console.log(e)
+            setLoading(false)
+        }
+    }
 
     //  struct ListingParameters {
     //     address assetContract;
@@ -55,7 +120,14 @@ const CreateNFT = () => {
     //     uint128 endTimestamp;
     //     bool reserved;
     // }
-
+    const unwatch = watchContractEvent(
+        {
+            address: MarketplaceAddress,
+            abi: MarketplaceAbi,
+            eventName: "NewListing",
+        },
+        (log) => console.log(log)
+    )
     return (
         <div className="">
             <Navbar />
@@ -103,42 +175,22 @@ const CreateNFT = () => {
                             disabled
                         />
                     </div>
-                    <input className="set-price-input"
-                     name={"Set A Price"}
-                     placeholder={"Set A Price"}
-                     required={"required"}
-                     nftParam={buyoutPrice}
-                     setNftParam={setBuyoutPrice}
+                    <input
+                        className="set-price-input"
+                        name={"Set A Price"}
+                        placeholder={"Set A Price"}
+                        required={"required"}
+                        value={buyoutPrice}
+                        onChange={(e) => setBuyoutPrice(e.target.value)}
                     />
                     <p className="text-white-500 text-[20px] font-medium mt-8 mb-3">
                         Duration
                     </p>
-                    <FormControl className="w-[45%] bg-[#232128] rounded-2xl text-white">
+                    <FormControl className="w-[45%] bg-[#232128] rounded-2xl text-white"></FormControl>
+                    <FormControl className="w-[90%] bg-[#232128] rounded-2xl text-white">
                         <InputLabel
                             id="demo-simple-select-label"
-                            className="label"
-                        >
-                            Starting Time
-                        </InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={startTime}
-                            label="Age"
-                            onChange={(e) => setStartTime(e.target.value)}
-                            className=" text-white rounded-2xl  border-[#333a4b]"
-                        >
-                            <MenuItem value={0}>Now</MenuItem>
-                            <MenuItem value={60}>1 Minutes</MenuItem>
-                            <MenuItem value={300}>5 Minutes</MenuItem>
-                            <MenuItem value={3600}>1 hour</MenuItem>
-                            <MenuItem value={7200}>2 hours</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <FormControl className="w-[45%] ml-3 bg-[#232128] rounded-2xl text-white">
-                        <InputLabel
-                            id="demo-simple-select-label"
-                            className="label"
+                            className="label text-[#fff]"
                         >
                             Expiration Time
                         </InputLabel>
@@ -150,13 +202,11 @@ const CreateNFT = () => {
                             onChange={(e) => setEndTime(e.target.value)}
                             className=" text-white rounded-2xl "
                         >
-                            <MenuItem value={180}>3 Minutes</MenuItem>
-                            <MenuItem value={300}>5 Minutes</MenuItem>
-                            <MenuItem value={3600}>1 hour</MenuItem>
-                            <MenuItem value={7200}>2 hours</MenuItem>
-                            <MenuItem value={18000}>5 hours</MenuItem>
-                            <MenuItem value={86400}>1 Day</MenuItem>
-                            <MenuItem value={432000}>5 Days</MenuItem>
+                            <MenuItem value={180}>3 Days</MenuItem>
+                            <MenuItem value={300}>5 Days</MenuItem>
+                            <MenuItem value={3600}>1 Month</MenuItem>
+                            <MenuItem value={7200}>2 Months</MenuItem>
+                            <MenuItem value={18000}>5 Months</MenuItem>
                         </Select>
                     </FormControl>
                     <div className="w-full">
@@ -182,7 +232,7 @@ const CreateNFT = () => {
                     </div>
                     <div className="mt-10 mb-20">
                         {!loading ? (
-                            <Button text={"Complete Listing"} />
+                            <Button text={"Complete Listing"} click={listNft} />
                         ) : (
                             <Button
                                 text={
@@ -226,7 +276,7 @@ const CreateNFT = () => {
                             <p className="text-gray-500">FantomHomes</p>
 
                             {
-                                <h1 className="text-[20px] mt-7 font-semibold">
+                                <h1 className="text-[20px] mt-5 font-semibold">
                                     {buyoutPrice ? buyoutPrice : "---"} FTM
                                 </h1>
                             }

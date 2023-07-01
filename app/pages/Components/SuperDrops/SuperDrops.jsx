@@ -3,9 +3,7 @@ import { Tabs } from "antd"
 import { ourTabs } from "./data"
 
 const SuperDrops = () => {
-    const onChange = (key) => {
-        console.log(key)
-    }
+    const onChange = (key) => {}
     return (
         <div className="superdrops-container">
             <h5 className="drops-text">Super Hot Drop</h5>

@@ -205,10 +205,7 @@ contract Marketplace is IDirectListings {
 
         Listing memory listing = data.listings[_listingId];
 
-        if (
-            listing.endTimestamp < block.timestamp ||
-            block.timestamp >= listing.startTimestamp
-        ) {
+        if (listing.endTimestamp < block.timestamp) {
             revert Marketplace_NotWithinSaleWindow();
         }
 
