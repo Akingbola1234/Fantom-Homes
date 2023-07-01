@@ -95,6 +95,7 @@ const CreatorCollection = () => {
             }
             data.push(thisData)
         }
+        console.log(data)
         setNftData(data)
     }
     useEffect(() => {

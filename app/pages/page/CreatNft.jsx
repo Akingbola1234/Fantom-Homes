@@ -101,6 +101,7 @@ const CreateNFT = () => {
 
             const tx = await contract.createListing(ListingParameters)
             console.log(tx)
+            await tx.wait(3)
             setLoading(false)
             router.push("/page/Marketplace")
         } catch (e) {
@@ -185,32 +186,11 @@ const CreateNFT = () => {
                     <p className="text-white-500 text-[20px] font-medium mt-8 mb-3">
                         Duration
                     </p>
-                    <FormControl className="w-[45%] bg-[#232128] rounded-2xl text-white">
+                    <FormControl className="w-[45%] bg-[#232128] rounded-2xl text-white"></FormControl>
+                    <FormControl className="w-[90%] bg-[#232128] rounded-2xl text-white">
                         <InputLabel
                             id="demo-simple-select-label"
-                            className="label"
-                        >
-                            Starting Time
-                        </InputLabel>
-                        <Select
-                            labelId="demo-simple-select-label"
-                            id="demo-simple-select"
-                            value={startTime}
-                            label="Age"
-                            onChange={(e) => setStartTime(e.target.value)}
-                            className=" text-white rounded-2xl  border-[#333a4b]"
-                        >
-                            <MenuItem value={0}>Now</MenuItem>
-                            <MenuItem value={60}>1 Minutes</MenuItem>
-                            <MenuItem value={300}>5 Minutes</MenuItem>
-                            <MenuItem value={3600}>1 hour</MenuItem>
-                            <MenuItem value={7200}>2 hours</MenuItem>
-                        </Select>
-                    </FormControl>
-                    <FormControl className="w-[45%] ml-3 bg-[#232128] rounded-2xl text-white">
-                        <InputLabel
-                            id="demo-simple-select-label"
-                            className="label"
+                            className="label text-[#fff]"
                         >
                             Expiration Time
                         </InputLabel>
@@ -222,13 +202,11 @@ const CreateNFT = () => {
                             onChange={(e) => setEndTime(e.target.value)}
                             className=" text-white rounded-2xl "
                         >
-                            <MenuItem value={180}>3 Minutes</MenuItem>
-                            <MenuItem value={300}>5 Minutes</MenuItem>
-                            <MenuItem value={3600}>1 hour</MenuItem>
-                            <MenuItem value={7200}>2 hours</MenuItem>
-                            <MenuItem value={18000}>5 hours</MenuItem>
-                            <MenuItem value={86400}>1 Day</MenuItem>
-                            <MenuItem value={432000}>5 Days</MenuItem>
+                            <MenuItem value={180}>3 Days</MenuItem>
+                            <MenuItem value={300}>5 Days</MenuItem>
+                            <MenuItem value={3600}>1 Month</MenuItem>
+                            <MenuItem value={7200}>2 Months</MenuItem>
+                            <MenuItem value={18000}>5 Months</MenuItem>
                         </Select>
                     </FormControl>
                     <div className="w-full">

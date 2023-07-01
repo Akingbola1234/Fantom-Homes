@@ -5,7 +5,7 @@ describe("FantomHomes", () => {
     const METADATA_URL = "ipfs://CID/"
     const ROYALTY_FEE = 500 // 5%
     const COST = ethers.parseEther("1")
-    const startTimestamp = Math.floor(Date.now() / 1000) + 5000
+    const startTimestamp = Math.floor(Date.now() / 1000) + 500
     const endTimestamp = Math.floor(startTimestamp + 500)
 
     let deployer,
