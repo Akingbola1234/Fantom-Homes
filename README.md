@@ -35,3 +35,5 @@ There are a lot we have in place for FantomWorld this is just the beginning part
 1. Design of 3D Models for FantomWorld: Our next target is to hire 3D designers for the 3D models of FantomWorld, we have our ideas already and how we want the world to look like and activities we want our users to experience.
 
 2. Integration of Adventurous Scenes: Entertainment and adventure are part of our focus in FantomWorld we want our users to be able to have a real world experience.
+
+3. Education and Learning materials: Educating our users is part of our goal in FantomWorld we want our users to be able to Learn as they enjoy the reality which will require providing Educational platforms and materials most especially to help with the wide Cryptocurrency as well a use case for Fantom as a whole.
