@@ -27,3 +27,5 @@ We faced a lot of challenges in the process of developing the Fantom World Nft M
 # Accomplishments that we're proud of
 
 We are super proud of ourselves that our idea is beyond an idea now and we are bringing it to live. We are also happy that we can announce the NFT Marketplace which is a stepping stone to more development we will be building on the fantomWorld.
+
+# What's next for FantomWorld
