@@ -11,3 +11,9 @@ However, the team decided to start this amazing adventure with a marketplace, wh
 FantomWorld is with a vision of bringing the Real World experience to the Metaverse on the Fantom Blockchain but we will be focusing on these and much more:
 
 1. NFT Marketplace : FantomWorld is beyond just an NFT marketplace it is a world that we are creating on the metaverse, however the marketplace is where the buying and selling will be happening, homes will be bought, collections such as wearables etc and lands on the FantomWorld.
+
+2. Education and Learning: We will be building a World on the Fantom blockchain where education and learning will be an important process, imagine a space for learning and educating co developers and the community at large on the Metaverse.
+
+3. Entertainment and Recreation: Another target of the team in the Fantom World is Entertainment and recreation, we will be building FantomWorld to be a world where the whole community can come for recreation and not leaving the entertainment aspect behind, it will be a metaverse for fun, learning, recreation and a space to rewind.
+
+4. Personal Expression and Creativity: We are creating a world where creativity will not be neglected, as seen in our marketplace we will not be the only one building the FantomWorld, we will be building with creators that are willing to build with us, creators will be able to upload their 3D homes as NFTs on the Marketplace to be available on the FantomWorld, creators will be able to sell their creations to potential buyers.
