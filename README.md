@@ -9,3 +9,5 @@ However, the team decided to start this amazing adventure with a marketplace, wh
 # What FantomWorld Does
 
 FantomWorld is with a vision of bringing the Real World experience to the Metaverse on the Fantom Blockchain but we will be focusing on these and much more:
+
+1. NFT Marketplace : FantomWorld is beyond just an NFT marketplace it is a world that we are creating on the metaverse, however the marketplace is where the buying and selling will be happening, homes will be bought, collections such as wearables etc and lands on the FantomWorld.
