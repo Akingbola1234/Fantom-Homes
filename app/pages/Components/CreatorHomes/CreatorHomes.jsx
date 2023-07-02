@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { AiOutlineUpload } from "react-icons/ai"
 import { AiOutlineInbox } from "react-icons/ai"
 import { Modal, Upload, message } from "antd"
@@ -13,34 +13,36 @@ import { FantomHomesAddress, FantomHomesAbi } from "../../../constants"
 import NotListedNft from "../NotListedNFT/NotListedNFT"
 import { providers, getDefaultProvider, Contract } from "ethers"
 import Button from "../Button"
-
-const { Dragger } = Upload
-const props = {
-    name: "file",
-    multiple: true,
-    action: "https://www.mocky.io/v2/",
-    onChange(info) {
-        const { status } = info.file
-        if (status !== "uploading") {
-            console.log(info.file, info.fileList)
-        }
-        if (status === "done") {
-            message.success(`${info.file.name} file uploaded successfully`)
-        } else if (status === "error") {
-            message.error(`${info.files.name} file upload failed`)
-        }
-    },
-    onDrop(e) {
-        console.log("Dropped files", e.dataTransfer.file)
-    },
-}
+import { XCircleIcon } from "@heroicons/react/24/outline"
+import {
+    Input,
+    FormControl,
+    InputLabel,
+    TextField,
+    Switch,
+    Select,
+    MenuItem,
+} from "@mui/material"
+import { createNFt } from "../../../utils/fantomWorld/createAuction"
+import { ClipLoader } from "react-spinners"
 
 const CreatorHomes = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [nftData, setNftData] = useState([])
     const [getUri, setgetUri] = useState(true)
+    const [endTime, setEndTime] = useState(null)
+    const [buyoutPrice, setBuyoutPrice] = useState(null)
+    const [Description, setDescription] = useState("")
+    const [Name, setName] = useState("")
+    const fileRef = useRef("")
+    const color = "#fff"
     const { address } = useAccount()
+    const [nftImage, setNftImage] = useState(null)
+    const [Roaylty, setRoaylty] = useState(null)
+    const [loading, setLoading] = useState(false)
+    const [listNft, setListNft] = useState(true)
     const provider = new providers.Web3Provider(window.ethereum)
+    const label = { inputProps: { "aria-label": "Color switch demo" } }
     const showModal = () => {
         setIsModalOpen(true)
     }
@@ -75,7 +77,19 @@ const CreatorHomes = () => {
         }
         return ownersArr
     }
+    const addImage = async (e) => {
+        const reader = new FileReader()
+        if (e.target.files[0]) {
+            reader.readAsDataURL(e.target.files[0])
+        }
+        reader.onload = (readerEvent) => {
+            setNftImage(readerEvent.target.result)
+        }
+    }
 
+    const removeImage = () => {
+        setNftImage(null)
+    }
     async function getTokensUri() {
         const nftArr = await getOwnersOfNft()
         const contract = new Contract(
@@ -98,6 +112,7 @@ const CreatorHomes = () => {
         const data = []
         for (let i = 0; i < tokens.length; i++) {
             const element = tokens[i]
+            console.log(element)
             const response = await fetch(element.tokenUri)
             const jsonData = await response.json()
             const thisData = {
@@ -115,6 +130,24 @@ const CreatorHomes = () => {
         logJSONData()
     }, [address])
 
+    async function handleClick() {
+        try {
+            setLoading(true)
+            await createNFt(
+                provider,
+                nftImage,
+                FantomHomesAddress,
+                FantomHomesAbi,
+                Description,
+                Name,
+                address,
+                Roaylty
+            )
+            setLoading(false)
+        } catch (e) {
+            setLoading(false)
+        }
+    }
     return (
         <div>
             <div className="creator-text-button">
@@ -136,66 +169,181 @@ const CreatorHomes = () => {
                 footer={null}
                 centered={true}
             >
-                <h5 className="creator-modal-text">Upload Homes</h5>
-
-                <Dragger className="drag-drop">
-                    <p className="ant-upload-drag-icon">
-                        <AiOutlineInbox />
-                    </p>
-                    <p className="ant-upload-text">
-                        Click or drag file to this area to upload
-                    </p>
-                    <p className="ant-upload-hint">
-                        Support for a single or bulk upload. Strictly prohibited
-                        from uploading company data or other banned files.
-                    </p>
-                </Dragger>
-                <div className="label-input w-full">
-                    <label for="acre" className="w-[50%]">
-                        Name
-                    </label>
-                    <input id="acre" className="w-[25%] mb-5" />
-                </div>
-                <div className="label-input w-full">
-                    <label>Description</label>
-                    <textarea
-                        rows={"5"}
-                        className="attribute-textarea w-full"
-                    ></textarea>
-                </div>
-                <h5 className="collection-attribute-text">
-                    Collection Attributes
-                </h5>
-                <div className="attributes-div">
-                    <form className="attribute-form">
-                        <div className="label-input">
-                            <label for="acre">Acre</label>
-                            <input id="acre" />
+                <h2 className="mb-4 text-[#fff]">Upload File</h2>
+                <div className=" border-dashed border-2 mb-4 border-[#333a4b] rounded-xl p-7">
+                    {!nftImage ? (
+                        <div className="flex flex-col w-full justify-center items-center">
+                            <h1 className="text-gray-500 text-sm">
+                                PNG,GIF,WEBP,MP4 or MP3. Max 100mb
+                            </h1>
+                            <div
+                                className="px-3 py-2 hover:bg-blue-500 active:scale-90 transition-all duration-200 bg-[#313337] rounded-xl mt-3 cursor-pointer"
+                                onClick={() => fileRef.current.click()}
+                            >
+                                <span>Choose File</span>
+                                <input
+                                    hidden
+                                    type="file"
+                                    ref={fileRef}
+                                    onChange={addImage}
+                                />
+                            </div>
                         </div>
-                        <div className="label-input">
-                            <label for="acre">Acre</label>
-                            <input id="acre" />
+                    ) : (
+                        <div className="w-full h-[15rem] flex overflow-hidden">
+                            <img
+                                src={nftImage}
+                                className="w-[90%] h-full object-contain"
+                            />
+                            <div>
+                                <XCircleIcon
+                                    className="h-7 w-7 cursor-pointer text-gray-400"
+                                    onClick={removeImage}
+                                />
+                            </div>
                         </div>
-                        <div className="label-input">
-                            <label for="acre">Acre</label>
-                            <input id="acre" />
-                        </div>
-                        <div className="label-input">
-                            <label for="acre">Acre</label>
-                            <input id="acre" />
-                        </div>
-                        <div className="label-input">
-                            <label for="acre">Acre</label>
-                            <input id="acre" />
-                        </div>
-                        <div className="label-input">
-                            <label for="acre">Acre</label>
-                            <input id="acre" />
-                        </div>
-                    </form>
+                    )}
                 </div>
 
-                <Button text={"Create Home"} />
+                <FormControl className="w-full bg-[#232128] rounded-2xl text-white">
+                    <TextField
+                        label={"Name"}
+                        required
+                        className="text-[#fff] mb-7 "
+                        color="primary"
+                        onChange={(e) => setName(e.target.value)}
+                    />
+
+                    <TextField
+                        label={"Description"}
+                        required
+                        className="text-[#fff]"
+                        color="primary"
+                        onChange={(e) => setDescription(e.target.value)}
+                        multiline
+                    />
+
+                    <TextField
+                        label={"Roaylty"}
+                        required
+                        className="text-[#fff] mt-7 flex-grow"
+                        color="primary"
+                        onChange={(e) => setRoaylty(e.target.value)}
+                    />
+
+                    <div className="mt-8 flex w-full justify-between items-start">
+                        <div>
+                            <h1 className="font-medium text-[20px]">
+                                Put on marketplace
+                            </h1>
+                            <p className="text-gray-500 text-[13px]">
+                                Set a period of time for which buyers can buy
+                            </p>
+                        </div>
+                        <Switch
+                            {...label}
+                            onChange={() => setListNft((prev) => !prev)}
+                            defaultChecked
+                            color="secondary"
+                        />
+                    </div>
+
+                    {listNft && (
+                        <div className="flex flex-col w-full">
+                            <div className="w-full flex flex-grow ">
+                                <TextField
+                                    label={"Price"}
+                                    required
+                                    className="text-[#fff] mr-5 flex-grow"
+                                    color="primary"
+                                    onChange={(e) =>
+                                        setBuyoutPrice(e.target.value)
+                                    }
+                                />
+
+                                <FormControl className="w-[49%]  bg-[#232128]  text-white">
+                                    <InputLabel
+                                        id="demo-simple-select-label"
+                                        className="label text-[#fff]"
+                                    >
+                                        Duration
+                                    </InputLabel>
+                                    <Select
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select"
+                                        value={endTime}
+                                        label="Duration"
+                                        onChange={(e) =>
+                                            setEndTime(e.target.value)
+                                        }
+                                        className=" text-white"
+                                    >
+                                        <MenuItem value={180}>3 Days</MenuItem>
+                                        <MenuItem value={300}>5 Days</MenuItem>
+                                        <MenuItem value={3600}>
+                                            1 Month
+                                        </MenuItem>
+                                        <MenuItem value={7200}>
+                                            2 Months
+                                        </MenuItem>
+                                        <MenuItem value={18000}>
+                                            5 Months
+                                        </MenuItem>
+                                    </Select>
+                                </FormControl>
+                            </div>
+
+                            <div className="w-full">
+                                <h1 className="text-white-500 text-[20px] font-medium mt-8 mb-3">
+                                    Summary
+                                </h1>
+
+                                <div className="flex w-full justify-between">
+                                    <span className="text-gray-500">
+                                        Listing Price:{" "}
+                                    </span>
+                                    <span className="text-gray-500">
+                                        {buyoutPrice ? buyoutPrice : "---"} FTM
+                                    </span>
+                                </div>
+
+                                <div className="flex w-full justify-between">
+                                    <span className="text-gray-500">
+                                        Creator Earnings:{" "}
+                                    </span>
+                                    <span className="text-gray-500">
+                                        {Roaylty} %
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </FormControl>
+
+                <div className="mt-10 mb-20">
+                    {!loading ? (
+                        <Button
+                            text={"Create Home"}
+                            click={() => {
+                                handleClick()
+                            }}
+                        />
+                    ) : (
+                        <Button
+                            text={
+                                <div className="flex">
+                                    <ClipLoader
+                                        color={color}
+                                        loading={loading}
+                                        size={30}
+                                        aria-label="Loading Spinner"
+                                        data-testid="loader"
+                                    />
+                                </div>
+                            }
+                        />
+                    )}
+                </div>
             </Modal>
         </div>
     )
