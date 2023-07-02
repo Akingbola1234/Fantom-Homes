@@ -61,7 +61,6 @@ const HookProvider = ({ children }) => {
             const contract = new Contract(address, FantomHomesAbi, signer)
 
             const tx = await contract.tokenURI(element.tokenId)
-            console.log(tx)
             return tx
         } catch (e) {
             console.log(e)
@@ -70,10 +69,9 @@ const HookProvider = ({ children }) => {
     async function getToken() {
         const HomesArr = []
         const AccArr = []
-        console.log(listings.data)
         if (data) {
-            for (let i = 0; i <= data.length; i++) {
-                try {
+            try {
+                for (let i = 0; i <= data.length; i++) {
                     if (data[i].assetContract == FantomHomesAddress) {
                         const uri = await getTokensUri(data[i])
                         const _uri = await logJSONData(uri)
@@ -86,9 +84,9 @@ const HookProvider = ({ children }) => {
                         const token = { ...data[i], _uri }
                         AccArr.push(token)
                     }
-                } catch (e) {
-                    console.log(e)
                 }
+            } catch (e) {
+                console.log(e)
             }
         }
 

@@ -30,6 +30,7 @@ import { goerli, optimismGoerli, fantomTestnet } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy"
 import { publicProvider } from "wagmi/providers/public"
 import HookProvider from "../context/Hook"
+import { ThemeProvider, createTheme } from "@mui/material"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
     [fantomTestnet],
@@ -62,19 +63,27 @@ const wagmiConfig = createConfig({
     webSocketPublicClient,
 })
 
+const dark = createTheme({
+    palette: {
+        mode: "dark",
+    },
+})
+
 function MyApp({ Component, pageProps }) {
     return (
-        <WagmiConfig config={wagmiConfig}>
-            <HookProvider>
-                <RainbowKitProvider
-                    theme={darkTheme()}
-                    modalSize="compact"
-                    chains={chains}
-                >
-                    <Component {...pageProps} />{" "}
-                </RainbowKitProvider>{" "}
-            </HookProvider>
-        </WagmiConfig>
+        <ThemeProvider theme={dark}>
+            <WagmiConfig config={wagmiConfig}>
+                <HookProvider>
+                    <RainbowKitProvider
+                        theme={darkTheme()}
+                        modalSize="compact"
+                        chains={chains}
+                    >
+                        <Component {...pageProps} />{" "}
+                    </RainbowKitProvider>{" "}
+                </HookProvider>
+            </WagmiConfig>
+        </ThemeProvider>
     )
 }
 

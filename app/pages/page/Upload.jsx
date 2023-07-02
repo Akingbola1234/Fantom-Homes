@@ -32,7 +32,7 @@ const CreateNFT = () => {
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
     const [buyoutPrice, setBuyoutPrice] = useState("")
-
+    const [nftImage, setNftImage] = useState(null)
     const router = useRouter()
     const { clickedNft, setClickedNft } = useContext(HookContext)
     const [loading, setLoading] = useState(false)
@@ -110,6 +110,16 @@ const CreateNFT = () => {
         }
     }
 
+    //  struct ListingParameters {
+    //     address assetContract;
+    //     uint256 tokenId;
+    //     uint256 quantity;
+    //     // address currency;
+    //     uint256 pricePerToken;
+    //     uint128 startTimestamp;
+    //     uint128 endTimestamp;
+    //     bool reserved;
+    // }
     const unwatch = watchContractEvent(
         {
             address: MarketplaceAddress,
@@ -147,7 +157,43 @@ const CreateNFT = () => {
                             </div>
                         </div>
                     </div>
-
+                    <h2 className="mb-4">Upload File</h2>
+                    <div className=" border-dashed border-2 border-[#333a4b] rounded-xl p-7">
+                        {!nftImage ? (
+                            <div className="flex flex-col w-full justify-center items-center">
+                                <h1 className="text-gray-500 text-sm">
+                                    PNG,GIF,WEBP,MP4 or MP3. Max 100mb
+                                </h1>
+                                <div
+                                    className="px-3 py-2 hover:bg-blue-500 active:scale-90 transition-all duration-200 bg-[#313337] rounded-xl mt-3 cursor-pointer"
+                                    onClick={() => fileRef.current.click()}
+                                >
+                                    <span>Choose File</span>
+                                    <input
+                                        hidden
+                                        type="file"
+                                        ref={fileRef}
+                                        onChange={addImage}
+                                    />
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="w-full h-[15rem] flex overflow-hidden">
+                                <Image
+                                    src={nftImage}
+                                    width={100}
+                                    height={100}
+                                    className="w-[90%] h-full object-cover"
+                                />
+                                <div>
+                                    <XCircleIcon
+                                        className="h-7 w-7 cursor-pointer text-gray-400"
+                                        onClick={removeImage}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    </div>
                     <div className="mt-8 flex w-full justify-between items-start">
                         <div>
                             <h1 className="font-medium text-[20px]">
