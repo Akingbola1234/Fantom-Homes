@@ -220,6 +220,7 @@ contract Marketplace is IDirectListings {
 
         _payout(listing);
         _transferListingTokens(listing.listingCreator, msg.sender, listing);
+        data.listings[_listingId].status = IDirectListings.Status.SOLD;
     }
 
     /**

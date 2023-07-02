@@ -58,6 +58,8 @@ const CreateNFT = () => {
     const listNft = async () => {
         try {
             setLoading(true)
+            const signer = provider.getSigner()
+
             const assetAbi =
                 clickedNft.assetContract == FantomHomesAddress
                     ? FantomHomesAbi
@@ -65,12 +67,11 @@ const CreateNFT = () => {
             await approveMarketplace(
                 clickedNft.assetContract,
                 assetAbi,
-                provider,
+                signer,
                 clickedNft.tokenId,
                 MarketplaceAddress
             )
 
-            const signer = provider.getSigner()
             const contract = new Contract(
                 MarketplaceAddress,
                 MarketplaceAbi,

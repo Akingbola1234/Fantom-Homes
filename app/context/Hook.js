@@ -73,14 +73,66 @@ const HookProvider = ({ children }) => {
             try {
                 for (let i = 0; i <= data.length; i++) {
                     if (data[i].assetContract == FantomHomesAddress) {
+                        const baseUri = "ipfs://"
+                        const back = "/blob"
                         const uri = await getTokensUri(data[i])
-                        const _uri = await logJSONData(uri)
+                        let _uri = await logJSONData(uri)
+                        if (_uri.image.includes(baseUri)) {
+                            const hash = _uri.image
+                                .replace(baseUri, "")
+                                .replace(back, "")
+                            let fileResult = []
+                            const res = await fetch(
+                                `https://${hash}.ipfs.dweb.link/blob`
+                            )
+                            // console.log(res)
+                            const blob = await res.blob()
+                            const fileReader = new FileReader()
+                            fileReader.readAsBinaryString(blob)
+                            const fileResultPromise = new Promise(
+                                (resolve) =>
+                                    (fileReader.onloadend = () => {
+                                        const dataUrl = fileReader.result
+                                        resolve(dataUrl)
+                                    })
+                            )
+                            console.log(fileResult)
+                            const result = await fileResultPromise
+                            _uri = { ..._uri, image: result }
+                            console.log(_uri)
+                        }
                         const token = { ...data[i], _uri }
                         HomesArr.push(token)
                     }
                     if (data[i].assetContract == FantomAcc) {
+                        const baseUri = "ipfs://"
+                        const back = "/blob"
                         const uri = await getTokensUri(data[i])
-                        const _uri = await logJSONData(uri)
+                        let _uri = await logJSONData(uri)
+                        if (_uri.image.includes(baseUri)) {
+                            const hash = _uri.image
+                                .replace(baseUri, "")
+                                .replace(back, "")
+                            let fileResult = []
+                            const res = await fetch(
+                                `https://${hash}.ipfs.dweb.link/blob`
+                            )
+                            // console.log(res)
+                            const blob = await res.blob()
+                            const fileReader = new FileReader()
+                            fileReader.readAsBinaryString(blob)
+                            const fileResultPromise = new Promise(
+                                (resolve) =>
+                                    (fileReader.onloadend = () => {
+                                        const dataUrl = fileReader.result
+                                        resolve(dataUrl)
+                                    })
+                            )
+                            console.log(fileResult)
+                            const result = await fileResultPromise
+                            _uri = { ..._uri, image: result }
+                            console.log(_uri)
+                        }
                         const token = { ...data[i], _uri }
                         AccArr.push(token)
                     }
@@ -90,7 +142,9 @@ const HookProvider = ({ children }) => {
             }
         }
 
-        setHomesNft(HomesArr)
+        setHomesNft(
+            HomesArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId))
+        )
         setWearableNft(AccArr)
         return { HomesArr, AccArr }
     }
