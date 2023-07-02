@@ -31,3 +31,5 @@ We are super proud of ourselves that our idea is beyond an idea now and we are b
 # What's next for FantomWorld
 
 There are a lot we have in place for FantomWorld this is just the beginning part of the development as we are devoted to constantly building some of what is next for FantomWorld includes:
+
+1. Design of 3D Models for FantomWorld: Our next target is to hire 3D designers for the 3D models of FantomWorld, we have our ideas already and how we want the world to look like and activities we want our users to experience.
