@@ -9,9 +9,14 @@ import {
     useContractInfiniteReads,
     useContractRead,
 } from "wagmi"
-import { FantomAcc, FantomAccAbi, MarketplaceAddress } from "../../../constants"
+import {
+    FantomAcc,
+    FantomAccAbi,
+    MarketplaceAbi,
+    MarketplaceAddress,
+} from "../../../constants"
 import NotListedNft from "../NotListedNFT/NotListedNFT"
-import { providers, getDefaultProvider, Contract } from "ethers"
+import { providers, getDefaultProvider, Contract, ethers } from "ethers"
 import { useRef } from "react"
 import {
     Select,
@@ -200,7 +205,6 @@ const CreatorCollection = () => {
                     await tx.wait(3)
                     setLoading(false)
                     router.push("/page/Marketplace")
-                    setLoading(false)
                 } catch (e) {
                     console.log(e)
                     setLoading(false)
@@ -214,8 +218,6 @@ const CreatorCollection = () => {
             setName("")
             setLoading(false)
             setIsModalOpen(false)
-
-            router.push("/page/creator")
         } catch (e) {
             setLoading(false)
             console.log(e)

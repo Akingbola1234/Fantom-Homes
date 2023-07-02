@@ -13,6 +13,7 @@ import { Autoplay, Pagination, Navigation } from "swiper"
 import { HookContext } from "../../../context/Hook"
 import { useContractWrite } from "wagmi"
 import { MarketplaceAbi, MarketplaceAddress } from "../../../constants"
+import { Toaster, toast } from "react-hot-toast"
 
 const CollectionsCard = () => {
     // const navigate = useNavigate();
@@ -25,6 +26,7 @@ const CollectionsCard = () => {
         setMoreDetails(newModal)
         router.push(`/page/NftDetails?${newModal.key}`)
     }
+    console.log(wearableNft)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [modalContent, setModalContent] = useState([])
     const [NFTs, setNFTs] = useState(null)
@@ -169,6 +171,7 @@ const CollectionsCard = () => {
                     View More
                 </button>
             </div> */}
+            <Toaster />
         </div>
     )
 }
