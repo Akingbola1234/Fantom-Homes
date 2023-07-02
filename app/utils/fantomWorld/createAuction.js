@@ -33,9 +33,27 @@ export const createNFt = async (
 
         const url = `https://nftstorage.link/ipfs/${metaHash.ipnft}/metadata.json`
         console.log(url)
-        const tx = await contract.mint(artist, royatlyFee, metaHash.url)
-        await tx.wait()
+        const tx = await contract.mint(artist, royatlyFee, url)
+        await tx.wait(3)
     } catch (e) {
         console.error(e)
+    }
+}
+
+export const approveMarketplace = async (
+    address,
+    abi,
+    provider,
+    id,
+    marketAddress
+) => {
+    try {
+        console.log("Approving.......")
+        const contract = new Contract(address, abi, provider)
+
+        const tx = await contract.approve(marketAddress, id)
+        await tx.wait()
+    } catch (e) {
+        console.log(e)
     }
 }

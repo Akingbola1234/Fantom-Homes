@@ -11,6 +11,9 @@ import { useRouter } from "next/router"
 
 import { Autoplay, Pagination, Navigation } from "swiper"
 import { HookContext } from "../../../context/Hook"
+import { useContractWrite } from "wagmi"
+import { MarketplaceAbi, MarketplaceAddress } from "../../../constants"
+import { Toaster, toast } from "react-hot-toast"
 
 const CollectionsCard = () => {
     // const navigate = useNavigate();
@@ -23,6 +26,7 @@ const CollectionsCard = () => {
         setMoreDetails(newModal)
         router.push(`/page/NftDetails?${newModal.key}`)
     }
+    console.log(wearableNft)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [modalContent, setModalContent] = useState([])
     const [NFTs, setNFTs] = useState(null)
@@ -39,6 +43,25 @@ const CollectionsCard = () => {
     useEffect(() => {
         getToken()
     }, [])
+
+    const { write, isError, isSuccess, isLoading } = useContractWrite({
+        address: MarketplaceAddress,
+        abi: MarketplaceAbi,
+        functionName: "buyFromListing",
+    })
+    useEffect(() => {
+        {
+            isError && toast("You can't buy this NFT ☹️ Check Your Wallet")
+        }
+
+        {
+            isLoading && toast("Loading.... 🤪")
+        }
+
+        {
+            isSuccess && toast("You Now Own This Nft 🥳")
+        }
+    }, [isError, isLoading, isSuccess])
 
     return (
         <div className={styles.nftcard_container}>
@@ -126,7 +149,12 @@ const CollectionsCard = () => {
 
                                 <button
                                     className={styles.primary_btn}
-                                    onClick={handleMint}
+                                    onClick={() =>
+                                        write({
+                                            value: newModal.pricePerToken,
+                                            args: [newModal.listingId],
+                                        })
+                                    }
                                 >
                                     Place a bid
                                 </button>
@@ -143,6 +171,7 @@ const CollectionsCard = () => {
                     View More
                 </button>
             </div> */}
+            <Toaster />
         </div>
     )
 }

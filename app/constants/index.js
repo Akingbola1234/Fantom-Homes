@@ -1,4 +1,4 @@
-export const FantomHomesAddress = "0xa3D1a7dcA533336b1a61aaAa165E896032169442"
+export const FantomHomesAddress = "0x674bFE87423b8754a78f3C23fB64403ef3f0a175"
 export const FantomHomesAbi = [
     {
         inputs: [],
@@ -529,7 +529,7 @@ export const FantomHomesAbi = [
     },
 ]
 
-export const FantomAcc = "0xC33a0BEA675c5d595959fbCaf5858EB2106Fe47F"
+export const FantomAcc = "0xB1436c336C1f6C54f22CCD3D83764CA368aB1711"
 
 export const FantomAccAbi = [
     {
@@ -1061,7 +1061,7 @@ export const FantomAccAbi = [
     },
 ]
 
-export const MarketplaceAddress = "0xdA5804Cda74685AA72730530ae1a9bDBDd341a43"
+export const MarketplaceAddress = "0xEab32CB26ffb11355441C13c333975632279b4B2"
 export const MarketplaceAbi = [
     {
         inputs: [],

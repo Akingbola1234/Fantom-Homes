@@ -24,6 +24,7 @@ import {
     MarketplaceAbi,
     MarketplaceAddress,
 } from "../../constants"
+import { approveMarketplace } from "../../utils/fantomWorld/createAuction"
 
 const CreateNFT = () => {
     const label = { inputProps: { "aria-label": "Color switch demo" } }
@@ -54,32 +55,23 @@ const CreateNFT = () => {
     }
     const provider = new providers.Web3Provider(window.ethereum)
 
-    const approveMarketplace = async () => {
-        console.log(clickedNft)
-        const assetAbi =
-            clickedNft.assetContract == FantomHomesAddress
-                ? FantomHomesAbi
-                : FantomAccAbi
-        const signer = provider.getSigner()
-        const contract = new Contract(
-            clickedNft.assetContract,
-            assetAbi,
-            signer
-        )
-
-        const tx = await contract.approve(
-            MarketplaceAddress,
-            clickedNft.tokenId
-        )
-        await tx.wait()
-    }
-
     const listNft = async () => {
         try {
             setLoading(true)
-            await approveMarketplace()
-
             const signer = provider.getSigner()
+
+            const assetAbi =
+                clickedNft.assetContract == FantomHomesAddress
+                    ? FantomHomesAbi
+                    : FantomAccAbi
+            await approveMarketplace(
+                clickedNft.assetContract,
+                assetAbi,
+                signer,
+                clickedNft.tokenId,
+                MarketplaceAddress
+            )
+
             const contract = new Contract(
                 MarketplaceAddress,
                 MarketplaceAbi,
@@ -118,6 +110,7 @@ const CreateNFT = () => {
         },
         (log) => console.log(log)
     )
+    console.log(clickedNft)
     return (
         <div className="">
             <Navbar />
@@ -244,34 +237,29 @@ const CreateNFT = () => {
                 {/* Preview NFT image  */}
                 <div className="preview-image w-[30%] fixed right-[12%] top-[20%] flex flex-col justify-center border-[#333a4b] rounded-xl ">
                     <p className="preview-text mb-3 font-medium">Preview</p>
-                    {!clickedNft.nftParams ? (
-                        <div className="preview">
-                            <h1 className="text-gray-500">
-                                Upload file and choose collection to preview
-                                your brand new NFT
-                            </h1>
-                        </div>
-                    ) : (
-                        <div className="preview p-5 overflow-hidden">
-                            <img
-                                src={clickedNft.nftParams.image}
-                                width={100}
-                                height={100}
-                                className="w-[90%] h-[75%] object-cover"
-                            />
 
-                            <h1 className="text-[20px] mt-2 font-semibold">
-                                {clickedNft.nftParams.name}
-                            </h1>
-                            <p className="text-gray-500">FantomHomes</p>
-
-                            {
-                                <h1 className="text-[20px] mt-5 font-semibold">
-                                    {buyoutPrice ? buyoutPrice : "---"} FTM
-                                </h1>
+                    <div className="preview p-5 overflow-hidden">
+                        <img
+                            src={
+                                clickedNft.imageUrl ||
+                                clickedNft.nftParams.image
                             }
-                        </div>
-                    )}
+                            width={100}
+                            height={100}
+                            className="w-[90%] h-[75%] object-contain"
+                        />
+
+                        <h1 className="text-[20px] mt-2 font-semibold">
+                            {clickedNft.nftParams.name}
+                        </h1>
+                        <p className="text-gray-500">FantomHomes</p>
+
+                        {
+                            <h1 className="text-[20px] mt-5 font-semibold">
+                                {buyoutPrice ? buyoutPrice : "---"} FTM
+                            </h1>
+                        }
+                    </div>
                 </div>
             </div>
         </div>

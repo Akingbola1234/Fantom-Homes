@@ -9,9 +9,14 @@ import {
     useContractInfiniteReads,
     useContractRead,
 } from "wagmi"
-import { FantomHomesAddress, FantomHomesAbi } from "../../../constants"
+import {
+    FantomHomesAddress,
+    FantomHomesAbi,
+    MarketplaceAddress,
+    MarketplaceAbi,
+} from "../../../constants"
 import NotListedNft from "../NotListedNFT/NotListedNFT"
-import { providers, getDefaultProvider, Contract } from "ethers"
+import { providers, getDefaultProvider, Contract, ethers } from "ethers"
 import Button from "../Button"
 import { XCircleIcon } from "@heroicons/react/24/outline"
 import {
@@ -23,15 +28,21 @@ import {
     Select,
     MenuItem,
 } from "@mui/material"
-import { createNFt } from "../../../utils/fantomWorld/createAuction"
+import {
+    approveMarketplace,
+    createNFt,
+} from "../../../utils/fantomWorld/createAuction"
 import { ClipLoader } from "react-spinners"
+import { useRouter } from "next/router"
 
 const CreatorHomes = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const router = useRouter()
     const [nftData, setNftData] = useState([])
     const [getUri, setgetUri] = useState(true)
     const [endTime, setEndTime] = useState(null)
     const [buyoutPrice, setBuyoutPrice] = useState(null)
+    const [startTime, setStartTime] = useState(null)
     const [Description, setDescription] = useState("")
     const [Name, setName] = useState("")
     const fileRef = useRef("")
@@ -40,7 +51,7 @@ const CreatorHomes = () => {
     const [nftImage, setNftImage] = useState(null)
     const [Roaylty, setRoaylty] = useState(null)
     const [loading, setLoading] = useState(false)
-    const [listNft, setListNft] = useState(true)
+    const [listNft, setListNft] = useState(false)
     const provider = new providers.Web3Provider(window.ethereum)
     const label = { inputProps: { "aria-label": "Color switch demo" } }
     const showModal = () => {
@@ -120,10 +131,8 @@ const CreatorHomes = () => {
                 nftParams: jsonData,
                 assetContract: FantomHomesAddress,
             }
-            console.log(thisData)
             data.push(thisData)
         }
-        console.log(data)
         setNftData(data)
     }
     useEffect(() => {
@@ -141,9 +150,69 @@ const CreatorHomes = () => {
                 Description,
                 Name,
                 address,
-                Roaylty
+                Roaylty * 100
             )
+            const signer = provider.getSigner()
+
+            const contract = new Contract(
+                FantomHomesAddress,
+                FantomHomesAbi,
+                signer
+            )
+
+            const id = Number(await contract.totalSupply()) - 1
+            console.log(id)
+            console.log(listNft)
+
+            if (listNft) {
+                console.log("Approving....")
+                try {
+                    await approveMarketplace(
+                        FantomHomesAddress,
+                        FantomHomesAbi,
+                        signer,
+                        id,
+                        MarketplaceAddress
+                    )
+                    const contract = new Contract(
+                        MarketplaceAddress,
+                        MarketplaceAbi,
+                        signer
+                    )
+                    const StartDate =
+                        Math.floor(Date.now() / 1000) + 60 + Number(startTime)
+                    const EndDate = Math.floor(StartDate + Number(endTime))
+                    const ListingParameters = {
+                        assetContract: FantomHomesAddress,
+                        tokenId: id,
+                        quantity: 1,
+                        pricePerToken: ethers.utils.parseEther(buyoutPrice),
+                        startTimestamp: StartDate,
+                        endTimestamp: EndDate,
+                        bool: false,
+                    }
+
+                    const tx = await contract.createListing(ListingParameters)
+                    console.log(tx)
+                    await tx.wait(3)
+                    setLoading(false)
+                    router.push("/page/Marketplace")
+                    setLoading(false)
+                } catch (e) {
+                    console.log(e)
+                    setLoading(false)
+                }
+            }
+            setBuyoutPrice("")
+            setDescription("")
+            setRoaylty("")
+            setEndTime("")
+            setNftImage("")
+            setName("")
             setLoading(false)
+            setIsModalOpen(false)
+
+            router.push("/page/creator")
         } catch (e) {
             setLoading(false)
         }
@@ -212,6 +281,7 @@ const CreatorHomes = () => {
                         className="text-[#fff] mb-7 "
                         color="primary"
                         onChange={(e) => setName(e.target.value)}
+                        value={Name}
                     />
 
                     <TextField
@@ -221,6 +291,7 @@ const CreatorHomes = () => {
                         color="primary"
                         onChange={(e) => setDescription(e.target.value)}
                         multiline
+                        value={Description}
                     />
 
                     <TextField
@@ -229,6 +300,7 @@ const CreatorHomes = () => {
                         className="text-[#fff] mt-7 flex-grow"
                         color="primary"
                         onChange={(e) => setRoaylty(e.target.value)}
+                        value={Roaylty}
                     />
 
                     <div className="mt-8 flex w-full justify-between items-start">
@@ -243,7 +315,6 @@ const CreatorHomes = () => {
                         <Switch
                             {...label}
                             onChange={() => setListNft((prev) => !prev)}
-                            defaultChecked
                             color="secondary"
                         />
                     </div>
@@ -259,6 +330,7 @@ const CreatorHomes = () => {
                                     onChange={(e) =>
                                         setBuyoutPrice(e.target.value)
                                     }
+                                    value={buyoutPrice}
                                 />
 
                                 <FormControl className="w-[49%]  bg-[#232128]  text-white">

@@ -9,6 +9,7 @@ import {
     useAccount,
     useContractInfiniteReads,
     paginatedIndexesConfig,
+    useContractWrite,
 } from "wagmi"
 import {
     FantomHomesAbi,
@@ -20,6 +21,7 @@ import {
 import { providers, ethers, Contract } from "ethers"
 import { useContext } from "react"
 import { HookContext } from "../../../context/Hook"
+import { Toaster, toast } from "react-hot-toast"
 
 const HomesCard = () => {
     const router = useRouter()
@@ -53,6 +55,25 @@ const HomesCard = () => {
     useEffect(() => {
         getToken()
     }, [])
+
+    const { write, isError, isSuccess, isLoading } = useContractWrite({
+        address: MarketplaceAddress,
+        abi: MarketplaceAbi,
+        functionName: "buyFromListing",
+    })
+    useEffect(() => {
+        {
+            isError && toast("You can't buy this NFT ☹️ Check Your Wallet")
+        }
+
+        {
+            isLoading && toast("Loading.... 🤪")
+        }
+
+        {
+            isSuccess && toast("You Now Own This Nft 🥳")
+        }
+    }, [isError, isLoading, isSuccess])
 
     return (
         <div className={styles.nftcard_container}>
@@ -140,7 +161,12 @@ const HomesCard = () => {
 
                                 <button
                                     className={styles.primary_btn}
-                                    onClick={handleMint}
+                                    onClick={() =>
+                                        write({
+                                            value: newModal.pricePerToken,
+                                            args: [newModal.listingId],
+                                        })
+                                    }
                                 >
                                     Place a bid
                                 </button>
@@ -157,6 +183,7 @@ const HomesCard = () => {
                     View More
                 </button>
             </div> */}
+            <Toaster />
         </div>
     )
 }

@@ -11,6 +11,7 @@ import { Toaster, toast } from "react-hot-toast"
 
 const NftDetailsPage = () => {
     const { moreDetails } = useContext(HookContext)
+    console.log(moreDetails)
 
     const _buy = usePrepareContractWrite({
         address: MarketplaceAddress,
@@ -31,7 +32,11 @@ const NftDetailsPage = () => {
         <div className={styles["ntf-card-page-container"]}>
             <div className={styles["ntf-card-page-details"]}>
                 <div className={styles["ntf-card-page-image"]}>
-                    <img src={moreDetails._uri.image} alt="NFT Image" />
+                    <img
+                        src={moreDetails._uri.image}
+                        className="object-contain"
+                        alt="NFT Image"
+                    />
                 </div>
                 <div className={styles["ntf-card-page-card"]}>
                     <Link href={"/"}>
@@ -42,28 +47,44 @@ const NftDetailsPage = () => {
                     </Link>
                     <div className="flex items-center justify-between">
                         <h4 className={styles["nft-card-page-text"]}>
-                            FantomHomes
+                            {moreDetails._uri.name} #
+                            {Number(moreDetails.tokenId)}
                         </h4>
                         <div className="flex flex-col">
                             <span className={styles["nft-card-page-span"]}>
-                                Owner
+                                Creator
                             </span>
                             <span>
                                 {truncate(moreDetails.listingCreator, 3)}
                             </span>
                         </div>
                     </div>
-                    <h5 className={styles["nft-card-page-attributes"]}>
-                        Attributes:
-                    </h5>
-                    {moreDetails._uri.attributes.map((att) => {
-                        return (
-                            <p className="text-[15px] font-medium bg-[#8d1cfe] p-3 rounded-md text-[#fff]">
-                                {att.trait_type}: <span>{att.value}</span>
-                            </p>
-                        )
-                    })}
-                    <span className={styles["nft-card-page-span"]}></span>
+
+                    <div>
+                        <h5 className={styles["nft-card-page-attributes"]}>
+                            Description:
+                        </h5>
+                        <p className="text-[15px] font-medium bg-[#8d1cfe] p-3 rounded-md text-[#fff]">
+                            {moreDetails._uri.description}
+                        </p>
+                    </div>
+
+                    {moreDetails._uri.attributes && (
+                        <div>
+                            <h5 className={styles["nft-card-page-attributes"]}>
+                                Attributes:
+                            </h5>
+                            {moreDetails._uri.attributes.map((att) => {
+                                return (
+                                    <p className="text-[15px] font-medium bg-[#8d1cfe] p-3 rounded-md text-[#fff]">
+                                        {att.trait_type}:{" "}
+                                        <span>{att.value}</span>
+                                    </p>
+                                )
+                            })}
+                        </div>
+                    )}
+
                     <button
                         className={styles["nft-card-page-bid"]}
                         onClick={buy.write}
