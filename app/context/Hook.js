@@ -14,12 +14,13 @@ import { useAccount, useContractRead } from "wagmi"
 export const HookContext = createContext()
 const HookProvider = ({ children }) => {
     const [clickedNft, setClickedNft] = useState([0])
-    const [moreDetails, setMoreDetails] = useState(null)
-    const [homesNft, setHomesNft] = useState(null)
-    const [wearableNft, setWearableNft] = useState(null)
-    const [char, setChar] = useState(null)
+    const [moreDetails, setMoreDetails] = useState([])
+    const [homesNft, setHomesNft] = useState([])
+    const [wearableNft, setWearableNft] = useState([])
+    const [char, setChar] = useState([])
     const { address } = useAccount()
     const [data, setData] = useState(null)
+    const [loading, setLoading] = useState(false)
     let provider
     if (address) {
         provider = new providers.Web3Provider(window.ethereum)
@@ -71,115 +72,123 @@ const HookProvider = ({ children }) => {
         }
     }
     async function getToken() {
-        const HomesArr = []
-        const AccArr = []
-        const charArr = []
-        if (data) {
-            try {
-                for (let i = 0; i <= data.length; i++) {
-                    if (data[i].assetContract == FantomHomesAddress) {
-                        const baseUri = "ipfs://"
-                        const back = "/blob"
-                        const uri = await getTokensUri(data[i])
-                        let _uri = await logJSONData(uri)
-                        if (_uri.image.includes(baseUri)) {
-                            const hash = _uri.image
-                                .replace(baseUri, "")
-                                .replace(back, "")
-                            let fileResult = []
-                            const res = await fetch(
-                                `https://${hash}.ipfs.dweb.link/blob`
-                            )
+        try {
+            setLoading(true)
+            const HomesArr = []
+            const AccArr = []
+            const charArr = []
+            if (data) {
+                try {
+                    for (let i = 0; i <= data.length; i++) {
+                        if (data[i].assetContract == FantomHomesAddress) {
+                            const baseUri = "ipfs://"
+                            const back = "/blob"
+                            const uri = await getTokensUri(data[i])
+                            let _uri = await logJSONData(uri)
+                            if (_uri.image.includes(baseUri)) {
+                                const hash = _uri.image
+                                    .replace(baseUri, "")
+                                    .replace(back, "")
+                                let fileResult = []
+                                const res = await fetch(
+                                    `https://${hash}.ipfs.dweb.link/blob`
+                                )
 
-                            const blob = await res.blob()
-                            const fileReader = new FileReader()
-                            fileReader.readAsBinaryString(blob)
-                            const fileResultPromise = new Promise(
-                                (resolve) =>
-                                    (fileReader.onloadend = () => {
-                                        const dataUrl = fileReader.result
-                                        resolve(dataUrl)
-                                    })
-                            )
-                            const result = await fileResultPromise
-                            _uri = { ..._uri, image: result }
+                                const blob = await res.blob()
+                                const fileReader = new FileReader()
+                                fileReader.readAsBinaryString(blob)
+                                const fileResultPromise = new Promise(
+                                    (resolve) =>
+                                        (fileReader.onloadend = () => {
+                                            const dataUrl = fileReader.result
+                                            resolve(dataUrl)
+                                        })
+                                )
+                                const result = await fileResultPromise
+                                _uri = { ..._uri, image: result }
+                            }
+                            const token = { ...data[i], _uri }
+                            HomesArr.push(token)
                         }
-                        const token = { ...data[i], _uri }
-                        HomesArr.push(token)
-                    }
-                    if (data[i].assetContract == FantomAcc) {
-                        const baseUri = "ipfs://"
-                        const back = "/blob"
-                        const uri = await getTokensUri(data[i])
-                        let _uri = await logJSONData(uri)
-                        if (_uri.image.includes(baseUri)) {
-                            const hash = _uri.image
-                                .replace(baseUri, "")
-                                .replace(back, "")
-                            let fileResult = []
-                            const res = await fetch(
-                                `https://${hash}.ipfs.dweb.link/blob`
-                            )
-                            const blob = await res.blob()
-                            const fileReader = new FileReader()
-                            fileReader.readAsBinaryString(blob)
-                            const fileResultPromise = new Promise(
-                                (resolve) =>
-                                    (fileReader.onloadend = () => {
-                                        const dataUrl = fileReader.result
-                                        resolve(dataUrl)
-                                    })
-                            )
-                            const result = await fileResultPromise
-                            _uri = { ..._uri, image: result }
+                        if (data[i].assetContract == FantomAcc) {
+                            const baseUri = "ipfs://"
+                            const back = "/blob"
+                            const uri = await getTokensUri(data[i])
+                            let _uri = await logJSONData(uri)
+                            if (_uri.image.includes(baseUri)) {
+                                const hash = _uri.image
+                                    .replace(baseUri, "")
+                                    .replace(back, "")
+                                let fileResult = []
+                                const res = await fetch(
+                                    `https://${hash}.ipfs.dweb.link/blob`
+                                )
+                                const blob = await res.blob()
+                                const fileReader = new FileReader()
+                                fileReader.readAsBinaryString(blob)
+                                const fileResultPromise = new Promise(
+                                    (resolve) =>
+                                        (fileReader.onloadend = () => {
+                                            const dataUrl = fileReader.result
+                                            resolve(dataUrl)
+                                        })
+                                )
+                                const result = await fileResultPromise
+                                _uri = { ..._uri, image: result }
+                            }
+                            const token = { ...data[i], _uri }
+                            AccArr.push(token)
                         }
-                        const token = { ...data[i], _uri }
-                        AccArr.push(token)
-                    }
 
-                    if (data[i].assetContract == FantomCharAddress) {
-                        const baseUri = "ipfs://"
-                        const back = "/blob"
-                        const uri = await getTokensUri(data[i])
-                        let _uri = await logJSONData(uri)
-                        if (_uri.image.includes(baseUri)) {
-                            const hash = _uri.image
-                                .replace(baseUri, "")
-                                .replace(back, "")
-                            let fileResult = []
-                            const res = await fetch(
-                                `https://${hash}.ipfs.dweb.link/blob`
-                            )
-                            const blob = await res.blob()
-                            const fileReader = new FileReader()
-                            fileReader.readAsBinaryString(blob)
-                            const fileResultPromise = new Promise(
-                                (resolve) =>
-                                    (fileReader.onloadend = () => {
-                                        const dataUrl = fileReader.result
-                                        resolve(dataUrl)
-                                    })
-                            )
-                            const result = await fileResultPromise
-                            _uri = { ..._uri, image: result }
+                        if (data[i].assetContract == FantomCharAddress) {
+                            const baseUri = "ipfs://"
+                            const back = "/blob"
+                            const uri = await getTokensUri(data[i])
+                            let _uri = await logJSONData(uri)
+                            if (_uri.image.includes(baseUri)) {
+                                const hash = _uri.image
+                                    .replace(baseUri, "")
+                                    .replace(back, "")
+                                let fileResult = []
+                                const res = await fetch(
+                                    `https://${hash}.ipfs.dweb.link/blob`
+                                )
+                                const blob = await res.blob()
+                                const fileReader = new FileReader()
+                                fileReader.readAsBinaryString(blob)
+                                const fileResultPromise = new Promise(
+                                    (resolve) =>
+                                        (fileReader.onloadend = () => {
+                                            const dataUrl = fileReader.result
+                                            resolve(dataUrl)
+                                        })
+                                )
+                                const result = await fileResultPromise
+                                _uri = { ..._uri, image: result }
+                            }
+                            const token = { ...data[i], _uri }
+                            charArr.push(token)
                         }
-                        const token = { ...data[i], _uri }
-                        charArr.push(token)
                     }
+                } catch (e) {
+                    console.log(e)
                 }
-            } catch (e) {
-                console.log(e)
             }
-        }
 
-        setHomesNft(
-            HomesArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId))
-        )
-        setWearableNft(
-            AccArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId))
-        )
-        setChar(charArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId)))
-        return { HomesArr, AccArr, charArr }
+            setHomesNft(
+                HomesArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId))
+            )
+            setWearableNft(
+                AccArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId))
+            )
+            setChar(
+                charArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId))
+            )
+            setLoading(false)
+            return { HomesArr, AccArr, charArr }
+        } catch (e) {
+            setLoading(false)
+        }
     }
 
     return (
@@ -193,6 +202,7 @@ const HookProvider = ({ children }) => {
                 wearableNft,
                 getToken,
                 char,
+                loading,
             }}
         >
             {children}

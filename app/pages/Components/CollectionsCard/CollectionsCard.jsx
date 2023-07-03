@@ -14,13 +14,14 @@ import { HookContext } from "../../../context/Hook"
 import { useContractWrite } from "wagmi"
 import { MarketplaceAbi, MarketplaceAddress } from "../../../constants"
 import { Toaster, toast } from "react-hot-toast"
+import { ClipLoader } from "react-spinners"
 
 const CollectionsCard = () => {
     // const navigate = useNavigate();
     const router = useRouter()
-    const { wearableNft, getToken, moreDetails, setMoreDetails } =
+    const { wearableNft, getToken, moreDetails, setMoreDetails, loading } =
         useContext(HookContext)
-
+    const color = "#fff"
     const handleNavigate = (newModal) => {
         // navigate("/marketplace");
         setMoreDetails(newModal)
@@ -64,44 +65,63 @@ const CollectionsCard = () => {
 
     return (
         <div className={styles.nftcard_container}>
-            {wearableNft?.map((Nft) => (
-                <div
-                    className={styles.nftcard}
-                    key={Number(Nft.listingId)}
-                    onClick={() => showModal(Nft)}
-                >
-                    <div className={styles.nftcard_details}>
-                        <img
-                            className={styles.nft_image}
-                            src={Nft._uri.image}
-                            alt=""
-                        />
-                        <h5 className={styles.nft_name}>
-                            {Nft._uri.name} #{Number(Nft.tokenId)}
-                        </h5>
-                        <div className={styles.nft_price_number}>
+            {wearableNft.length > 0 ? (
+                wearableNft?.map((Nft) => (
+                    <div
+                        className={styles.nftcard}
+                        key={Number(Nft.listingId)}
+                        onClick={() => showModal(Nft)}
+                    >
+                        <div className={styles.nftcard_details}>
                             <img
-                                src={"/Assets/images/fantom-logo.webp"}
+                                className={styles.nft_image}
+                                src={Nft._uri.image}
                                 alt=""
-                                className={styles.fantom_logo}
                             />
-                            <span className={styles.nft_price}>
-                                {ethers.utils.formatEther(Nft.pricePerToken)}{" "}
-                                FTM
-                            </span>
-                        </div>
-                        <hr className={styles.nft_line} />
-                        <div className={styles.nft_time_button}>
-                            <button
-                                className={styles.bid}
-                                onClick={() => showModal(Nft)}
-                            >
-                                View
-                            </button>
+                            <h5 className={styles.nft_name}>
+                                {Nft._uri.name} #{Number(Nft.tokenId)}
+                            </h5>
+                            <div className={styles.nft_price_number}>
+                                <img
+                                    src={"/Assets/images/fantom-logo.webp"}
+                                    alt=""
+                                    className={styles.fantom_logo}
+                                />
+                                <span className={styles.nft_price}>
+                                    {ethers.utils.formatEther(
+                                        Nft.pricePerToken
+                                    )}{" "}
+                                    FTM
+                                </span>
+                            </div>
+                            <hr className={styles.nft_line} />
+                            <div className={styles.nft_time_button}>
+                                <button
+                                    className={styles.bid}
+                                    onClick={() => showModal(Nft)}
+                                >
+                                    View
+                                </button>
+                            </div>
                         </div>
                     </div>
+                ))
+            ) : (
+                <div className="flex flex-col items-center text-[#fff]">
+                    <ClipLoader
+                        color={color}
+                        loading={loading}
+                        size={30}
+                        aria-label="Loading Spinner"
+                        data-testid="loader"
+                    />
+                    <h1 className="text-[#8d1cfe]">Getting NFTs.....🥸</h1>
+                    <span className="text-gray-500">
+                        Refresh if it takes too long
+                    </span>
                 </div>
-            ))}
+            )}
+
             <Modal
                 className="nft-modal"
                 open={isModalOpen}
