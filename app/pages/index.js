@@ -15,7 +15,7 @@ export default function Home() {
         <div className=" flex flex-col relative scrollbar-hide overflow-hidden">
             <Head>
                 <title>Fantom World</title>
-                <link rel="icon" href="/ct.png" />
+                <link rel="icon" href="/Assets/images/fantom-logo.webp" />
             </Head>
 
             <main>
