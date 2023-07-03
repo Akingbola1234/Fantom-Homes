@@ -2,6 +2,7 @@ import { providers, Contract } from "ethers"
 import React, { createContext, useEffect, useState } from "react"
 import {
     FantomAcc,
+    FantomCharAddress,
     FantomHomesAbi,
     FantomHomesAddress,
     MarketplaceAbi,
@@ -16,6 +17,7 @@ const HookProvider = ({ children }) => {
     const [moreDetails, setMoreDetails] = useState(null)
     const [homesNft, setHomesNft] = useState(null)
     const [wearableNft, setWearableNft] = useState(null)
+    const [char, setChar] = useState(null)
     const { address } = useAccount()
     const [data, setData] = useState(null)
     const [provider, setprovider] = useState(null)
@@ -60,7 +62,9 @@ const HookProvider = ({ children }) => {
             const address =
                 element.assetContract == FantomHomesAddress
                     ? FantomHomesAddress
-                    : FantomAcc
+                    : element.assetContract == FantomAcc
+                    ? FantomAcc
+                    : FantomCharAddress
             const signer = provider.getSigner()
             const contract = new Contract(address, FantomHomesAbi, signer)
 
@@ -73,6 +77,7 @@ const HookProvider = ({ children }) => {
     async function getToken() {
         const HomesArr = []
         const AccArr = []
+        const charArr = []
         if (data) {
             try {
                 for (let i = 0; i <= data.length; i++) {
@@ -135,6 +140,36 @@ const HookProvider = ({ children }) => {
                         const token = { ...data[i], _uri }
                         AccArr.push(token)
                     }
+
+                    if (data[i].assetContract == FantomCharAddress) {
+                        const baseUri = "ipfs://"
+                        const back = "/blob"
+                        const uri = await getTokensUri(data[i])
+                        let _uri = await logJSONData(uri)
+                        if (_uri.image.includes(baseUri)) {
+                            const hash = _uri.image
+                                .replace(baseUri, "")
+                                .replace(back, "")
+                            let fileResult = []
+                            const res = await fetch(
+                                `https://${hash}.ipfs.dweb.link/blob`
+                            )
+                            const blob = await res.blob()
+                            const fileReader = new FileReader()
+                            fileReader.readAsBinaryString(blob)
+                            const fileResultPromise = new Promise(
+                                (resolve) =>
+                                    (fileReader.onloadend = () => {
+                                        const dataUrl = fileReader.result
+                                        resolve(dataUrl)
+                                    })
+                            )
+                            const result = await fileResultPromise
+                            _uri = { ..._uri, image: result }
+                        }
+                        const token = { ...data[i], _uri }
+                        charArr.push(token)
+                    }
                 }
             } catch (e) {
                 console.log(e)
@@ -144,8 +179,11 @@ const HookProvider = ({ children }) => {
         setHomesNft(
             HomesArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId))
         )
-        setWearableNft(AccArr)
-        return { HomesArr, AccArr }
+        setWearableNft(
+            AccArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId))
+        )
+        setChar(charArr.sort((a, b) => Number(b.tokenId) - Number(a.tokenId)))
+        return { HomesArr, AccArr, charArr }
     }
 
     return (
@@ -158,6 +196,7 @@ const HookProvider = ({ children }) => {
                 homesNft,
                 wearableNft,
                 getToken,
+                char,
             }}
         >
             {children}

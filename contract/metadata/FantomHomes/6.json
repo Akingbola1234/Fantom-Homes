@@ -1,0 +1,35 @@
+{
+    "name": "Urban Oasis",
+    "description": "An oasis of tranquility amidst the bustling city. This urban residence offers a retreat from the urban chaos, with its serene interiors and lush green spaces. With its prime location and modern amenities, it provides a peaceful sanctuary for city dwellers.",
+    "image": "https://bafkreibonxteh4oo37imbrch2nmgagw6nntlz354mvtmryyaezyjpzbu4e.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Contemporary and efficient"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Modern Contemporary"
+        },
+        {
+            "trait_type": "Location",
+            "value": "City center"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Minimalist and calming"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Rooftop garden, fitness center, spa"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Secure access and surveillance"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Green walls and rooftop vegetation"
+        }
+    ]
+}

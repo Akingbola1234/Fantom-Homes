@@ -88,7 +88,9 @@ const HomesCard = () => {
                             src={Nft._uri.image}
                             alt=""
                         />
-                        <h5 className={styles.nft_name}>{Nft._uri.name}</h5>
+                        <h5 className={styles.nft_name}>
+                            {Nft._uri.name} #{Number(Nft.tokenId)}
+                        </h5>
                         <div className={styles.nft_price_number}>
                             <img
                                 src={"/Assets/images/fantom-logo.webp"}

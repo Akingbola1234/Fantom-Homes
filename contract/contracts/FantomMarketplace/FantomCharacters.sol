@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract FantomLands is
+contract FantomCharacters is
     ERC721,
     ERC721Enumerable,
     ERC721Royalty,
@@ -22,7 +22,7 @@ contract FantomLands is
 
     // Declaring state variables
 
-    constructor() ERC721("FantomLands", "FTL") {}
+    constructor() ERC721("FantomCharacters", "FTC") {}
 
     function mint(
         address artist,

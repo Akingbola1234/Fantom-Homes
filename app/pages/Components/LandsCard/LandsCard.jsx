@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import styles from "../HomeCard/HomesCard.module.css"
 import { useRouter } from "next/router"
 import { Swiper, SwiperSlide } from "swiper/react"
@@ -9,12 +9,21 @@ import { Modal } from "antd"
 // import { NFTs } from "./data";
 
 import { Autoplay, Pagination, Navigation } from "swiper"
+import { HookContext } from "../../../context/Hook"
+import { Toaster, toast } from "react-hot-toast"
+import { useEffect } from "react"
+import { useContractWrite } from "wagmi"
+import { MarketplaceAbi, MarketplaceAddress } from "../../../constants"
+import { ethers } from "ethers"
 
 const LandsCard = () => {
     // const navigate = useNavigate();
     const router = useRouter()
+    const { char, getToken, setMoreDetails } = useContext(HookContext)
+
     const handleNavigate = (newModal) => {
         // navigate("/marketplace");
+        setMoreDetails(newModal)
         router.push(`/page/NftDetails?${newModal.key}`)
     }
     const [isModalOpen, setIsModalOpen] = useState(false)
@@ -30,22 +39,47 @@ const LandsCard = () => {
     const handleCancel = () => {
         setIsModalOpen(false)
     }
+
+    useEffect(() => {
+        getToken()
+    }, [])
+
+    const { write, isError, isSuccess, isLoading } = useContractWrite({
+        address: MarketplaceAddress,
+        abi: MarketplaceAbi,
+        functionName: "buyFromListing",
+    })
+    useEffect(() => {
+        {
+            isError && toast("You can't buy this NFT ☹️ Check Your Wallet")
+        }
+
+        {
+            isLoading && toast("Loading.... 🤪")
+        }
+
+        {
+            isSuccess && toast("You Now Own This Nft 🥳")
+        }
+    }, [isError, isLoading, isSuccess])
     return (
         <>
             <div className={styles.nftcard_container}>
-                {NFTs.map((Nft) => (
+                {char?.map((Nft) => (
                     <div
                         className={styles.nftcard}
-                        key={Nft.key}
+                        key={Number(Nft.listingId)}
                         onClick={() => showModal(Nft)}
                     >
                         <div className={styles.nftcard_details}>
                             <img
                                 className={styles.nft_image}
-                                src={Nft.nftImage[0]}
+                                src={Nft._uri.image}
                                 alt=""
                             />
-                            <h5 className={styles.nft_name}>{Nft.nftName}</h5>
+                            <h5 className={styles.nft_name}>
+                                {Nft._uri.name} #{Number(Nft.tokenId)}
+                            </h5>
                             <div className={styles.nft_price_number}>
                                 <img
                                     src={"/Assets/images/fantom-logo.webp"}
@@ -53,7 +87,10 @@ const LandsCard = () => {
                                     className={styles.fantom_logo}
                                 />
                                 <span className={styles.nft_price}>
-                                    {Nft.nftPrice}
+                                    {ethers.utils.formatEther(
+                                        Nft.pricePerToken
+                                    )}{" "}
+                                    FTM
                                 </span>
                             </div>
                             <hr className={styles.nft_line} />
@@ -62,7 +99,7 @@ const LandsCard = () => {
                                     className={styles.bid}
                                     onClick={() => showModal(Nft)}
                                 >
-                                    Preview
+                                    View
                                 </button>
                             </div>
                         </div>
@@ -79,11 +116,11 @@ const LandsCard = () => {
                     {modalContent.map((newModal) => (
                         <div
                             className={styles.nft_modal_content}
-                            key={newModal.nftName}
+                            key={Number(newModal.listingId)}
                         >
                             <div className={styles.nft_modal_image}>
                                 <img
-                                    src={newModal.nftImage[0]}
+                                    src={newModal._uri.image}
                                     alt=""
                                     className={styles.nft_modal_img}
                                 />
@@ -91,7 +128,7 @@ const LandsCard = () => {
 
                             <div className={styles.nft_modal_details}>
                                 <h5 className={styles.modal_text}>
-                                    {newModal.nftName}
+                                    {newModal._uri.name}
                                 </h5>
                                 <div className={styles.modal_logo_price}>
                                     <img
@@ -100,7 +137,10 @@ const LandsCard = () => {
                                         alt=""
                                     />
                                     <h5 className={styles.modal_price}>
-                                        {newModal.nftPrice} FTM
+                                        {ethers.utils.formatEther(
+                                            newModal.pricePerToken
+                                        )}{" "}
+                                        FTM
                                     </h5>
                                 </div>
                                 <div className={styles.nft_button}>
@@ -110,9 +150,15 @@ const LandsCard = () => {
                                     >
                                         View full Details
                                     </button>
+
                                     <button
                                         className={styles.primary_btn}
-                                        onClick={handleMint}
+                                        onClick={() =>
+                                            write({
+                                                value: newModal.pricePerToken,
+                                                args: [newModal.listingId],
+                                            })
+                                        }
                                     >
                                         Place a bid
                                     </button>
@@ -121,14 +167,15 @@ const LandsCard = () => {
                         </div>
                     ))}
                 </Modal>
-                <div>
-                    <button
-                        className={styles.view_more_btn}
-                        onClick={handleNavigate}
-                    >
-                        View More
-                    </button>
-                </div>
+                {/* <div>
+                <button
+                    className={styles.view_more_btn}
+                    onClick={handleNavigate}
+                >
+                    View More
+                </button>
+            </div> */}
+                <Toaster />
             </div>
         </>
     )

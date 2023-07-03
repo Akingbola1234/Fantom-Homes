@@ -1,0 +1,35 @@
+{
+    "name": "Serene Retreat",
+    "description": "A tranquil retreat nestled in nature's embrace. This serene residence offers a harmonious blend of modern comfort and natural beauty. With its open spaces, panoramic views, and calming ambiance, it provides a sanctuary for relaxation and rejuvenation.",
+    "image": "https://bafkreihoikozcgdaouxlsuayxg2ya7vspbgxjw3sr3er7bsqx3nkgvxj3i.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Cozy"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Contemporary Rustic"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Lakeside forest"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Warm and inviting"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Outdoor deck, meditation room, nature trails"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Gated community"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Forest pathways and water features"
+        }
+    ]
+}

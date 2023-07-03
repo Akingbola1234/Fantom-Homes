@@ -180,7 +180,9 @@ const CreatorHomes = () => {
                         signer
                     )
                     const StartDate =
-                        Math.floor(Date.now() / 1000) + 60 + Number(startTime)
+                        Math.floor(Date.now() / 1000) +
+                        60000 +
+                        Number(startTime)
                     const EndDate = Math.floor(StartDate + Number(endTime))
                     const ListingParameters = {
                         assetContract: FantomHomesAddress,

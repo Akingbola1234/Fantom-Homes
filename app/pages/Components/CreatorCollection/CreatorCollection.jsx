@@ -53,18 +53,18 @@ const CreatorCollection = () => {
     const [Roaylty, setRoaylty] = useState(null)
     const [loading, setLoading] = useState(false)
     const [listNft, setListNft] = useState(false)
-    const [provider, setProvider] = useState(null)
     const showModal = () => {
         setIsModalOpen(true)
     }
     const handleCancel = () => {
         setIsModalOpen(false)
     }
+    let provider
+    if (address) {
+        provider = new providers.Web3Provider(window.ethereum)
+    }
 
-    useEffect(() => {
-        const provide = new providers.Web3Provider(window.ethereum)
-        setProvider(provide)
-    }, [address])
+    useEffect(() => {}, [address])
 
     const addImage = async (e) => {
         const reader = new FileReader()
@@ -169,7 +169,9 @@ const CreatorCollection = () => {
                         signer
                     )
                     const StartDate =
-                        Math.floor(Date.now() / 1000) + 60 + Number(startTime)
+                        Math.floor(Date.now() / 1000) +
+                        60000 +
+                        Number(startTime)
                     const EndDate = Math.floor(StartDate + Number(endTime))
                     const ListingParameters = {
                         assetContract: FantomAcc,

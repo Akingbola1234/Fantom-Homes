@@ -1,0 +1,35 @@
+{
+    "name": "Modern Skyline Residence",
+    "description": "An iconic residence offering unparalleled views of the city skyline. This modern masterpiece stands tall amidst the urban landscape, combining sleek design with luxury living. With its state-of-the-art features and prime location, it redefines contemporary city living.",
+    "image": "https://bafkreiak4y2x45esb5xtu4bw3xcf2qbtb3tdaz3slktjrvu4kmina3pus4.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Expansive"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Contemporary"
+        },
+        {
+            "trait_type": "Location",
+            "value": "City center"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Minimalist and sleek"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Floor-to-ceiling windows, rooftop pool, smart home technology"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Secure access and surveillance"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Rooftop gardens and terraces"
+        }
+    ]
+}

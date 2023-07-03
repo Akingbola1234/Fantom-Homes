@@ -1,0 +1,35 @@
+{
+    "name": "Opulent Manor",
+    "description": "A majestic manor that epitomizes opulence and grandeur. This architectural masterpiece boasts intricate details, exquisite craftsmanship, and luxurious finishes. With sprawling grounds and regal interiors, it offers an unparalleled living experience for those seeking the pinnacle of luxury.",
+    "image": "https://bafkreiai2hg4cxowv6wvdywmtecir4enou6quy3j5q3wv4iinby7mbygeq.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Palatial"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Neo-Classical"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Countryside estate"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Elegant and ornate"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Private theater, ballroom, wine cellar"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Gated entrance with security staff"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Manicured gardens and fountains"
+        }
+    ]
+}

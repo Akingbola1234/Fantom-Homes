@@ -1,0 +1,35 @@
+{
+    "name": "Enchanted Cottage",
+    "description": "A charming cottage straight out of a fairytale. This enchanting residence captivates with its whimsical design and cozy interiors. With its lush surroundings and magical ambiance, it offers a delightful retreat for those seeking a touch of enchantment in their everyday lives.",
+    "image": "https://bafkreihuw2bw5kjbt7wlnqhwgkqufupoo6g5vmb3cvjpkrsauozy4yvq54.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Cozy and quaint"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Cottage-style"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Enchanted forest"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Rustic and whimsical"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Fireplace, garden patio, reading nook"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Magical protection enchantments"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Flower gardens and winding pathways"
+        }
+    ]
+}
