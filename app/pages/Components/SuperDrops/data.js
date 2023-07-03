@@ -15,7 +15,7 @@ export const ourTabs = [
     },
     {
         key: 3,
-        Tab: <Tag className="tags">Lands</Tag>,
+        Tab: <Tag className="tags">Characters</Tag>,
         children: <LandsCard />,
     },
 ]
