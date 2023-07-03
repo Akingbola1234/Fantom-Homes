@@ -211,8 +211,6 @@ const CreatorHomes = () => {
             setName("")
             setLoading(false)
             setIsModalOpen(false)
-
-            router.push("/page/creator")
         } catch (e) {
             setLoading(false)
         }
