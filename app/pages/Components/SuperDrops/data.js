@@ -10,7 +10,7 @@ export const ourTabs = [
     },
     {
         key: 2,
-        Tab: <Tag className="tags">Collections</Tag>,
+        Tab: <Tag className="tags">Wearables</Tag>,
         children: <CollectionsCard />,
     },
     {
