@@ -1,3 +1,10 @@
+// import "./Assets/creators/creator1.svg" from "./Assets/creators/"./Assets/creators/creator1.svg".svg"
+// import "./Assets/creators/creator2.png" from "./Assets/creators/"./Assets/creators/creator2.png".png"
+// import "./Assets/creators/creator3.png" from "./Assets/creators/"./Assets/creators/creator3.png".png"
+// import "./Assets/creators/creator4.png" from "./Assets/creators/"./Assets/creators/creator4.png".png"
+// import "./Assets/creators/creator5.png" from "./Assets/creators/"./Assets/creators/creator5.png".png"
+// import "./Assets/creators/creator6.png" from "./Assets/creators/"./Assets/creators/creator6.png".png"
+
 export const topCreators = [
     {
         creatorName: "Eka Prakasa",
