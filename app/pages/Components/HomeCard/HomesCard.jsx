@@ -35,7 +35,6 @@ const HomesCard = () => {
         router.push(`/page/NftDetails?${newModal.key}`)
     }
     const [isModalOpen, setIsModalOpen] = useState(false)
-    const [isLoading, setLoading] = useState(true)
     const [modalContent, setModalContent] = useState([])
     // const [provider, setProvider] = useState(null)
     // const [NFTs, setNFTs] = useState([])

@@ -402,7 +402,7 @@ const CreatorCollection = () => {
                 <div className="mt-10 mb-20">
                     {!loading ? (
                         <Button
-                            text={"Create Home"}
+                            text={"Create Collection"}
                             click={() => {
                                 handleClick()
                             }}
