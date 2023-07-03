@@ -32,7 +32,7 @@ const NftDetailsPage = () => {
             <div className={styles["ntf-card-page-details"]}>
                 <div className={styles["ntf-card-page-image"]}>
                     <img
-                        src={moreDetails?._uri.image}
+                        src={moreDetails?._uri?.image}
                         className="object-contain"
                         alt="NFT Image"
                     />
@@ -46,7 +46,7 @@ const NftDetailsPage = () => {
                     </Link>
                     <div className="flex items-center justify-between">
                         <h4 className={styles["nft-card-page-text"]}>
-                            {moreDetails?._uri.name} #
+                            {moreDetails?._uri?.name} #
                             {Number(moreDetails?.tokenId)}
                         </h4>
                         <div className="flex flex-col">
@@ -62,16 +62,16 @@ const NftDetailsPage = () => {
                             Description:
                         </h5>
                         <p className="text-[15px] font-medium bg-[#8d1cfe] p-3 rounded-md text-[#fff]">
-                            {moreDetails?._uri.description}
+                            {moreDetails?._uri?.description}
                         </p>
                     </div>
 
-                    {moreDetails?._uri.attributes && (
+                    {moreDetails?._uri?.attributes && (
                         <div>
                             <h5 className={styles["nft-card-page-attributes"]}>
                                 Attributes:
                             </h5>
-                            {moreDetails?._uri.attributes.map((att) => {
+                            {moreDetails?._uri?.attributes.map((att) => {
                                 return (
                                     <p className="text-[15px] font-medium bg-[#8d1cfe] p-3 rounded-md text-[#fff]">
                                         {att.trait_type}:{" "}
