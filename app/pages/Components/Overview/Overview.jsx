@@ -23,7 +23,7 @@ const Overview = () => {
                     <button>Manage Your Home</button>
                 </div>
                 <div className={styles["overview-card"]}>
-                    <h5>Collection</h5>
+                    <h5>Wearables</h5>
                     <span>
                         Create, review and publish your collections of wearables
                         and emotes
@@ -33,7 +33,7 @@ const Overview = () => {
                         alt="collection-icon"
                         className="collection-image"
                     />
-                    <button>Manage Collections</button>
+                    <button>Manage Wearables</button>
                 </div>
                 <div className={styles["overview-card"]}>
                     <h5>Lands</h5>

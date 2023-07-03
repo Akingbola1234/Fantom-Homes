@@ -216,7 +216,7 @@ const CreatorCollection = () => {
                 <div className="creator-button">
                     <button onClick={showModal}>
                         <AiOutlineUpload className="upload-icon" /> Upload
-                        Collection
+                        Wearables
                     </button>
                 </div>
             </div>
@@ -385,7 +385,7 @@ const CreatorCollection = () => {
                 <div className="mt-10 mb-20">
                     {!loading ? (
                         <Button
-                            text={"Create Collection"}
+                            text={"Create Wearables"}
                             click={() => {
                                 handleClick()
                             }}
