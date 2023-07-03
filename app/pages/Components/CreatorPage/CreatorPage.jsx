@@ -21,7 +21,7 @@ const CreatorPage = () => {
                     <TabPane tab="Wearables" key="collection">
                         <CreatorCollection />
                     </TabPane>
-                    <TabPane tab="Lands" key="Land">
+                    <TabPane tab="Characters" key="characters">
                         <CreatorLands />
                     </TabPane>
                 </Tabs>
