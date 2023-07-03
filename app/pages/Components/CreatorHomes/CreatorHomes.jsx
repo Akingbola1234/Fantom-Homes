@@ -295,7 +295,7 @@ const CreatorHomes = () => {
                     />
 
                     <TextField
-                        label={"Roaylty"}
+                        label={"Royalty"}
                         required
                         className="text-[#fff] mt-7 flex-grow"
                         color="primary"

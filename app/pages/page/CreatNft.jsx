@@ -125,7 +125,7 @@ const CreateNFT = () => {
                     className="flex mb-3 bg-[#8d1cfe] justify-center items-center cursor-pointer w-fit rounded-xl p-1 "
                     onClick={() => router.back()}
                 >
-                    <BackwardIcon className="w-5 h-5 mr-1" /> Go Back
+                    <BackwardIcon className="w-5 h-5 mr-1 p-1" /> Go Back
                 </div>
                 <div className="w-[60%] overflow-auto">
                     <h1 className="text-5xl font-medium mb-5">List New NFT</h1>
