@@ -20,14 +20,10 @@ const HookProvider = ({ children }) => {
     const [char, setChar] = useState(null)
     const { address } = useAccount()
     const [data, setData] = useState(null)
-    const [provider, setprovider] = useState(null)
+    let provider
     if (address) {
+        provider = new providers.Web3Provider(window.ethereum)
     }
-
-    useEffect(() => {
-        const provide = new providers.Web3Provider(window.ethereum)
-        setprovider(provide)
-    }, [address])
 
     const totalSupply = useContractRead({
         address: MarketplaceAddress,

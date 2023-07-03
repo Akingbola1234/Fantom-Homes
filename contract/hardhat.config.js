@@ -33,6 +33,7 @@ module.exports = {
         apiKey: {
             ftmTestnet: `${F_API_KEY}`,
             sepolia: `${process.env.S_API_KEY}`,
+            opera: `${F_API_KEY}`,
         },
     },
 }

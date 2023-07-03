@@ -26,14 +26,14 @@ import {
     midnightTheme,
 } from "@rainbow-me/rainbowkit"
 import { configureChains, createConfig, sepolia, WagmiConfig } from "wagmi"
-import { goerli, optimismGoerli, fantomTestnet } from "wagmi/chains"
+import { goerli, optimismGoerli, fantomTestnet, fantom } from "wagmi/chains"
 import { alchemyProvider } from "wagmi/providers/alchemy"
 import { publicProvider } from "wagmi/providers/public"
 import HookProvider from "../context/Hook"
 import { ThemeProvider, createTheme } from "@mui/material"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
-    [fantomTestnet],
+    [fantom],
     [
         alchemyProvider({ apiKey: "PrdHvDC9SU7_y9GyCH3tG734SOMbwAkj" }),
         publicProvider(),
