@@ -10,12 +10,12 @@ export const ourTabs = [
     },
     {
         key: 2,
-        Tab: <Tag className="tags">Collections</Tag>,
+        Tab: <Tag className="tags">Wearables</Tag>,
         children: <CollectionsCard />,
     },
     {
         key: 3,
-        Tab: <Tag className="tags">Lands</Tag>,
+        Tab: <Tag className="tags">Characters</Tag>,
         children: <LandsCard />,
     },
 ]

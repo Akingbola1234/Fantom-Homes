@@ -213,7 +213,7 @@ const CreatorCollection = () => {
                 <div className="creator-button">
                     <button onClick={showModal}>
                         <AiOutlineUpload className="upload-icon" /> Upload
-                        Collection
+                        Wearables
                     </button>
                 </div>
             </div>
@@ -282,7 +282,7 @@ const CreatorCollection = () => {
                     />
 
                     <TextField
-                        label={"Roaylty"}
+                        label={"Royalty"}
                         required
                         className="text-[#fff] mt-7 flex-grow"
                         color="primary"
@@ -382,7 +382,7 @@ const CreatorCollection = () => {
                 <div className="mt-10 mb-20">
                     {!loading ? (
                         <Button
-                            text={"Create Collection"}
+                            text={"Create Wearables"}
                             click={() => {
                                 handleClick()
                             }}

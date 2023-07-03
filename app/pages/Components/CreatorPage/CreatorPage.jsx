@@ -18,10 +18,10 @@ const CreatorPage = () => {
                     <TabPane tab="Homes" key="homes">
                         <CreatorHomes />
                     </TabPane>
-                    <TabPane tab="Collection" key="collection">
+                    <TabPane tab="Wearables" key="collection">
                         <CreatorCollection />
                     </TabPane>
-                    <TabPane tab="Lands" key="Land">
+                    <TabPane tab="Characters" key="characters">
                         <CreatorLands />
                     </TabPane>
                 </Tabs>
