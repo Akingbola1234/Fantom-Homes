@@ -1,0 +1,35 @@
+{
+    "name": "Nexus Sentinel",
+    "description": "The Nexus Sentinel is a guardian of the FantomWorld, a being of immense power and wisdom. With their ability to manipulate the energy of the Fantom realm, they safeguard the balance between realms and protect the metaverse from threats. They possess unparalleled knowledge of the FantomWorld's secrets and are revered as a symbol of strength and harmony.",
+    "image": "https://bafkreicleok2r2fb3rnkln56otiritc7a5ptag5rrcsv6ta52baqmfnhky.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Class",
+            "value": "Sentinel"
+        },
+        {
+            "trait_type": "Special Ability",
+            "value": "Dimensional Manipulation"
+        },
+        {
+            "trait_type": "Armor",
+            "value": "Fantom Energy Armor"
+        },
+        {
+            "trait_type": "Weapon",
+            "value": "Ethereal Blade"
+        },
+        {
+            "trait_type": "Affiliation",
+            "value": "Guardians of FantomWorld"
+        },
+        {
+            "trait_type": "Skills",
+            "value": "Reality Shaping, Energy Channeling"
+        },
+        {
+            "trait_type": "Level",
+            "value": 60
+        }
+    ]
+}

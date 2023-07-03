@@ -24,6 +24,10 @@ module.exports = {
             gas: 21000000,
             gasPrice: 8000000000,
         },
+        fantomMain: {
+            url: process.env.O_PRC_URL,
+            accounts: [PRIVATE_KEY],
+        },
     },
     etherscan: {
         apiKey: {

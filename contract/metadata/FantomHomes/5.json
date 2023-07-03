@@ -1,0 +1,35 @@
+{
+    "name": "Coastal Retreat",
+    "description": "A blissful retreat overlooking the sparkling ocean. This coastal residence offers a seamless blend of indoor and outdoor living, with breathtaking views and serene coastal vibes. With its beachfront location and luxurious amenities, it provides a haven of relaxation and seaside elegance.",
+    "image": "https://bafkreia6t52hc7gozrf7ixlso6an5unrpep4fefjn5i62uaelmi6bwtama.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Open and airy"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Modern Coastal"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Beachfront property"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Bright and breezy"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Infinity pool, private beach access, rooftop terrace"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Gated community with 24/7 security"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Tropical gardens and palm trees"
+        }
+    ]
+}

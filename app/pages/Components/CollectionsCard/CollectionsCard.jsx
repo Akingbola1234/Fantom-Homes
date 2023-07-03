@@ -26,7 +26,6 @@ const CollectionsCard = () => {
         setMoreDetails(newModal)
         router.push(`/page/NftDetails?${newModal.key}`)
     }
-    console.log(wearableNft)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [modalContent, setModalContent] = useState([])
     const [NFTs, setNFTs] = useState(null)
@@ -77,7 +76,9 @@ const CollectionsCard = () => {
                             src={Nft._uri.image}
                             alt=""
                         />
-                        <h5 className={styles.nft_name}>{Nft._uri.name}</h5>
+                        <h5 className={styles.nft_name}>
+                            {Nft._uri.name} #{Number(Nft.tokenId)}
+                        </h5>
                         <div className={styles.nft_price_number}>
                             <img
                                 src={"/Assets/images/fantom-logo.webp"}

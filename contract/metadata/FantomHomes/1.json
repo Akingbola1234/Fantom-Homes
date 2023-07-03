@@ -1,0 +1,35 @@
+{
+    "name": "Luxe Haven",
+    "description": "A haven of luxury and tranquility, offering an escape from the ordinary. This exquisite residence combines modern sophistication with timeless charm, providing a serene and lavish living environment. It is a retreat designed for those who appreciate the finest things in life.",
+    "image": "https://bafkreifd44oxfgwmgve7nzhth2uvxhiuvfdobikgpjmxtyv53ru44ofide.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Spacious"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Modern Minimalist"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Secluded mountain setting"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Sleek and contemporary"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Infinity pool, wellness center, home automation"
+        },
+        {
+            "trait_type": "Security",
+            "value": "24/7 monitored security system"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Zen-inspired gardens"
+        }
+    ]
+}

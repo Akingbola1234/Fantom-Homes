@@ -53,17 +53,18 @@ const CreatorCollection = () => {
     const [Roaylty, setRoaylty] = useState(null)
     const [loading, setLoading] = useState(false)
     const [listNft, setListNft] = useState(false)
-    let provider
     const showModal = () => {
         setIsModalOpen(true)
     }
     const handleCancel = () => {
         setIsModalOpen(false)
     }
-
-    useEffect(() => {
+    let provider
+    if (address) {
         provider = new providers.Web3Provider(window.ethereum)
-    }, [address])
+    }
+
+    useEffect(() => {}, [address])
 
     const addImage = async (e) => {
         const reader = new FileReader()
@@ -127,7 +128,6 @@ const CreatorCollection = () => {
             }
             data.push(thisData)
         }
-        console.log(data)
         setNftData(data)
     }
     useEffect(() => {
@@ -152,8 +152,6 @@ const CreatorCollection = () => {
             const contract = new Contract(FantomAcc, FantomAccAbi, signer)
 
             const id = Number(await contract.totalSupply()) - 1
-            console.log(id)
-            console.log(listNft)
 
             if (listNft) {
                 console.log("Approving....")
@@ -171,7 +169,9 @@ const CreatorCollection = () => {
                         signer
                     )
                     const StartDate =
-                        Math.floor(Date.now() / 1000) + 60 + Number(startTime)
+                        Math.floor(Date.now() / 1000) +
+                        60000 +
+                        Number(startTime)
                     const EndDate = Math.floor(StartDate + Number(endTime))
                     const ListingParameters = {
                         assetContract: FantomAcc,
@@ -184,7 +184,6 @@ const CreatorCollection = () => {
                     }
 
                     const tx = await contract.createListing(ListingParameters)
-                    console.log(tx)
                     await tx.wait(3)
                     setLoading(false)
                     router.push("/page/Marketplace")

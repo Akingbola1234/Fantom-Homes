@@ -54,13 +54,16 @@ const CreateNFT = () => {
     const removeImage = () => {
         setNftImage(null)
     }
+
     let provider
-    useEffect(() => {
+    if (address) {
         provider = new providers.Web3Provider(window.ethereum)
-    }, [address])
+    }
+    // useEffect(() => {}, [address])
 
     const listNft = async () => {
         try {
+            console.log("listing....")
             setLoading(true)
             const signer = provider.getSigner()
 
@@ -96,25 +99,20 @@ const CreateNFT = () => {
             }
 
             const tx = await contract.createListing(ListingParameters)
-            console.log(tx)
             await tx.wait(3)
             setLoading(false)
             router.push("/page/Marketplace")
         } catch (e) {
-            // console.log(e)
+            console.log(e)
             setLoading(false)
         }
     }
 
-    const unwatch = watchContractEvent(
-        {
-            address: MarketplaceAddress,
-            abi: MarketplaceAbi,
-            eventName: "NewListing",
-        },
-        (log) => console.log(log)
-    )
-    console.log(clickedNft)
+    const unwatch = watchContractEvent({
+        address: MarketplaceAddress,
+        abi: MarketplaceAbi,
+        eventName: "NewListing",
+    })
     return (
         <div className="">
             <Navbar />

@@ -1,0 +1,35 @@
+{
+    "name": "Mountain Retreat",
+    "description": "A secluded retreat nestled amidst majestic mountains. This serene residence offers breathtaking views and a peaceful escape from the busy world. With its rustic charm and nature-inspired design, it provides a cozy haven for relaxation and connection with nature.",
+    "image": "https://bafkreiar65d6dterhswrzck7ztosdvrupks2k6cta2izhqgf4ngjpfrtl4.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Cozy and intimate"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Rustic"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Mountain range"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Warm and earthy"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Fireplace, outdoor hot tub, hiking trails"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Gated entrance and surveillance"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Natural landscapes and stone pathways"
+        }
+    ]
+}

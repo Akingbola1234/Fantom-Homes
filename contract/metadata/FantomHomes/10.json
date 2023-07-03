@@ -1,0 +1,35 @@
+{
+    "name": "Lakeside Villa",
+    "description": "A stunning villa perched on the shores of a tranquil lake. This elegant residence offers panoramic views and a serene waterfront living experience. With its luxurious features and serene ambiance, it creates an idyllic retreat for those seeking the beauty of nature and refined living.",
+    "image": "https://bafkreig5vbu2nflefyzktflk7nnj6snff27k4huvdljvyi3lppwj663n74.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Spacious and elegant"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "Mediterranean"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Lakeside"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Sophisticated and luxurious"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Private dock, lakeside terrace, boathouse"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Gated community and surveillance"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Manicured gardens and lakefront pathways"
+        }
+    ]
+}

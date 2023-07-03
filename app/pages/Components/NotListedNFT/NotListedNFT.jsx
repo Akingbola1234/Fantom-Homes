@@ -42,7 +42,6 @@ const NotListedNft = ({ data }) => {
             const convertedData = await Promise.all(
                 data.map(async (Nft) => {
                     const ipfsUri = Nft.nftParams.image
-                    console.log(ipfsUri)
 
                     if (ipfsUri.includes(baseUri)) {
                         const hash = ipfsUri

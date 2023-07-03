@@ -1,0 +1,35 @@
+{
+    "name": "Grand Chateau",
+    "description": "A majestic chateau that embodies elegance and splendor. This architectural marvel showcases intricate details, opulent interiors, and sprawling gardens. With its regal charm and luxurious amenities, it offers a truly enchanting living experience for those seeking the epitome of grandeur.",
+    "image": "https://bafkreibq42l7sv7nsxbf3p2icyec53nfry77d36mqczwadypmmmjocrcmu.ipfs.nftstorage.link/",
+    "attributes": [
+        {
+            "trait_type": "Size",
+            "value": "Majestic"
+        },
+        {
+            "trait_type": "Architectural Style",
+            "value": "French Renaissance"
+        },
+        {
+            "trait_type": "Location",
+            "value": "Hilltop estate"
+        },
+        {
+            "trait_type": "Interior Design",
+            "value": "Palatial and ornate"
+        },
+        {
+            "trait_type": "Amenities",
+            "value": "Private chapel, wine cellar, ballroom"
+        },
+        {
+            "trait_type": "Security",
+            "value": "Gated entrance with armed guards"
+        },
+        {
+            "trait_type": "Landscaping",
+            "value": "Formal gardens and fountains"
+        }
+    ]
+}
