@@ -12,6 +12,7 @@
     "@mui/lab": "^5.0.0-alpha.124",
     "@mui/material": "^5.11.15",
     "@rainbow-me/rainbowkit": "^1.0.2",
+    "@vercel/analytics": "^1.0.1",
     "antd": "^5.6.2",
     "ethers": "^5",
     "heroicons": "^2.0.16",

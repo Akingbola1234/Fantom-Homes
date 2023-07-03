@@ -31,6 +31,7 @@ import { alchemyProvider } from "wagmi/providers/alchemy"
 import { publicProvider } from "wagmi/providers/public"
 import HookProvider from "../context/Hook"
 import { ThemeProvider, createTheme } from "@mui/material"
+import { Analytics } from "@vercel/analytics/react"
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
     [fantom],
@@ -79,7 +80,7 @@ function MyApp({ Component, pageProps }) {
                         modalSize="compact"
                         chains={chains}
                     >
-                        <Component {...pageProps} />{" "}
+                        <Component {...pageProps} /> <Analytics />
                     </RainbowKitProvider>{" "}
                 </HookProvider>
             </WagmiConfig>
