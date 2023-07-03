@@ -195,7 +195,7 @@ const CreatorLands = () => {
                     }
 
                     const tx = await contract.createListing(ListingParameters)
-                    await tx.wait(3)
+                    await tx.wait()
                     setLoading(false)
                     router.push("/page/Marketplace")
                     setLoading(false)
