@@ -25,3 +25,11 @@ export const ourPartners = [
         partnerProfile: "./Assets/images/webflow.svg",
     },
 ]
+
+import React from "react"
+
+const data = () => {
+    return <div>data</div>
+}
+
+export default data

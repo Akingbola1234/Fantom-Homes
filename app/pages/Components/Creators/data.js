@@ -37,3 +37,11 @@ export const topCreators = [
         creatorProfile: "./Assets/creators/creator6.png",
     },
 ]
+
+import React from "react"
+
+const data = () => {
+    return <div>data</div>
+}
+
+export default data

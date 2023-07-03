@@ -19,3 +19,11 @@ export const ourTabs = [
         children: <LandsCard />,
     },
 ]
+
+import React from "react"
+
+const data = () => {
+    return <div>data</div>
+}
+
+export default data

@@ -35,27 +35,6 @@ import {
 } from "../../../utils/fantomWorld/createAuction"
 import { useRouter } from "next/router"
 
-const { Dragger } = Upload
-const props = {
-    name: "file",
-    multiple: true,
-    action: "https://www.mocky.io/v2/",
-    onChange(info) {
-        const { status } = info.file
-        if (status !== "uploading") {
-            console.log(info.file, info.fileList)
-        }
-        if (status === "done") {
-            message.success(`${info.file.name} file uploaded successfully`)
-        } else if (status === "error") {
-            message.error(`${info.files.name} file upload failed`)
-        }
-    },
-    onDrop(e) {
-        console.log("Dropped files", e.dataTransfer.file)
-    },
-}
-
 const CreatorCollection = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [nftData, setNftData] = useState([])
@@ -74,13 +53,17 @@ const CreatorCollection = () => {
     const [Roaylty, setRoaylty] = useState(null)
     const [loading, setLoading] = useState(false)
     const [listNft, setListNft] = useState(false)
-    const provider = new providers.Web3Provider(window.ethereum)
+    let provider
     const showModal = () => {
         setIsModalOpen(true)
     }
     const handleCancel = () => {
         setIsModalOpen(false)
     }
+
+    useEffect(() => {
+        provider = new providers.Web3Provider(window.ethereum)
+    }, [address])
 
     const addImage = async (e) => {
         const reader = new FileReader()
@@ -402,7 +385,7 @@ const CreatorCollection = () => {
                 <div className="mt-10 mb-20">
                     {!loading ? (
                         <Button
-                            text={"Create Home"}
+                            text={"Create Collection"}
                             click={() => {
                                 handleClick()
                             }}

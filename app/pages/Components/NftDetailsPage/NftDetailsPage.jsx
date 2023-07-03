@@ -4,7 +4,6 @@ import { FaAngleLeft } from "react-icons/fa"
 import styles from "./NftDetailsPage.module.css"
 import { HookContext } from "../../../context/Hook"
 import { ethers } from "ethers"
-import { truncate } from "truncate-ethereum-address"
 import { useContractWrite, usePrepareContractWrite } from "wagmi"
 import { MarketplaceAbi, MarketplaceAddress } from "../../../constants"
 import { Toaster, toast } from "react-hot-toast"
@@ -17,8 +16,8 @@ const NftDetailsPage = () => {
         address: MarketplaceAddress,
         abi: MarketplaceAbi,
         functionName: "buyFromListing",
-        args: [moreDetails.listingId],
-        value: [moreDetails.pricePerToken],
+        args: [moreDetails?.listingId],
+        value: [moreDetails?.pricePerToken],
         onError() {
             toast("You can't buy this NFT ☹️")
         },
@@ -33,7 +32,7 @@ const NftDetailsPage = () => {
             <div className={styles["ntf-card-page-details"]}>
                 <div className={styles["ntf-card-page-image"]}>
                     <img
-                        src={moreDetails._uri.image}
+                        src={moreDetails?._uri.image}
                         className="object-contain"
                         alt="NFT Image"
                     />
@@ -47,16 +46,14 @@ const NftDetailsPage = () => {
                     </Link>
                     <div className="flex items-center justify-between">
                         <h4 className={styles["nft-card-page-text"]}>
-                            {moreDetails._uri.name} #
-                            {Number(moreDetails.tokenId)}
+                            {moreDetails?._uri.name} #
+                            {Number(moreDetails?.tokenId)}
                         </h4>
                         <div className="flex flex-col">
                             <span className={styles["nft-card-page-span"]}>
                                 Creator
                             </span>
-                            <span>
-                                {truncate(moreDetails.listingCreator, 3)}
-                            </span>
+                            <span>{moreDetails?.listingCreator}</span>
                         </div>
                     </div>
 
@@ -65,16 +62,16 @@ const NftDetailsPage = () => {
                             Description:
                         </h5>
                         <p className="text-[15px] font-medium bg-[#8d1cfe] p-3 rounded-md text-[#fff]">
-                            {moreDetails._uri.description}
+                            {moreDetails?._uri.description}
                         </p>
                     </div>
 
-                    {moreDetails._uri.attributes && (
+                    {moreDetails?._uri.attributes && (
                         <div>
                             <h5 className={styles["nft-card-page-attributes"]}>
                                 Attributes:
                             </h5>
-                            {moreDetails._uri.attributes.map((att) => {
+                            {moreDetails?._uri.attributes.map((att) => {
                                 return (
                                     <p className="text-[15px] font-medium bg-[#8d1cfe] p-3 rounded-md text-[#fff]">
                                         {att.trait_type}:{" "}

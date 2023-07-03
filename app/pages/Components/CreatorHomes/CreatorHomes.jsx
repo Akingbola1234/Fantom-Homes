@@ -52,7 +52,7 @@ const CreatorHomes = () => {
     const [Roaylty, setRoaylty] = useState(null)
     const [loading, setLoading] = useState(false)
     const [listNft, setListNft] = useState(false)
-    const provider = new providers.Web3Provider(window.ethereum)
+    let provider
     const label = { inputProps: { "aria-label": "Color switch demo" } }
     const showModal = () => {
         setIsModalOpen(true)
@@ -136,6 +136,8 @@ const CreatorHomes = () => {
         setNftData(data)
     }
     useEffect(() => {
+        provider = new providers.Web3Provider(window.ethereum)
+
         logJSONData()
     }, [address])
 

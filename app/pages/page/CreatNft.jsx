@@ -25,6 +25,7 @@ import {
     MarketplaceAddress,
 } from "../../constants"
 import { approveMarketplace } from "../../utils/fantomWorld/createAuction"
+import { useAccount } from "wagmi"
 
 const CreateNFT = () => {
     const label = { inputProps: { "aria-label": "Color switch demo" } }
@@ -33,7 +34,7 @@ const CreateNFT = () => {
     const [startTime, setStartTime] = useState("")
     const [endTime, setEndTime] = useState("")
     const [buyoutPrice, setBuyoutPrice] = useState("")
-
+    const { address } = useAccount()
     const router = useRouter()
     const { clickedNft, setClickedNft } = useContext(HookContext)
     const [loading, setLoading] = useState(false)
@@ -53,7 +54,10 @@ const CreateNFT = () => {
     const removeImage = () => {
         setNftImage(null)
     }
-    const provider = new providers.Web3Provider(window.ethereum)
+    let provider
+    useEffect(() => {
+        provider = new providers.Web3Provider(window.ethereum)
+    }, [address])
 
     const listNft = async () => {
         try {
@@ -82,8 +86,8 @@ const CreateNFT = () => {
                 Math.floor(Date.now() / 1000) + 60 + Number(startTime)
             const EndDate = Math.floor(StartDate + Number(endTime))
             const ListingParameters = {
-                assetContract: clickedNft.assetContract,
-                tokenId: clickedNft.tokenId,
+                assetContract: clickedNft?.assetContract,
+                tokenId: clickedNft?.tokenId,
                 quantity: 1,
                 pricePerToken: ethers.utils.parseEther(buyoutPrice),
                 startTimestamp: StartDate,
@@ -129,13 +133,17 @@ const CreateNFT = () => {
                         Single edition on Ethereum{" "}
                     </p>
                     <h2 className="mb-4">Choose wallet</h2>
-                    <div className="ethereum-border flex justify-between mb-8 items-start border p-4 border-[#333a4b] rounded-xl">
+                    <div className="ethereum-border flex justify-between mb-8 items-start border p-1 border-[#333a4b] rounded-xl">
                         <div className="flex items-center justify-center">
-                            <Image src="/ethre.webp" width={40} height={40} />
+                            <Image
+                                src="/Assets/images/fantom-logo.webp"
+                                width={40}
+                                height={40}
+                            />
                             <div className="ml-3">
                                 <p></p>
                                 <p className="text-gray-500 text-base font-medium">
-                                    Ethereum
+                                    FTM
                                 </p>
                             </div>
                         </div>
@@ -241,8 +249,8 @@ const CreateNFT = () => {
                     <div className="preview p-5 overflow-hidden">
                         <img
                             src={
-                                clickedNft.imageUrl ||
-                                clickedNft.nftParams.image
+                                clickedNft?.imageUrl ||
+                                clickedNft?.nftParams?.image
                             }
                             width={100}
                             height={100}
@@ -250,7 +258,7 @@ const CreateNFT = () => {
                         />
 
                         <h1 className="text-[20px] mt-2 font-semibold">
-                            {clickedNft.nftParams.name}
+                            {clickedNft?.nftParams?.name}
                         </h1>
                         <p className="text-gray-500">FantomHomes</p>
 
