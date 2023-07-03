@@ -18,17 +18,21 @@ const HookProvider = ({ children }) => {
     const [wearableNft, setWearableNft] = useState(null)
     const { address } = useAccount()
     const [data, setData] = useState(null)
-    let provider
+    const [provider, setprovider] = useState(null)
     if (address) {
-        provider = new providers.Web3Provider(window.ethereum)
     }
+
+    useEffect(() => {
+        const provide = new providers.Web3Provider(window.ethereum)
+        setprovider(provide)
+    }, [address])
+
     const totalSupply = useContractRead({
         address: MarketplaceAddress,
         abi: MarketplaceAbi,
         functionName: "totalListings",
     })
     const _totalSupply = Number(totalSupply.data) - 1
-    console.log(Number(totalSupply.data))
 
     const mlootContractConfig = {
         address: MarketplaceAddress,
@@ -85,7 +89,7 @@ const HookProvider = ({ children }) => {
                             const res = await fetch(
                                 `https://${hash}.ipfs.dweb.link/blob`
                             )
-                            // console.log(res)
+
                             const blob = await res.blob()
                             const fileReader = new FileReader()
                             fileReader.readAsBinaryString(blob)
@@ -96,10 +100,8 @@ const HookProvider = ({ children }) => {
                                         resolve(dataUrl)
                                     })
                             )
-                            console.log(fileResult)
                             const result = await fileResultPromise
                             _uri = { ..._uri, image: result }
-                            console.log(_uri)
                         }
                         const token = { ...data[i], _uri }
                         HomesArr.push(token)
@@ -117,7 +119,6 @@ const HookProvider = ({ children }) => {
                             const res = await fetch(
                                 `https://${hash}.ipfs.dweb.link/blob`
                             )
-                            // console.log(res)
                             const blob = await res.blob()
                             const fileReader = new FileReader()
                             fileReader.readAsBinaryString(blob)
@@ -128,10 +129,8 @@ const HookProvider = ({ children }) => {
                                         resolve(dataUrl)
                                     })
                             )
-                            console.log(fileResult)
                             const result = await fileResultPromise
                             _uri = { ..._uri, image: result }
-                            console.log(_uri)
                         }
                         const token = { ...data[i], _uri }
                         AccArr.push(token)

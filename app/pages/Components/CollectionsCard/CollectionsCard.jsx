@@ -26,7 +26,6 @@ const CollectionsCard = () => {
         setMoreDetails(newModal)
         router.push(`/page/NftDetails?${newModal.key}`)
     }
-    console.log(wearableNft)
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [modalContent, setModalContent] = useState([])
     const [NFTs, setNFTs] = useState(null)

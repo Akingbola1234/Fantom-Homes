@@ -52,8 +52,11 @@ const CreatorHomes = () => {
     const [Roaylty, setRoaylty] = useState(null)
     const [loading, setLoading] = useState(false)
     const [listNft, setListNft] = useState(false)
-    let provider
     const label = { inputProps: { "aria-label": "Color switch demo" } }
+    let provider
+    if (address) {
+        provider = new providers.Web3Provider(window.ethereum)
+    }
     const showModal = () => {
         setIsModalOpen(true)
     }
@@ -123,7 +126,6 @@ const CreatorHomes = () => {
         const data = []
         for (let i = 0; i < tokens.length; i++) {
             const element = tokens[i]
-            console.log(element)
             const response = await fetch(element.tokenUri)
             const jsonData = await response.json()
             const thisData = {
@@ -136,8 +138,6 @@ const CreatorHomes = () => {
         setNftData(data)
     }
     useEffect(() => {
-        provider = new providers.Web3Provider(window.ethereum)
-
         logJSONData()
     }, [address])
 
@@ -163,8 +163,6 @@ const CreatorHomes = () => {
             )
 
             const id = Number(await contract.totalSupply()) - 1
-            console.log(id)
-            console.log(listNft)
 
             if (listNft) {
                 console.log("Approving....")
@@ -195,13 +193,11 @@ const CreatorHomes = () => {
                     }
 
                     const tx = await contract.createListing(ListingParameters)
-                    console.log(tx)
                     await tx.wait(3)
                     setLoading(false)
                     router.push("/page/Marketplace")
                     setLoading(false)
                 } catch (e) {
-                    console.log(e)
                     setLoading(false)
                 }
             }

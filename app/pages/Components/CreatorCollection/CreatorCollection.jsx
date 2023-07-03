@@ -53,7 +53,7 @@ const CreatorCollection = () => {
     const [Roaylty, setRoaylty] = useState(null)
     const [loading, setLoading] = useState(false)
     const [listNft, setListNft] = useState(false)
-    let provider
+    const [provider, setProvider] = useState(null)
     const showModal = () => {
         setIsModalOpen(true)
     }
@@ -62,7 +62,8 @@ const CreatorCollection = () => {
     }
 
     useEffect(() => {
-        provider = new providers.Web3Provider(window.ethereum)
+        const provide = new providers.Web3Provider(window.ethereum)
+        setProvider(provide)
     }, [address])
 
     const addImage = async (e) => {
@@ -127,7 +128,6 @@ const CreatorCollection = () => {
             }
             data.push(thisData)
         }
-        console.log(data)
         setNftData(data)
     }
     useEffect(() => {
@@ -152,8 +152,6 @@ const CreatorCollection = () => {
             const contract = new Contract(FantomAcc, FantomAccAbi, signer)
 
             const id = Number(await contract.totalSupply()) - 1
-            console.log(id)
-            console.log(listNft)
 
             if (listNft) {
                 console.log("Approving....")
@@ -184,7 +182,6 @@ const CreatorCollection = () => {
                     }
 
                     const tx = await contract.createListing(ListingParameters)
-                    console.log(tx)
                     await tx.wait(3)
                     setLoading(false)
                     router.push("/page/Marketplace")
