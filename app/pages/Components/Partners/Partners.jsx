@@ -1,5 +1,5 @@
 import React from "react"
-import { ourPartners } from "./data"
+import { ourPartners } from "../../../partnersData/data"
 
 const Partners = () => {
     return (

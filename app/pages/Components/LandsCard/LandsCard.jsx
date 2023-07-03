@@ -6,7 +6,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 // import { useNavigate } from "react-router-dom";
 import { Modal } from "antd";
 // import fantomImage from "../../Assets/images/fantom-logo.webp"
-import { NFTs } from "./data";
+import { NFTs } from "../../../landCardData/data";
 
 import { Autoplay, Pagination, Navigation } from "swiper";
 

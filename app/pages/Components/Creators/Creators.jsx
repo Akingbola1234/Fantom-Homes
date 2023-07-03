@@ -1,5 +1,5 @@
 import React from "react"
-import { topCreators } from "./data"
+import { topCreators } from "../../../creatorsData/data"
 
 const Creators = () => {
     const watchVideo = () => {
