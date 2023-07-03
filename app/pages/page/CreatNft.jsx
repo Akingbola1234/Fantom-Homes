@@ -129,7 +129,7 @@ const CreateNFT = () => {
                         Single edition on Ethereum{" "}
                     </p>
                     <h2 className="mb-4">Choose wallet</h2>
-                    <div className="ethereum-border flex justify-between mb-8 items-start border p-4 border-[#333a4b] rounded-xl">
+                    <div className="ethereum-border flex justify-between mb-8 items-start border p-1 border-[#333a4b] rounded-xl">
                         <div className="flex items-center justify-center">
                             <Image src="/Assets/images/fantom-logo.webp" width={40} height={40} />
                             <div className="ml-3">
