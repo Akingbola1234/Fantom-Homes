@@ -224,7 +224,7 @@ const CreatorLands = () => {
                 </div>
                 <div className="creator-button">
                     <button onClick={showModal}>
-                        <AiOutlineUpload className="upload-icon" /> Upload Homes
+                        <AiOutlineUpload className="upload-icon" /> Upload Characters
                     </button>
                 </div>
             </div>
