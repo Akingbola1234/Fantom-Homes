@@ -131,11 +131,11 @@ const CreateNFT = () => {
                     <h2 className="mb-4">Choose wallet</h2>
                     <div className="ethereum-border flex justify-between mb-8 items-start border p-4 border-[#333a4b] rounded-xl">
                         <div className="flex items-center justify-center">
-                            <Image src="/ethre.webp" width={40} height={40} />
+                            <Image src="/Assets/images/fantom-logo.webp" width={40} height={40} />
                             <div className="ml-3">
                                 <p></p>
                                 <p className="text-gray-500 text-base font-medium">
-                                    Ethereum
+                                    FTM
                                 </p>
                             </div>
                         </div>
