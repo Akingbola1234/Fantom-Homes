@@ -33,7 +33,7 @@ const NftDetailsPage = () => {
                 <div className={styles["ntf-card-page-image"]}>
                     <img
                         src={moreDetails?._uri?.image}
-                        className="object-contain"
+                        className="object-contain "
                         alt="NFT Image"
                     />
                 </div>
@@ -44,7 +44,7 @@ const NftDetailsPage = () => {
                             <FaAngleLeft /> Back | FantomWorld
                         </button>
                     </Link>
-                    <div className="flex items-center justify-between">
+                    <div className="flex flex-col justify-between">
                         <h4 className={styles["nft-card-page-text"]}>
                             {moreDetails?._uri?.name} #
                             {Number(moreDetails?.tokenId)}

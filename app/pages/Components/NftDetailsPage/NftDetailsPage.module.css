@@ -6,7 +6,7 @@
   display: flex;
   gap: 40px;
   justify-content: center;
-  align-items: center;
+  align-items: start;
 }
 
 .ntf-card-page-image > img {
