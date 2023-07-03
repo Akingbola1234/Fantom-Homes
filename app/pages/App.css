@@ -11,7 +11,13 @@ body {
   border-radius: 10px !important;
   width: 700px;
 }
-
+#preloader{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
 @media (max-width: 1200px) {
   .ant-modal-content {
     width: 100%;
