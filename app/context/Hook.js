@@ -41,7 +41,7 @@ const HookProvider = ({ children }) => {
     const listings = useContractRead({
         address: MarketplaceAddress,
         abi: MarketplaceAbi,
-        functionName: "getAllValidListings",
+        functionName: "getAllListings",
         args: [0, _totalSupply],
         onSuccess(data) {
             console.log("Success", data)
